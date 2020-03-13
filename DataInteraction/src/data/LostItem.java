@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class LostItem extends Item {
 	
-	private String description;
-	public String additionalInfo;
+	String description;
+	String additionalInfo;
 
 	public LostItem(int id, String category, Date date, double latitude, double longitude, 
 			String around, String attachmentLoc, String description, String additionalInfo) {
@@ -28,6 +28,13 @@ public class LostItem extends Item {
 
 	public void setAdditionalInfo(String additionalInfo) {
 		this.additionalInfo = additionalInfo;
+	}
+	
+	public String toString() {
+		String s = "" + id + ", " + category + ", " + ", " + date.toString() + ", " + latitude +
+				", " + longitude + ", " + around + ", " + attachmentLoc + ", " + description + 
+				", " + additionalInfo;
+		return s;
 	}
 
 }

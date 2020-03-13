@@ -4,13 +4,13 @@ import java.util.*;
 
 public abstract class Item {
 
-	private int id;
-	private String category;
-	private Date date;
-	private double latitude;
-	private double longitude;
-	private String around;
-	private String attachmentLoc;
+	int id;
+	String category;
+	Date date;
+	double latitude;
+	double longitude;
+	String around;
+	String attachmentLoc;
 	
 	public Item(int id, String category, Date date, double latitude, double longitude, String around,
 			String attachmentLoc) {

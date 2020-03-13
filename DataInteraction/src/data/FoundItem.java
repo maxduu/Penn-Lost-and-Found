@@ -8,5 +8,11 @@ public class FoundItem extends Item {
 			String around, String attachmentLoc) {
 		super(id, category, date, latitude, longitude, around, attachmentLoc);
 	}
+	
+	public String toString() {
+		String s = "" + id + ", " + category + ", " + date.toString() + ", " + latitude +
+				", " + longitude + ", " + around + ", " + attachmentLoc;
+		return s;
+	}
 
 }
