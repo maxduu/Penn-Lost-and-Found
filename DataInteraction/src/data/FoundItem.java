@@ -10,8 +10,9 @@ public class FoundItem extends Item {
 	}
 	
 	public String toString() {
-		String s = "" + id + ", " + category + ", " + date.toString() + ", " + latitude +
-				", " + longitude + ", " + around + ", " + attachmentLoc;
+		String s = "id " + id + ", category " + category + ", date " + date.toString() + 
+				", latitiude " + latitude + ", longitude " + longitude + ", around " + 
+				around + ", attachmentLoc " + attachmentLoc;
 		return s;
 	}
 
