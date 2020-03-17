@@ -5,7 +5,7 @@ We boutta POP OFF
 All of the components for the android app
 
 ## DataInteraction
-Folder for all of the code (readers, writers, processors) used to deal with reading and writing from our json files, and eventually the database
+Folder for all of the code (data classes, readers, writers, processors) used to deal with reading and writing from our json files, and eventually the database
 
 ## data
 Stores the data for the app (json files and eventually database files)
