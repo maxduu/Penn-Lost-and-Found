@@ -13,8 +13,15 @@ public class FoundJSONReader {
 	
     private String filename;
     
-    public FoundJSONReader(String fname) {
+    private FoundJSONReader(String fname) {
         this.filename = fname;
+    }
+    
+    // once migrated to db we will have to change the instance
+    private static FoundJSONReader instance = new FoundJSONReader("../data/found-items.json");
+    
+    public static FoundJSONReader getInstance() {
+    	return instance;
     }
 
     public Set<FoundItem> getAllFoundItems() {

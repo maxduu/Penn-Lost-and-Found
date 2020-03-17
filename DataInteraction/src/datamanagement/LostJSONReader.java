@@ -17,10 +17,16 @@ import data.LostItem;
 
 public class LostJSONReader {
 
-private String filename;
+	private String filename;
     
-    public LostJSONReader(String fname) {
+    private LostJSONReader(String fname) {
         this.filename = fname;
+    }
+    
+    private static LostJSONReader instance = new LostJSONReader("../data/lost-items.json");
+    
+    public static LostJSONReader getInstance() {
+    	return instance;
     }
 
     public Set<LostItem> getAllLostItems() {
