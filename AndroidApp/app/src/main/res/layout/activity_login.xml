@@ -17,22 +17,22 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="14dp" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
-            app:srcCompat="@drawable/UPenn_shield_with_banner" />
+            android:layout_height="137dp"
+            app:srcCompat="@drawable/upenn_shield" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="18dp" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/pennTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="178dp"
             android:fontFamily="@font/oswald_bold"
             android:gravity="center|top"
             android:text="Penn\nLost &amp; Found"
@@ -43,7 +43,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="51dp" />
+            android:layout_height="31dp" />
 
         <EditText
             android:id="@+id/username"
@@ -74,7 +74,7 @@
         <Button
             android:id="@+id/loginButton"
             android:layout_width="303dp"
-            android:layout_height="88dp"
+            android:layout_height="73dp"
             android:layout_gravity="center_horizontal"
             android:background="#49CE4D"
             android:text="Log In"
@@ -83,7 +83,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="43dp" />
+            android:layout_height="48dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:text="jqu, adibhati, maxdu, kevc528" />
+                android:text="  jqu, adibhati, maxdu, kevc528" />
 
             <Button
                 android:id="@+id/forgotButton"
