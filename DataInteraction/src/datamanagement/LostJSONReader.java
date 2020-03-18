@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.*;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -29,9 +29,9 @@ public class LostJSONReader {
     	return instance;
     }
 
-    public Set<LostItem> getAllLostItems() {
+    public Collection<LostItem> getAllLostItems() {
         
-        Set<LostItem> lostItems = new HashSet<LostItem>();
+        Collection<LostItem> lostItems = new HashSet<LostItem>();
         JSONParser parser = new JSONParser();
         JSONArray items = null;
         

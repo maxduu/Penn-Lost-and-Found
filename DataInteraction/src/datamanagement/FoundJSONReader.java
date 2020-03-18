@@ -24,9 +24,9 @@ public class FoundJSONReader {
     	return instance;
     }
 
-    public Set<FoundItem> getAllFoundItems() {
+    public Collection<FoundItem> getAllFoundItems() {
         
-        Set<FoundItem> foundItems = new HashSet<FoundItem>();
+        Collection<FoundItem> foundItems = new HashSet<FoundItem>();
         JSONParser parser = new JSONParser();
         JSONArray items = null;
         
