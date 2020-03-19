@@ -71,6 +71,10 @@ public class LoginActivity extends AppCompatActivity  {
     private void successfulLogin(String name) {
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("username", name);
+
+        //TODO need userId to be passed around as well, use the processor
+        long id = 1;
+        i.putExtra("userId", id);
         startActivity(i);
     }
 

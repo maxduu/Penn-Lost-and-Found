@@ -2,4 +2,15 @@
     <string name="app_name">Lost and Found</string>
     <string name="tab_text_1">Lost Items</string>
     <string name="tab_text_2">Found Items</string>
+
+    <string-array name="lost_categories">
+        <item>Sweatshirt</item>
+        <item>Laptop</item>
+        <item>Water Bottle</item>
+        <item>Phone</item>
+        <item>Coat</item>
+        <item>Wallet</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

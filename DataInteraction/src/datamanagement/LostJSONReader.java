@@ -47,7 +47,8 @@ public class LostJSONReader {
                         
             JSONObject item = (JSONObject) iter.next();
             
-            int id = ((Long) item.get("id")).intValue();
+            long id = (Long) item.get("id");
+            long posterId = ((Long) item.get("posterId"));
         	String category = (String) item.get("category");
         	
         	String rawDate = (String) item.get("date");
@@ -67,7 +68,7 @@ public class LostJSONReader {
         	String description = (String) item.get("description");
         	String additionalInfo = (String) item.get("additionalInfo");
                         
-        	LostItem l = new LostItem(id, category, date, latitude, longitude, 
+        	LostItem l = new LostItem(id, posterId, category, date, latitude, longitude, 
         			around, attachmentLoc, description, additionalInfo);
         	lostItems.add(l);
 

@@ -9,13 +9,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/filler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#4CAF50" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/make_post_title"
         android:layout_width="match_parent"
         android:layout_height="93dp"
         android:background="#4CAF50"
@@ -30,7 +30,7 @@
         android:layout_height="62dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/make_post_q"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Did you..."
@@ -43,10 +43,11 @@
         android:layout_height="52dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/post_lose"
         android:layout_width="245dp"
         android:layout_height="87dp"
         android:background="#8BF44336"
+        android:onClick="onLoseClick"
         android:text="Lose an item? \n(make sure you check found items first to see if someone found it!)"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -55,10 +56,11 @@
         android:layout_height="72dp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/post_find"
         android:layout_width="245dp"
         android:layout_height="87dp"
         android:background="#6B0347F4"
+        android:onClick="onFindClick"
         android:text="Find an item? \n(make sure you check lost items first to see if it's already posted!)"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 

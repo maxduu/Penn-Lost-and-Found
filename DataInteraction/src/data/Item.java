@@ -4,7 +4,8 @@ import java.util.*;
 
 public abstract class Item {
 
-	int id;
+	long id;
+	long posterId;
 	String category;
 	Date date;
 	double latitude;
@@ -12,9 +13,10 @@ public abstract class Item {
 	String around;
 	String attachmentLoc;
 	
-	public Item(int id, String category, Date date, double latitude, double longitude, String around,
+	public Item(long id, long posterId, String category, Date date, double latitude, double longitude, String around,
 			String attachmentLoc) {
 		this.id = id;
+		this.posterId = posterId;
 		this.category = category;
 		this.date = date;
 		this.latitude = latitude;
@@ -23,12 +25,20 @@ public abstract class Item {
 		this.attachmentLoc = attachmentLoc;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public long getPosterId() {
+		return posterId;
+	}
+
+	public void setPosterId(long posterId) {
+		this.posterId = posterId;
 	}
 
 	public String getCategory() {

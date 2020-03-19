@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1FADE"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/post_lost_title_2"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="#8BF44336"
+        android:fontFamily="@font/oswald_bold"
+        android:text="Posting a Lost Item"
+        android:textAlignment="center"
+        android:textColor="#0A0202"
+        android:textSize="36sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp" />
+
+    <TextView
+        android:id="@+id/lost_description_q"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:fontFamily="@font/oswald_bold"
+        android:text="  Description:"
+        android:textColor="#130202"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/lost_description"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:hint="Color, size, recognizable features, etc."
+        android:inputType="textPersonName" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/lost_addinfo_q"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:fontFamily="@font/oswald_bold"
+        android:text="  Additional Info:"
+        android:textColor="#130202"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/lost_addinfo"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:hint="Anything else?"
+        android:inputType="textPersonName" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/make_lost_post"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#853F6EB5"
+        android:fontFamily="@font/oswald_bold"
+        android:onClick="onMakeLostClick"
+        android:text="Make Post"
+        android:textSize="36sp" />
+
+</LinearLayout>

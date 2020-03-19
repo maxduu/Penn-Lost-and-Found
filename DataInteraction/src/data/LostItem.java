@@ -7,9 +7,9 @@ public class LostItem extends Item {
 	String description;
 	String additionalInfo;
 
-	public LostItem(int id, String category, Date date, double latitude, double longitude, 
+	public LostItem(long id, long posterId, String category, Date date, double latitude, double longitude, 
 			String around, String attachmentLoc, String description, String additionalInfo) {
-		super(id, category, date, latitude, longitude, around, attachmentLoc);
+		super(id, posterId, category, date, latitude, longitude, around, attachmentLoc);
 		this.description = description;
 		this.additionalInfo = additionalInfo;
 	}
@@ -31,7 +31,7 @@ public class LostItem extends Item {
 	}
 	
 	public String toString() {
-		String s = "id " + id + ", category " + category + ", date " + date.toString() + 
+		String s = "id " + id + ", posterId " + posterId + ", category " + category + ", date " + date.toString() + 
 				", latitiude " + latitude + ", longitude " + longitude + ", around " + 
 				around + ", attachmentLoc " + attachmentLoc + ", description " + description + 
 				", additionalInfo " + additionalInfo;

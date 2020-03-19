@@ -3,6 +3,8 @@ package datamanagement;
 import java.util.*;
 import java.io.FileReader;
 import data.FoundItem;
+import data.LostItem;
+
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -42,7 +44,8 @@ public class FoundJSONReader {
                         
             JSONObject item = (JSONObject) iter.next();
             
-            int id = ((Long) item.get("id")).intValue();
+            long id = (Long) item.get("id");
+            long posterId = ((Long) item.get("posterId"));
         	String category = (String) item.get("category");
         	
         	String rawDate = (String) item.get("date");
@@ -60,7 +63,7 @@ public class FoundJSONReader {
         	String around = (String) item.get("around");
         	String attachmentLoc = (String) item.get("attachmentLoc");
                         
-        	FoundItem f = new FoundItem(id, category, date, latitude, longitude, 
+        	FoundItem f = new FoundItem(id, posterId, category, date, latitude, longitude, 
         			around, attachmentLoc);
         	foundItems.add(f);
 

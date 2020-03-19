@@ -13,10 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
+import android.content.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
+
+    private long userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +31,21 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        // You could make this the Create Posting button
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                String username = getIntent().getStringExtra("username");
-                Toast.makeText(getApplicationContext(),
-                        "Logged in as " + username, Toast.LENGTH_LONG).show();
-            }
-        });
+//        // You could make this the Create Posting button
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(this, NewPostActivity.class);
+//            }
+//        });
+        userId = getIntent().getLongExtra("userId", -1);
+        System.out.println(userId);
     }
+
+    public void onPlusClick(View v){
+        Intent i = new Intent(this, NewPostActivity.class);
+        i.putExtra("userId", userId);
+        startActivity(i);
+    }
+
 }
