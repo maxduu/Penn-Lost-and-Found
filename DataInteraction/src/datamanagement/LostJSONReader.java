@@ -34,7 +34,7 @@ public class LostJSONReader {
         Collection<LostItem> lostItems = new HashSet<LostItem>();
         JSONParser parser = new JSONParser();
         JSONArray items = null;
-        
+                
         try {
             items = (JSONArray)parser.parse(new FileReader(filename));
         } catch (Exception e) {

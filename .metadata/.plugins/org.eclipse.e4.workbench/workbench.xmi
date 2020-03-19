@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_tpUkIWS_Eeqqw4FWk2A7sA" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_tpUkImS_Eeqqw4FWk2A7sA" bindingContexts="_tpUkK2S_Eeqqw4FWk2A7sA">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;data&quot; tooltip=&quot;/Users/Kevin/Desktop/350S20-36/data&quot;>&#xA;&lt;persistable uri=&quot;file:/Users/Kevin/Desktop/350S20-36/data&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/LostJSONReader.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/datamanagement/LostJSONReader.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/FoundJSONReader.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/datamanagement/FoundJSONReader.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundProcessor.java&quot; tooltip=&quot;DataInteraction/src/processor/FoundProcessor.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/processor/FoundProcessor.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostProcessor.java&quot; tooltip=&quot;DataInteraction/src/processor/LostProcessor.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/processor/LostProcessor.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;MessageProcessor.java&quot; tooltip=&quot;DataInteraction/src/processor/MessageProcessor.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/processor/MessageProcessor.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;MessagesJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/MessagesJSONReader.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/datamanagement/MessagesJSONReader.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostItem.java&quot; tooltip=&quot;DataInteraction/src/data/LostItem.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/data/LostItem.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Item.java&quot; tooltip=&quot;DataInteraction/src/data/Item.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/data/Item.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundItem.java&quot; tooltip=&quot;DataInteraction/src/data/FoundItem.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/data/FoundItem.java&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/LostJSONReader.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/datamanagement/LostJSONReader.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.eclipse.ui.DefaultTextEditor&quot; name=&quot;data&quot; tooltip=&quot;/Users/Kevin/Desktop/350S20-36/data&quot;>&#xA;&lt;persistable uri=&quot;file:/Users/Kevin/Desktop/350S20-36/data&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/FoundJSONReader.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/datamanagement/FoundJSONReader.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundProcessor.java&quot; tooltip=&quot;DataInteraction/src/processor/FoundProcessor.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/processor/FoundProcessor.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostProcessor.java&quot; tooltip=&quot;DataInteraction/src/processor/LostProcessor.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/processor/LostProcessor.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;MessageProcessor.java&quot; tooltip=&quot;DataInteraction/src/processor/MessageProcessor.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/processor/MessageProcessor.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;MessagesJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/MessagesJSONReader.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/datamanagement/MessagesJSONReader.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostItem.java&quot; tooltip=&quot;DataInteraction/src/data/LostItem.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/data/LostItem.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Item.java&quot; tooltip=&quot;DataInteraction/src/data/Item.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/data/Item.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundItem.java&quot; tooltip=&quot;DataInteraction/src/data/FoundItem.java&quot;>&#xA;&lt;persistable path=&quot;/DataInteraction/src/data/FoundItem.java&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_tpUkImS_Eeqqw4FWk2A7sA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_uAOoQGS_Eeqqw4FWk2A7sA" label="%trimmedwindow.label.eclipseSDK" x="42" y="80" width="1440" height="826">
@@ -104,7 +104,7 @@
                 </children>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_uM4kO2S_Eeqqw4FWk2A7sA" containerData="8435" selectedElement="_uM4kRmS_Eeqqw4FWk2A7sA">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_uM4kO2S_Eeqqw4FWk2A7sA" containerData="8435" selectedElement="_uM4kPGS_Eeqqw4FWk2A7sA">
               <children xsi:type="basic:PartSashContainer" xmi:id="_uM4kPGS_Eeqqw4FWk2A7sA" containerData="7500" selectedElement="_uM4kPWS_Eeqqw4FWk2A7sA" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_uM4kPWS_Eeqqw4FWk2A7sA" elementId="org.eclipse.ui.editorss" containerData="8597" ref="_uMeUgGS_Eeqqw4FWk2A7sA"/>
                 <children xsi:type="basic:PartSashContainer" xmi:id="_uM4kPmS_Eeqqw4FWk2A7sA" containerData="1403" selectedElement="_uM4kP2S_Eeqqw4FWk2A7sA">
@@ -211,41 +211,17 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_uMeUgGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.ui.editorss" selectedElement="_uMe7kGS_Eeqqw4FWk2A7sA">
-      <children xsi:type="basic:PartStack" xmi:id="_uMe7kGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_2ctREGTaEeqbvKUpz7wS5g">
+      <children xsi:type="basic:PartStack" xmi:id="_uMe7kGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_A9C8gGovEeqk0ri2zVJxjg">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
-        <children xsi:type="basic:Part" xmi:id="_J-TIwGTYEeqbvKUpz7wS5g" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Item.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Item.java&quot; partName=&quot;Item.java&quot; title=&quot;Item.java&quot; tooltip=&quot;DataInteraction/src/data/Item.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/DataInteraction/src/data/Item.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;754&quot; selectionTopPixel=&quot;209&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-          <tags>removeOnHide</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_NJD0kGTYEeqbvKUpz7wS5g" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="LostItem.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostItem.java&quot; partName=&quot;LostItem.java&quot; title=&quot;LostItem.java&quot; tooltip=&quot;DataInteraction/src/data/LostItem.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/DataInteraction/src/data/LostItem.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;868&quot; selectionTopPixel=&quot;123&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-          <tags>removeOnHide</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_Ql8yMGTYEeqbvKUpz7wS5g" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="FoundItem.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundItem.java&quot; partName=&quot;FoundItem.java&quot; title=&quot;FoundItem.java&quot; tooltip=&quot;DataInteraction/src/data/FoundItem.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/DataInteraction/src/data/FoundItem.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;592&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-          <tags>removeOnHide</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_2ctREGTaEeqbvKUpz7wS5g" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="FoundJSONReader.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FoundJSONReader.java&quot; partName=&quot;FoundJSONReader.java&quot; title=&quot;FoundJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/FoundJSONReader.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/DataInteraction/src/datamanagement/FoundJSONReader.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2187&quot; selectionTopPixel=&quot;539&quot;/>&#xA;&lt;/editor>"/>
+        <children xsi:type="basic:Part" xmi:id="_A9C8gGovEeqk0ri2zVJxjg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="LostJSONReader.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostJSONReader.java&quot; partName=&quot;LostJSONReader.java&quot; title=&quot;LostJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/LostJSONReader.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/DataInteraction/src/datamanagement/LostJSONReader.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;906&quot; selectionTopPixel=&quot;9&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
           <tags>active</tags>
           <tags>activeOnClose</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_OcUqoGWFEeqK4bRdmZqBVQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="LostJSONReader.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LostJSONReader.java&quot; partName=&quot;LostJSONReader.java&quot; title=&quot;LostJSONReader.java&quot; tooltip=&quot;DataInteraction/src/datamanagement/LostJSONReader.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/DataInteraction/src/datamanagement/LostJSONReader.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2392&quot; selectionTopPixel=&quot;763&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-          <tags>removeOnHide</tags>
         </children>
       </children>
     </sharedElements>
@@ -394,7 +370,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_uB8fgGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tUSaMGmfEeqgM6BWhRsdoQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_tqBHxWS_Eeqqw4FWk2A7sA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Hn2AkGovEeqq3I1esEeT1g" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_tqBHxWS_Eeqqw4FWk2A7sA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_uB8fgWS_Eeqqw4FWk2A7sA" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -425,7 +401,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_uB9GkGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tUVdgGmfEeqgM6BWhRsdoQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_tp_502S_Eeqqw4FWk2A7sA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Hn5D4GovEeqq3I1esEeT1g" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_tp_502S_Eeqqw4FWk2A7sA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_uB9GkWS_Eeqqw4FWk2A7sA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -458,7 +434,7 @@
       <children xsi:type="menu:ToolControl" xmi:id="_tpUkJ2S_Eeqqw4FWk2A7sA" elementId="org.eclipse.ui.ProgressBar" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.StandardTrim">
         <tags>Draggable</tags>
       </children>
-      <children xsi:type="menu:ToolControl" xmi:id="_umUCwGmfEeqgM6BWhRsdoQ" elementId="org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar" contributionURI="bundleclass://org.eclipse.ui.intro/org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar">
+      <children xsi:type="menu:ToolControl" xmi:id="_Q7wb8GovEeqq3I1esEeT1g" elementId="org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar" contributionURI="bundleclass://org.eclipse.ui.intro/org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar">
         <persistedState key="introConfigId" value="org.eclipse.ui.intro.universalConfig"/>
         <persistedState key="lastPageId" value="qroot"/>
         <tags>Draggable</tags>
@@ -753,7 +729,7 @@
     <bindings xmi:id="_tqoLuWS_Eeqqw4FWk2A7sA" keySequence="ALT+COMMAND+CTRL+D Q" command="_tqCV2GS_Eeqqw4FWk2A7sA">
       <tags>platform:cocoa</tags>
     </bindings>
-    <bindings xmi:id="_s-kB0WmfEeqgM6BWhRsdoQ" keySequence="COMMAND+CTRL+F" command="_trK-Q2S_Eeqqw4FWk2A7sA"/>
+    <bindings xmi:id="_HYqVEGovEeqq3I1esEeT1g" keySequence="COMMAND+CTRL+F" command="_trK-Q2S_Eeqqw4FWk2A7sA"/>
   </bindingTables>
   <bindingTables xmi:id="_tqeavGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.core.runtime.xml" bindingContext="_tqGASWS_Eeqqw4FWk2A7sA">
     <bindings xmi:id="_tqeavWS_Eeqqw4FWk2A7sA" keySequence="CTRL+SHIFT+P" command="_tqAgx2S_Eeqqw4FWk2A7sA"/>
@@ -1037,7 +1013,7 @@
     <bindings xmi:id="_tqoLtmS_Eeqqw4FWk2A7sA" keySequence="ALT+CR" command="_tp8POGS_Eeqqw4FWk2A7sA"/>
   </bindingTables>
   <bindingTables xmi:id="_trLlUmS_Eeqqw4FWk2A7sA" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_tpUkLmS_Eeqqw4FWk2A7sA">
-    <bindings xmi:id="_s-ko4GmfEeqgM6BWhRsdoQ" keySequence="M1+W" command="_trLlUGS_Eeqqw4FWk2A7sA"/>
+    <bindings xmi:id="_HYq8IGovEeqq3I1esEeT1g" keySequence="M1+W" command="_trLlUGS_Eeqqw4FWk2A7sA"/>
   </bindingTables>
   <bindingTables xmi:id="_uMgJsWS_Eeqqw4FWk2A7sA" bindingContext="_uMgJsGS_Eeqqw4FWk2A7sA"/>
   <bindingTables xmi:id="_uMgJs2S_Eeqqw4FWk2A7sA" bindingContext="_uMgJsmS_Eeqqw4FWk2A7sA"/>
@@ -2537,7 +2513,7 @@
   <addons xmi:id="_tpUkN2S_Eeqqw4FWk2A7sA" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_tpUkOGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_tpaqwGS_Eeqqw4FWk2A7sA" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_HYc5sWovEeqq3I1esEeT1g" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <addons xmi:id="_trKXMGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.e4.ui.workbench.renderers.swt.cocoa.CocoaUIHandler" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.cocoa.CocoaUIHandler"/>
   <categories xmi:id="_tp6aAGS_Eeqqw4FWk2A7sA" elementId="org.eclipse.team.ui.category.team" name="Team" description="Actions that apply when working with a Team"/>
