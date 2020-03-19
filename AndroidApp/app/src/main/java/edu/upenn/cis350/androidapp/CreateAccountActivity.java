@@ -47,9 +47,9 @@ public class CreateAccountActivity extends AppCompatActivity  {
             return;
         }
         verifyEmail(username);
-//        Toast.makeText(getApplicationContext(),
-//                "Verification email sent to " + username +
-//                        ". Return to login screen after verifying.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),
+                "Verification email sent to " + username +
+                        ". Return to login screen after verifying.", Toast.LENGTH_LONG).show();
     }
 
     // TODO: Verification link (through Node.js?)
