@@ -47,11 +47,6 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     // TODO
-    public void onForgotPasswordButtonClick(View view) {
-
-    }
-
-    // TODO
     public boolean checkUsername(String username) {
         // Check if username exists in database
         return true;
@@ -65,6 +60,11 @@ public class LoginActivity extends AppCompatActivity  {
 
     public void onCreateNewAccountButtonClick(View view) {
         Intent i = new Intent(this, CreateAccountActivity.class);
+        startActivity(i);
+    }
+
+    public void onForgotPasswordButtonClick(View view) {
+        Intent i = new Intent(this, ForgotPasswordActivity.class);
         startActivity(i);
     }
 

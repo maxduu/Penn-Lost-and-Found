@@ -32,6 +32,11 @@ public class CreateAccountActivity extends AppCompatActivity  {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
         String passwordVerify = passwordVerifyInput.getText().toString();
+        
+        if (!usernameWorks(username)) {
+            return;
+        }
+
         if (!password.equals(passwordVerify)) {
             Toast.makeText(getApplicationContext(),
                     "Passwords do not match.", Toast.LENGTH_LONG).show();
@@ -43,9 +48,6 @@ public class CreateAccountActivity extends AppCompatActivity  {
             return;
         }
 
-        if (!usernameWorks(username)) {
-            return;
-        }
         verifyEmail(username);
         Toast.makeText(getApplicationContext(),
                 "Verification email sent to " + username +
