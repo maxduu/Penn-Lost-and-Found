@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -20,15 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".ForgotPasswordActivity" />
 
         <activity android:name=".MainActivity" />
         <activity android:name=".NewPostActivity" />
         <activity android:name=".PostLost1Activity" />
         <activity android:name=".PostLost2Activity" />
-
-        <activity android:name=".ForgotPasswordActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

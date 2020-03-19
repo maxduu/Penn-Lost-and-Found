@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     // TODO
     public boolean checkUsername(String username) {
-        // Check if username exists in database
+        // Check if username exists in database (using processor)
         return true;
     }
 
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity  {
         i.putExtra("username", name);
 
         //TODO need userId to be passed around as well, use the processor
-        long id = 1;
+        long id = -1;
         i.putExtra("userId", id);
         startActivity(i);
     }

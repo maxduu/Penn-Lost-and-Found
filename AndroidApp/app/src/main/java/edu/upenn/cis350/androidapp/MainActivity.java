@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         userId = getIntent().getLongExtra("userId", -1);
-        System.out.println(userId);
+        Toast.makeText(getApplicationContext(),
+                "Login ID: " + userId + " Username: " +
+                        getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
     }
 
     public void onPlusClick(View v){
