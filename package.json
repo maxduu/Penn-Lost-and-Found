@@ -1,0 +1,26 @@
+{
+  "name": "350s20-36",
+  "version": "1.0.0",
+  "description": "We boutta POP OFF",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cis350/350S20-36.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cis350/350S20-36/issues"
+  },
+  "homepage": "https://github.com/cis350/350S20-36#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.5"
+  }
+}
