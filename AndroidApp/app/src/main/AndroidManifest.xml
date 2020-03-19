@@ -24,6 +24,8 @@
         <activity android:name=".CreateAccountActivity" />
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".NewPostActivity" />
+
 
         <activity android:name=".ForgotPasswordActivity" />
 
