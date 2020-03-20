@@ -15,6 +15,7 @@ Libraries used, like .jar files. Currently has the JSON file reading jar file us
 
 ## mongoDB notes
 I created a mongoDb Atlas account for us with the login
+
 email: pennlostfound@gmail.com
 password: ilovelukeyeagley
 
