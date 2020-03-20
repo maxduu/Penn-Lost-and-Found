@@ -22,7 +22,9 @@ public class NewPostActivity extends AppCompatActivity {
     }
 
     public void onFindClick(View v){
-
+        Intent i = new Intent(this, PostFoundActivity.class);
+        i.putExtra("userId", userId);
+        startActivity(i);
     }
 
 }

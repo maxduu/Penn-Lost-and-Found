@@ -28,6 +28,7 @@
         <activity android:name=".NewPostActivity" />
         <activity android:name=".PostLost1Activity" />
         <activity android:name=".PostLost2Activity" />
+        <activity android:name=".PostFoundActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
