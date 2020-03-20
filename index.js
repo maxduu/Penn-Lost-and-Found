@@ -143,7 +143,7 @@ app.use('/all-lost-items', (req, res) => {
         }
         else {
             res.json({'status' : 'success', 'items' : allItems});
-            console.log('successfully gotten all items');
+            console.log('successfully gotten all lost items');
         }
     });
 });
@@ -193,6 +193,98 @@ app.post('/update-lost-item', (req, res) => {
                 else {
                     res.json({'status': 'success'});
                     console.log('successfully updated lost item');
+                }
+            })
+        }
+    })
+});
+
+
+
+// POST to create a found item, ex: 'http://localhost:3000/create-found-item' and post request
+// with body being found-item object json
+app.post('/create-found-item', (req, res) => {
+    var newFoundItem = new found_item ({
+        id: parseInt(req.body.id),
+        posterId: parseInt(req.body.posterId),
+        category: req.body.category,
+        date: Date.parse(req.body.date),
+        latitude: parseFloat(req.body.latitude),
+        longitude: parseFloat(req.body.longitude),
+        around: req.body.around,
+    });
+
+    newFoundItem.save( (err) => {
+        if (err) {
+            res.json({'status' : err});
+            console.log(err)
+        } 
+        else {
+            res.json({'status' : 'success'});
+            console.log('successfully posted found item');
+        }
+    })
+
+});
+
+// GET all found items, ex: 'http://localhost:3000/all-found-items'
+app.use('/all-found-items', (req, res) => {
+    found_item.find ( (err, allItems) => {
+        if (err) {
+            res.json({'status' : err});
+        }
+        else if (allItems.length == 0) {
+            res.json({'status' : 'no items'});
+        }
+        else {
+            res.json({'status' : 'success', 'items' : allItems});
+            console.log('successfully gotten all found items');
+        }
+    });
+});
+
+// GET specific found item, ex: 'http://localhost:3000/get-found-item?id=1'
+app.use('/get-found-item', (req, res) => {
+    var searchId = parseInt(req.query.id);
+    found_item.findOne({id: searchId}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            res.json({'status': 'success', 'found-item': item});
+            console.log('successfully gotten found item');
+        }
+    })
+});
+
+// POST an update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
+// req body contains new object's json
+app.post('/update-found-item', (req, res) => {
+    var updateId = parseInt(req.body.id);
+    found_item.findOne({id: updateId}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            item.posterId = parseInt(req.body.posterId);
+            item.category = req.body.category;
+            item.date = Date.parse(req.body.date);
+            item.latitude = parseFloat(req.body.latitude);
+            item.longitude = parseFloat(req.body.longitude);
+            item.around = req.body.around;
+            item.save((err) => {
+                if (err) {
+                    res.json({'status': err});
+                }
+                else {
+                    res.json({'status': 'success'});
+                    console.log('successfully updated found item');
                 }
             })
         }
