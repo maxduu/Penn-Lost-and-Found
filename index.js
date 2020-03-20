@@ -6,9 +6,101 @@ var app = express();
 app.use(bodyParser.json());
 
 var lost_item = require('./lost_item.js');
+var found_item = require('./found_item.js');
+var user = require('./user.js');
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');
+});
+
+// POST to create a new user, ex: 'http://localhost:3000/create-user' and post request
+// with body being user object json
+app.post('/create-user', (req, res) => {
+    var newUser = new user ({
+    	id: parseInt(req.body.id),
+    	username: req.body.username,
+    	password: req.body.password,
+    	last_login: Date.parse(req.body.last_login),
+    	lost_items: req.body.lost_items,
+    	found_items: req.body.found_items,
+    	status: parseInt(req.body.status)
+    });
+
+    newUser.save( (err) => {
+    	if (err) {
+    		res.json({'status' : err})
+    		console.log(err)
+    	}
+    	else {
+    		res.json({'status': 'success'});
+    		console.log('successfully created new user')
+    	}
+    })
+
+});
+
+// GET all users, ex: 'http://localhost:3000/all-users'
+app.use('/all-users', (req, res) => {
+    user.find ( (err, allItems) => {
+        if (err) {
+            res.json({'status' : err});
+        }
+        else if (allItems.length == 0) {
+            res.json({'status' : 'no users'});
+        }
+        else {
+            res.json({'status' : 'success', 'items' : allItems});
+            console.log('successfully gotten all items');
+        }
+    });
+});
+
+// GET specific user, ex: 'http://localhost:3000/get-user?id=1'
+app.use('/get-user', (req, res) => {
+    var searchId = parseInt(req.query.id);
+    user.findOne({id: searchId}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            res.json({'status': 'success', 'user': item});
+            console.log('successfully gotten lost item');
+        }
+    })
+});
+
+// POST an update to db, ex: address is 'http://localhost:3000/update-user' and 
+// req body contains new object's json
+app.post('/update-user', (req, res) => {
+    var updateId = parseInt(req.body.id);
+    user.findOne({id: updateId}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no item'});
+        }
+        else {
+    		item.username = req.body.username,
+    		item.password = req.body.password,
+    		item.last_login = Date.parse(req.body.last_login),
+    		item.lost_items = req.body.lost_items,
+    		item.found_items = req.body.found_items,
+    		item.status = parseInt(req.body.status)
+            item.save((err) => {
+                if (err) {
+                    res.json({'status': err});
+                }
+                else {
+                    res.json({'status': 'success'});
+                    console.log('successfully updated user');
+                }
+            })
+        }
+    })
 });
 
 // POST to create a lost item, ex: 'http://localhost:3000/create-lost-item' and post request
@@ -34,7 +126,7 @@ app.post('/create-lost-item', (req, res) => {
         } 
         else {
             res.json({'status' : 'success'});
-            console.log('success post lost');
+            console.log('successfully posted lost item');
         }
     })
 
@@ -51,7 +143,7 @@ app.use('/all-lost-items', (req, res) => {
         }
         else {
             res.json({'status' : 'success', 'items' : allItems});
-            console.log('success get all items');
+            console.log('successfully gotten all items');
         }
     });
 });
@@ -68,7 +160,7 @@ app.use('/get-lost-item', (req, res) => {
         }
         else {
             res.json({'status': 'success', 'lost-item': item});
-            console.log('success get lost item');
+            console.log('successfully gotten lost item');
         }
     })
 });
@@ -100,7 +192,7 @@ app.post('/update-lost-item', (req, res) => {
                 }
                 else {
                     res.json({'status': 'success'});
-                    console.log('success update lost item');
+                    console.log('successfully updated lost item');
                 }
             })
         }
