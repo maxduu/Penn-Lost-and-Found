@@ -50,7 +50,7 @@ app.use('/all-users', (req, res) => {
         }
         else {
             res.json({'status' : 'success', 'items' : allItems});
-            console.log('successfully gotten all items');
+            console.log('successfully gotten all users');
         }
     });
 });
@@ -67,7 +67,7 @@ app.use('/get-user', (req, res) => {
         }
         else {
             res.json({'status': 'success', 'user': item});
-            console.log('successfully gotten lost item');
+            console.log('successfully gotten user');
         }
     })
 });
