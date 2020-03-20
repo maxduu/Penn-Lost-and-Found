@@ -4,8 +4,15 @@ import java.net.*;
 import android.os.*;
 import java.util.*;
 import org.json.*;
+import java.io.*;
 
-public class HttpGetWebTask extends AsyncTask<URL, String, String> {
+public class HttpPostWebTask extends AsyncTask<URL, String, String> {
+
+    private JSONObject postData;
+
+    public HttpPostWebTask(JSONObject postData) {
+        this.postData = postData;
+    }
 
     protected String doInBackground(URL... urls){
 
@@ -16,8 +23,12 @@ public class HttpGetWebTask extends AsyncTask<URL, String, String> {
             // create connection and send HTTP request
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
             conn.connect();
+
+            OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+            writer.write(postData.toString());
+            writer.flush();
 
             // read first line of data that is returned
             Scanner in = new Scanner(url.openStream());
