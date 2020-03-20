@@ -19,4 +19,4 @@ I created a mongoDb Atlas account for us with the login
 email: pennlostfound@gmail.com
 password: ilovelukeyeagley
 
-After logging in, then start a cluster and connect.
+After logging in, then connect to the existing cluster.
