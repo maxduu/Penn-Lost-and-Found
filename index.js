@@ -11,7 +11,8 @@ app.listen(3000, () => {
     console.log('Listening on port 3000');
 });
 
-// create a lost item
+// POST to create a lost item, ex: 'http://localhost:3000/create-lost-item' and post request
+// with body being lost-item object json
 app.post('/create-lost-item', (req, res) => {
     var newLostItem = new lost_item ({
         id: parseInt(req.body.id),
@@ -33,29 +34,76 @@ app.post('/create-lost-item', (req, res) => {
         } 
         else {
             res.json({'status' : 'success'});
-            console.log('success');
+            console.log('success post lost');
         }
     })
 
 });
 
-// get all lost items
+// GET all lost items, ex: 'http://localhost:3000/all-lost-items'
 app.use('/all-lost-items', (req, res) => {
     lost_item.find ( (err, allItems) => {
         if (err) {
             res.json({'status' : err});
         }
         else if (allItems.length == 0) {
-            res.json({'status' : 'no people'});
+            res.json({'status' : 'no items'});
         }
         else {
-            res.json({'status' : 'success', 'people' : allPeoople});
+            res.json({'status' : 'success', 'items' : allItems});
+            console.log('success get all items');
         }
     });
 });
 
-// get specific lost item
+// GET specific lost item, ex: 'http://localhost:3000/get-lost-item?id=1'
 app.use('/get-lost-item', (req, res) => {
-    var searchId = req.query.id;
-    res.send('finish implementation');
+    var searchId = parseInt(req.query.id);
+    lost_item.findOne({id: searchId}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            res.json({'status': 'success', 'lost-item': item});
+            console.log('success get lost item');
+        }
+    })
 });
+
+// POST an update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
+// req body contains new object's json
+app.post('/update-lost-item', (req, res) => {
+    var updateId = parseInt(req.body.id);
+    lost_item.findOne({id: updateId}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            item.posterId = parseInt(req.body.posterId);
+            item.category = req.body.category;
+            item.date = Date.parse(req.body.date);
+            item.latitude = parseFloat(req.body.latitude);
+            item.longitude = parseFloat(req.body.longitude);
+            item.around = req.body.around;
+            item.description = req.body.description;
+            item.attachmentLoc = req.body.attachmentLoc;
+            item.additionalInfo = req.body.additionalInfo;
+            item.save((err) => {
+                if (err) {
+                    res.json({'status': err});
+                }
+                else {
+                    res.json({'status': 'success'});
+                    console.log('success update lost item');
+                }
+            })
+        }
+    })
+});
+

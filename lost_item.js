@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://cluster0-elsk0.mongodb.net/test');
+mongoose.connect('mongodb+srv://KevinChen:Kc904515833!@cluster0-elsk0.mongodb.net/test?retryWrites=true&w=majority');
 
 var Schema = mongoose.Schema;
 
