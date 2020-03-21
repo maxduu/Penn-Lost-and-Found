@@ -26,10 +26,12 @@ public class HttpPostWebTask extends AsyncTask<URL, String, String> {
             conn.setRequestMethod("POST");
             conn.connect();
 
+            System.out.println("pre write");
             OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
             writer.write(postData.toString());
             writer.flush();
 
+            System.out.println("post write");
             // read first line of data that is returned
             Scanner in = new Scanner(url.openStream());
             String msg = in.nextLine();
@@ -37,9 +39,12 @@ public class HttpPostWebTask extends AsyncTask<URL, String, String> {
             // use Android JSON library to parse JSON
             JSONObject jo = new JSONObject(msg);
 
+            System.out.println(jo.toString());
             return jo.toString();
+
         }
         catch (Exception e) {
+            System.out.println(e.toString());
             return e.toString();
         }
 

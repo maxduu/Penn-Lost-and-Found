@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.content.*;
+
+import java.net.URL;
+
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 "Login ID: " + userId + " Username: " +
                         getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
+
+        try {
+            URL url = new URL("http://10.0.2.2:3000/all-lost-items");
+            HttpGetWebTask task = new HttpGetWebTask();
+            task.execute(url);
+            System.out.println(task.get());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     public void onPlusClick(View v){
