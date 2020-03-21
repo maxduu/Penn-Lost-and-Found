@@ -39,19 +39,14 @@ public class PostLost2Activity extends AppCompatActivity {
         String attachmentLoc = "";
 
         try {
-            URL url = new URL("https://10.0.2.2:3000/create-lost-item");
-            JSONObject jo = new JSONObject();
-            jo.put("id", id);
-            jo.put("posterId", posterId);
-            jo.put("category", category);
-            jo.put("date", date);
-            jo.put("latitude", latitude);
-            jo.put("longitude", longitude);
-            jo.put("around", around);
-            jo.put("description", description);
-            jo.put("attachmentLoc", attachmentLoc);
-            jo.put("additionalInfo", additionalInfo);
-            HttpPostWebTask task = new HttpPostWebTask(jo);
+            URL url = new URL("http://10.0.2.2:3000/create-lost-item?"
+                    + "id=" + id + "&posterId=" + posterId +
+                    "&category=" + category + "&date=" + date +
+                    "&latitude=" + latitude + "&longitude=" + longitude +
+                    "&around=" + around + "&description=" + description +
+                    "&attachmentLoc=" + attachmentLoc + "&additionalInfo="
+                    + additionalInfo);
+            AccessWebTask task = new AccessWebTask();
             task.execute(url);
         } catch (Exception e) {
             e.printStackTrace();
