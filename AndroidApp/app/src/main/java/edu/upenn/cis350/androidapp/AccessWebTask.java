@@ -5,7 +5,7 @@ import android.os.*;
 import java.util.*;
 import org.json.*;
 
-public class HttpGetWebTask extends AsyncTask<URL, String, String> {
+public class AccessWebTask extends AsyncTask<URL, String, String> {
 
     protected String doInBackground(URL... urls){
 
