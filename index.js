@@ -13,17 +13,17 @@ app.listen(3000, () => {
     console.log('Listening on port 3000');
 });
 
-// POST to create a new user, ex: 'http://localhost:3000/create-user' and post request
-// with body being user object json
-app.post('/create-user', (req, res) => {
+// GET to create a new user, ex: 'http://localhost:3000/create-user' and get request
+// query with body being user object json attributes
+app.use('/create-user', (req, res) => {
     var newUser = new user ({
-    	id: parseInt(req.body.id),
-    	username: req.body.username,
-    	password: req.body.password,
-    	last_login: Date.parse(req.body.last_login),
-    	lost_items: req.body.lost_items,
-    	found_items: req.body.found_items,
-    	status: parseInt(req.body.status)
+    	id: parseInt(req.query.id),
+    	username: req.query.username,
+    	password: req.query.password,
+    	last_login: Date.parse(req.query.last_login),
+    	lost_items: req.query.lost_items,
+    	found_items: req.query.found_items,
+    	status: parseInt(req.query.status)
     });
 
     newUser.save( (err) => {
@@ -72,10 +72,10 @@ app.use('/get-user', (req, res) => {
     })
 });
 
-// POST an update to db, ex: address is 'http://localhost:3000/update-user' and 
-// req body contains new object's json
-app.post('/update-user', (req, res) => {
-    var updateId = parseInt(req.body.id);
+// GET to update to db, ex: address is 'http://localhost:3000/update-user' and 
+// req params contains new object's json attributes
+app.use('/update-user', (req, res) => {
+    var updateId = parseInt(req.query.id);
     user.findOne({id: updateId}, (err, item) => {
         if (err) {
             res.json({'status': err});
@@ -84,12 +84,12 @@ app.post('/update-user', (req, res) => {
             res.json({'status': 'no item'});
         }
         else {
-    		item.username = req.body.username,
-    		item.password = req.body.password,
-    		item.last_login = Date.parse(req.body.last_login),
-    		item.lost_items = req.body.lost_items,
-    		item.found_items = req.body.found_items,
-    		item.status = parseInt(req.body.status)
+    		item.username = req.query.username,
+    		item.password = req.query.password,
+    		item.last_login = Date.parse(req.query.last_login),
+    		item.lost_items = req.query.lost_items,
+    		item.found_items = req.query.found_items,
+    		item.status = parseInt(req.query.status)
             item.save((err) => {
                 if (err) {
                     res.json({'status': err});
@@ -103,20 +103,20 @@ app.post('/update-user', (req, res) => {
     })
 });
 
-// POST to create a lost item, ex: 'http://localhost:3000/create-lost-item' and post request
-// with body being lost-item object json
-app.post('/create-lost-item', (req, res) => {
+// GET to create a lost item, ex: 'http://localhost:3000/create-lost-item' and get request
+// with body being lost-item object json attributes
+app.use('/create-lost-item', (req, res) => {
     var newLostItem = new lost_item ({
-        id: parseInt(req.body.id),
-        posterId: parseInt(req.body.posterId),
-        category: req.body.category,
-        date: Date.parse(req.body.date),
-        latitude: parseFloat(req.body.latitude),
-        longitude: parseFloat(req.body.longitude),
-        around: req.body.around,
-        description: req.body.description,
-        attachmentLoc: req.body.attachmentLoc,
-        additionalInfo: req.body.additionalInfo
+        id: parseInt(req.query.id),
+        posterId: parseInt(req.query.posterId),
+        category: req.query.category,
+        date: Date.parse(req.query.date),
+        latitude: parseFloat(req.query.latitude),
+        longitude: parseFloat(req.query.longitude),
+        around: req.query.around,
+        description: req.query.description,
+        attachmentLoc: req.query.attachmentLoc,
+        additionalInfo: req.query.additionalInfo
     });
 
     newLostItem.save( (err) => {
@@ -165,10 +165,10 @@ app.use('/get-lost-item', (req, res) => {
     })
 });
 
-// POST an update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
-// req body contains new object's json
-app.post('/update-lost-item', (req, res) => {
-    var updateId = parseInt(req.body.id);
+// GET to update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
+// req body contains new object's json attributes
+app.use('/update-lost-item', (req, res) => {
+    var updateId = parseInt(req.query.id);
     lost_item.findOne({id: updateId}, (err, item) => {
         if (err) {
             res.json({'status': err});
@@ -177,15 +177,15 @@ app.post('/update-lost-item', (req, res) => {
             res.json({'status': 'no item'});
         }
         else {
-            item.posterId = parseInt(req.body.posterId);
-            item.category = req.body.category;
-            item.date = Date.parse(req.body.date);
-            item.latitude = parseFloat(req.body.latitude);
-            item.longitude = parseFloat(req.body.longitude);
-            item.around = req.body.around;
-            item.description = req.body.description;
-            item.attachmentLoc = req.body.attachmentLoc;
-            item.additionalInfo = req.body.additionalInfo;
+            item.posterId = parseInt(req.query.posterId);
+            item.category = req.query.category;
+            item.date = Date.parse(req.query.date);
+            item.latitude = parseFloat(req.query.latitude);
+            item.longitude = parseFloat(req.query.longitude);
+            item.around = req.query.around;
+            item.description = req.query.description;
+            item.attachmentLoc = req.query.attachmentLoc;
+            item.additionalInfo = req.query.additionalInfo;
             item.save((err) => {
                 if (err) {
                     res.json({'status': err});
@@ -201,17 +201,17 @@ app.post('/update-lost-item', (req, res) => {
 
 
 
-// POST to create a found item, ex: 'http://localhost:3000/create-found-item' and post request
-// with body being found-item object json
-app.post('/create-found-item', (req, res) => {
+// GET to create a found item, ex: 'http://localhost:3000/create-found-item' and get request
+// with query params being found-item object json attributes
+app.use('/create-found-item', (req, res) => {
     var newFoundItem = new found_item ({
-        id: parseInt(req.body.id),
-        posterId: parseInt(req.body.posterId),
-        category: req.body.category,
-        date: Date.parse(req.body.date),
-        latitude: parseFloat(req.body.latitude),
-        longitude: parseFloat(req.body.longitude),
-        around: req.body.around,
+        id: parseInt(req.query.id),
+        posterId: parseInt(req.query.posterId),
+        category: req.query.category,
+        date: Date.parse(req.query.date),
+        latitude: parseFloat(req.query.latitude),
+        longitude: parseFloat(req.query.longitude),
+        around: req.query.around,
     });
 
     newFoundItem.save( (err) => {
@@ -260,10 +260,10 @@ app.use('/get-found-item', (req, res) => {
     })
 });
 
-// POST an update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
-// req body contains new object's json
-app.post('/update-found-item', (req, res) => {
-    var updateId = parseInt(req.body.id);
+// GET to update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
+// req params contains new object's json attributes
+app.use('/update-found-item', (req, res) => {
+    var updateId = parseInt(req.query.id);
     found_item.findOne({id: updateId}, (err, item) => {
         if (err) {
             res.json({'status': err});
@@ -272,12 +272,12 @@ app.post('/update-found-item', (req, res) => {
             res.json({'status': 'no item'});
         }
         else {
-            item.posterId = parseInt(req.body.posterId);
-            item.category = req.body.category;
-            item.date = Date.parse(req.body.date);
-            item.latitude = parseFloat(req.body.latitude);
-            item.longitude = parseFloat(req.body.longitude);
-            item.around = req.body.around;
+            item.posterId = parseInt(req.query.posterId);
+            item.category = req.query.category;
+            item.date = Date.parse(req.query.date);
+            item.latitude = parseFloat(req.query.latitude);
+            item.longitude = parseFloat(req.query.longitude);
+            item.around = req.query.around;
             item.save((err) => {
                 if (err) {
                     res.json({'status': err});
