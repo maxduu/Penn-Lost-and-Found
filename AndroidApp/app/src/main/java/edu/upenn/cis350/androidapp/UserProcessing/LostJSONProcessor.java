@@ -16,6 +16,10 @@ public class LostJSONProcessor {
         return instance;
     }
 
+    public Collection<LostItem> getAllLostItems() {
+        return reader.getAllLostItems();
+    }
+
     public long getLargestId() {
         long max = 0;
         for (LostItem i : items) {
