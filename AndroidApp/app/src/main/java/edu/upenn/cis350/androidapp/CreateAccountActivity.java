@@ -57,41 +57,13 @@ public class CreateAccountActivity extends AppCompatActivity  {
             return;
         }
 
-        verifyEmail(username);
-        Toast.makeText(getApplicationContext(),
-                "Verification email sent to " + username +
-                        ". Return to login screen after verifying.", Toast.LENGTH_LONG).show();
-
-        // After verification
-        confirmAccountCreation(username, password);
+        // If everything works:
+        Intent i = new Intent(this, VerifyEmailActivity.class);
+        i.putExtra("username", username);
+        i.putExtra("password", password);
+        startActivity(i);
     }
 
-    // TODO: Verification link (through Node.js?)
-    private void verifyEmail(String username) {
-        final String email = username;
-        new AsyncTask<String, String, String>() {
-            protected String doInBackground(String... inputs) {
-                try {
-                    GMailSender sender = new GMailSender("pennlostfound@gmail.com",
-                            "ilovelukeyeagley");
-                    sender.sendMail("Email Verification",
-                            "Click on the following link to verify your Penn email: TODO",
-                            "pennlostfound@gmail.com",
-                            email);
-                } catch (Exception e) {
-                    Log.e("SendMail", e.getMessage(), e);
-                }
-                return null;
-            }
-            protected void onPostExecute(String input) {
-            }
-        }.execute();
-    }
-
-    // Call after email has been verified
-    private void confirmAccountCreation(String username, String password) {
-        processor.createNewAccount(username, password);
-    }
 
     public boolean passwordWorks(String pass) {
         if (pass.length() < 6) {

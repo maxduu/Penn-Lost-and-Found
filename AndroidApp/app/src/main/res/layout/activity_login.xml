@@ -84,7 +84,7 @@
                 android:background="#49CE4D"
                 android:onClick="onLoginButtonClick"
                 android:text="Log In"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Button
@@ -118,7 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:onClick="onForgotPasswordButtonClick"
-                android:text="Forgot Password?" />
+                android:text="Forgot Password?"
+                android:textSize="12sp" />
         </LinearLayout>
 
 
