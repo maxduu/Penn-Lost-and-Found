@@ -13,8 +13,8 @@ app.listen(3000, () => {
     console.log('Listening on port 3000');
 });
 
-// GET to create a new user, ex: 'http://localhost:3000/create-user' and get request
-// query with body being user object json attributes
+// GET rout to create a new user, ex: 'http://localhost:3000/create-user...' and get request
+// query has parameters that are the user object json attributes
 app.use('/create-user', (req, res) => {
     var newUser = new user ({
     	id: parseInt(req.query.id),
@@ -72,8 +72,8 @@ app.use('/get-user', (req, res) => {
     })
 });
 
-// GET to update to db, ex: address is 'http://localhost:3000/update-user' and 
-// req params contains new object's json attributes
+// GET route to update the db, ex: address is 'http://localhost:3000/update-user' and 
+// query params contains new object's json attributes
 app.use('/update-user', (req, res) => {
     var updateId = parseInt(req.query.id);
     user.findOne({id: updateId}, (err, item) => {
@@ -104,7 +104,7 @@ app.use('/update-user', (req, res) => {
 });
 
 // GET to create a lost item, ex: 'http://localhost:3000/create-lost-item' and get request
-// with body being lost-item object json attributes
+// has query params being lost-item object json attributes
 app.use('/create-lost-item', (req, res) => {
     var newLostItem = new lost_item ({
         id: parseInt(req.query.id),
@@ -165,8 +165,8 @@ app.use('/get-lost-item', (req, res) => {
     })
 });
 
-// GET to update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
-// req body contains new object's json attributes
+// GET route to update the db, ex: address is 'http://localhost:3000/update-lost-item' and 
+// query params contains new object's json attributes
 app.use('/update-lost-item', (req, res) => {
     var updateId = parseInt(req.query.id);
     lost_item.findOne({id: updateId}, (err, item) => {
@@ -261,7 +261,7 @@ app.use('/get-found-item', (req, res) => {
 });
 
 // GET to update to db, ex: address is 'http://localhost:3000/update-lost-item' and 
-// req params contains new object's json attributes
+// query params contains new object's json attributes
 app.use('/update-found-item', (req, res) => {
     var updateId = parseInt(req.query.id);
     found_item.findOne({id: updateId}, (err, item) => {
