@@ -23,6 +23,7 @@ public class Account {
         this.password = password;
         lostItemsPosted = new LinkedList<Long>();
         foundItemsPosted = new LinkedList<Long>();
+        lastLogin = new Date(0);
         status = 1;
     }
 
@@ -35,34 +36,6 @@ public class Account {
         this.foundItemsPosted = foundItemsPosted;
         this.lastLogin = lastLogin;
         this.status = status;
-    }
-
-    protected void setID(long newId) {
-        id = newId;
-    }
-
-    public void changePassword(String pass) {
-        password = pass;
-    }
-
-    public void addLostItem(Long itemId) {
-        lostItemsPosted.add(itemId);
-    }
-
-    public void addFoundItem(Long itemId) {
-        foundItemsPosted.add(itemId);
-    }
-
-    public void login() {
-        lastLogin = new Date();
-    }
-
-    public void banUser() {
-        status = 2;
-    }
-
-    public void unBanUser() {
-        status = 1;
     }
 
     public long getId() {
@@ -93,6 +66,7 @@ public class Account {
         return status;
     }
 
+    // For debugging
     public String toString() {
         String answer = "";
         answer += "id: " + id;
@@ -100,7 +74,7 @@ public class Account {
         answer += ", password: " + password;
         answer += ", lost_items: " + lostItemsPosted.toString();
         answer += ", found_items: " + foundItemsPosted.toString();
-        answer += ", last_login: " + lastLogin.getTime();
+        answer += ", last_login: " + lastLogin.toString();
         answer += ", status: " + status;
         return answer;
     }
