@@ -5,6 +5,7 @@ import android.view.*;
 import android.widget.*;
 import android.content.*;
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.AdapterView.*;
 
 public class PostLost1Activity extends AppCompatActivity {
 
@@ -16,6 +17,22 @@ public class PostLost1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_lost1);
         userId = getIntent().getLongExtra("userId", -1);
+        Spinner spinner = (Spinner) findViewById(R.id.lost_category_spinner);
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position,
+                                       long id) {
+                if (parentView.getItemAtPosition(position).toString().equals("Other")) {
+                    ((TextView) findViewById(R.id.lost_not_category)).setVisibility(View.VISIBLE);
+                    ((EditText) findViewById(R.id.lost_other_category)).setVisibility(View.VISIBLE);
+                } else {
+                    ((TextView) findViewById(R.id.lost_not_category)).setVisibility(View.INVISIBLE);
+                    ((EditText) findViewById(R.id.lost_other_category)).setVisibility(View.INVISIBLE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView){}
+        });
     }
 
     public void onNextLostClick(View v) {

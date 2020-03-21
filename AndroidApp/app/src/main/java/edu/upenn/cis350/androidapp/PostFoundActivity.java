@@ -3,8 +3,10 @@ package edu.upenn.cis350.androidapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +22,22 @@ public class PostFoundActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_found);
         posterId = getIntent().getLongExtra("userId", -1);
+        Spinner spinner = (Spinner) findViewById(R.id.found_category_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position,
+                                       long id) {
+                if (parentView.getItemAtPosition(position).toString().equals("Other")) {
+                    ((TextView) findViewById(R.id.found_not_category)).setVisibility(View.VISIBLE);
+                    ((EditText) findViewById(R.id.found_other_category)).setVisibility(View.VISIBLE);
+                } else {
+                    ((TextView) findViewById(R.id.found_not_category)).setVisibility(View.INVISIBLE);
+                    ((EditText) findViewById(R.id.found_other_category)).setVisibility(View.INVISIBLE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView){}
+        });
     }
 
     public void onMakeFoundClick(View v) {
