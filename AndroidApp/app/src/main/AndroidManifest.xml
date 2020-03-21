@@ -24,8 +24,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".VerifyEmailActivity" />
+
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".ForgotPasswordVerifyEmailActivity" />
+        <activity android:name=".ForgotPasswordNewPasswordActivity" />
+
+
 
         <activity android:name=".MainActivity" />
         <activity android:name=".NewPostActivity" />

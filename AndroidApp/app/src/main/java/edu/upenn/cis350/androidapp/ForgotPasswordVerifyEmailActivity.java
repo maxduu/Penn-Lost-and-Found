@@ -14,13 +14,11 @@ import java.util.Random;
 
 import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
 
-public class VerifyEmailActivity extends AppCompatActivity  {
+public class ForgotPasswordVerifyEmailActivity extends AppCompatActivity  {
 
     private String username;
-    private String password;
     private int code;
     private EditText codeInputField;
-    private AccountJSONProcessor processor = AccountJSONProcessor.getInstance();
     private Random random;
 
     @Override
@@ -28,18 +26,19 @@ public class VerifyEmailActivity extends AppCompatActivity  {
         codeInputField = (EditText) findViewById(R.id.codeInput);
         random = new Random();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verify_email);
+        setContentView(R.layout.activity_forgot_verify_email);
         username = getIntent().getStringExtra("username");
-        password = getIntent().getStringExtra("password");
         verifyEmail();
     }
 
-    public void onAttemptCodeButtonClick(View view) {
+    public void onForgotAttemptCodeButtonClick(View view) {
         EditText codeInputField = (EditText) findViewById(R.id.codeInput);
         String rawInput = codeInputField.getText().toString();
         int givenCode = Integer.parseInt(rawInput);
         if (givenCode == code) {
-            confirmAccountCreation();
+            Intent i = new Intent(this, ForgotPasswordNewPasswordActivity.class);
+            i.putExtra("username", username);
+            startActivity(i);
         } else {
             Toast.makeText(getApplicationContext(),
                     "Incorrect code. Please try again.", Toast.LENGTH_LONG).show();
@@ -57,8 +56,9 @@ public class VerifyEmailActivity extends AppCompatActivity  {
                 try {
                     GMailSender sender = new GMailSender("pennlostfound@gmail.com",
                             "ilovelukeyeagley");
-                    sender.sendMail("Account Creation: Email Verification",
-                            "Enter the following code into the app to verify your account:\n" +
+                    sender.sendMail("Password Reset: Email Verification",
+                            "An attempt has been made to reset your password.\n" +
+                                    "Enter the following code into the app to verify your account:\n" +
                             emailCode,
                             "pennlostfound@gmail.com",
                             email);
@@ -72,17 +72,9 @@ public class VerifyEmailActivity extends AppCompatActivity  {
         }.execute();
     }
 
-    public void onResendEmailButtonClick(View view) {
+    public void onForgotResendEmailButtonClick(View view) {
         verifyEmail();
     }
 
-    // Call after email has been verified
-    private void confirmAccountCreation() {
-        Toast.makeText(getApplicationContext(),
-                "Your account has been created! You may now log in.", Toast.LENGTH_LONG).show();
-        processor.createNewAccount(username, password);
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
-    }
 
 }
