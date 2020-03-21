@@ -11,14 +11,9 @@ public class AccountJSONWriter {
 
     private PrintWriter out;
 
-    private AccountJSONWriter(String filename) {
-        try {
-            FileWriter writer = new FileWriter(filename, true);
-            out = new PrintWriter(writer);
-        } catch (Exception e) { }
-    }
+    private AccountJSONWriter() { }
 
-    private static AccountJSONWriter instance = new AccountJSONWriter("users.json");
+    private static AccountJSONWriter instance = new AccountJSONWriter();
 
     public static AccountJSONWriter getInstance() {
         return instance;

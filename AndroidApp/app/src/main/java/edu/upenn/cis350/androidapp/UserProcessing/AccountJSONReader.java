@@ -20,13 +20,9 @@ import edu.upenn.cis350.androidapp.AccessWebTask;
 
 public class AccountJSONReader {
 
-    private String filename;
+    public AccountJSONReader() { }
 
-    public AccountJSONReader(String name) {
-        filename = name;
-    }
-
-    private static AccountJSONReader instance = new AccountJSONReader("users.json");
+    private static AccountJSONReader instance = new AccountJSONReader();
 
     public static AccountJSONReader getInstance() {
         return instance;
