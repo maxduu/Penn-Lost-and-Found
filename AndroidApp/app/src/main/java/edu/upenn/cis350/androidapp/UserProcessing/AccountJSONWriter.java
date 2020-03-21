@@ -1,11 +1,12 @@
 package edu.upenn.cis350.androidapp.UserProcessing;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.net.URL;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
-import edu.upenn.cis350.androidapp.AccessWebTask;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class AccountJSONWriter {
 
@@ -26,78 +27,45 @@ public class AccountJSONWriter {
 
 
     public void addNewAccount(Account user) {
-        try {
-            URL url = new URL("http://10.0.2.2:3000/create-user?"
-                    + "id=" + user.getId() + "&username=" + user.getUsername() +
-                    "&password=" + user.getPassword() + "&last_login=" + user.getLastLogin() +
-                    "&status=" + user.getStatus() +
-                    "&lost_items=" + user.getLostItemsPosted() +
-                    "&found_items=" + user.getFoundItemsPosted());
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Doesn't really work. Implement with mongo
+        /*
+        JSONObject userDetails = new JSONObject();
+        userDetails.put("id", user.getId());
+        userDetails.put("username", user.getUsername());
+        userDetails.put("password", user.getPassword());
+        userDetails.put("lost_items", user.getLostItemsPosted().toString());
+        userDetails.put("found_items", user.getFoundItemsPosted().toString());
+        userDetails.put("status", user.getStatus());
+        if (user.getLastLogin() == null) {
+            userDetails.put("last_login", -1);
+        } else {
+            userDetails.put("last_login", user.getLastLogin().getTime());
         }
+        out.append(userDetails.toJSONString());
+        out.flush();
+        */
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
+    // to implement with mongo
     public void changePassword(long id, String newPassword) {
-        try {
-            URL url = new URL("http://10.0.2.2:3000/update-user?"
-                    + "id=" + id + "&password=" + newPassword);
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
     public void changeStatus(long id, int newStatus) {
-        try {
-            URL url = new URL("http://10.0.2.2:3000/update-user?"
-                    + "id=" + id + "&status=" + newStatus);
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-    public void updateLastLogin(long id) {
-        try {
-            URL url = new URL("http://10.0.2.2:3000/update-user?"
-                    + "id=" + id + "&last_login=" + new Date());
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void changeLastLogin(long id) {
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-    public void addLostItem(Account user, long itemId) {
-        try {
-            List<Long> items = user.getLostItemsPosted();
-            items.add(itemId);
-            URL url = new URL("http://10.0.2.2:3000/update-user?"
-                    + "id=" + user.getId() + "&lost_items=" + items);
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void addLostItem(long id, long itemId) {
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-
-    public void addFoundItem(Account user, long itemId) {
-        try {
-            List<Long> items = user.getFoundItemsPosted();
-            items.add(itemId);
-            URL url = new URL("http://10.0.2.2:3000/update-user?"
-                    + "id=" + user.getId() + "&found_items=" + items);
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void addFoundItem(long id, long itemId) {
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
 

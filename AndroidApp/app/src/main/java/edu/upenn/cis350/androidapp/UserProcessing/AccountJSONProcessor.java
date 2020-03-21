@@ -2,11 +2,7 @@ package edu.upenn.cis350.androidapp.UserProcessing;
 
 import java.io.FileReader;
 
-import java.net.URL;
 import java.util.Collection;
-import java.util.Date;
-
-import edu.upenn.cis350.androidapp.AccessWebTask;
 
 public class AccountJSONProcessor {
 
@@ -43,30 +39,17 @@ public class AccountJSONProcessor {
      */
     public void createNewAccount(String username, String password) {
         Account user = new Account(findNewId(), username, password);
-        if (!usernameIsNew(username)) {
-            throw new IllegalArgumentException("Username already exists");
-        }
-        writer.addNewAccount(user);
-    }
-
-
-    /**
-     * Checks if a given username does not yet exist in database.
-     * @param username The username to check.
-     * @return True if the username does not exist in database, false otherwise.
-     */
-    public boolean usernameIsNew(String username) {
         try {
-            Collection<Account> accounts = getAllAccounts();
+            Collection<Account> accounts = reader.getAllAccounts();
             for (Account a : accounts) {
-                if (a.getUsername().equals(username)) {
-                    return false;
+                if (a.getUsername() == user.getUsername()) {
+                    throw new IllegalArgumentException("Username already taken.");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        writer.addNewAccount(user);
     }
 
     /**
@@ -118,7 +101,7 @@ public class AccountJSONProcessor {
      */
     public int attemptLogin(String username, String password) {
         try {
-            Collection<Account> accounts = getAllAccounts();
+            Collection<Account> accounts = reader.getAllAccounts();
             Account found = null;
             for (Account a : accounts) {
                 if (username.equals(a.getUsername())) {
@@ -139,42 +122,25 @@ public class AccountJSONProcessor {
     }
 
 
+    // To implement with mongo
     public void changePassword(long id, String newPassword) {
-        writer.changePassword(id, newPassword);
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-    public void banAccount(long id) {
-        writer.changeStatus(id, 2);
+    public void changeStatus(long id, int newStatus) {
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-    public void unbanAccount(long id) {
-        writer.changeStatus(id, 1);
-    }
-
-    public void updateLastLogin(long id) {
-        writer.updateLastLogin(id);
+    public void changeLastLogin(long id) {
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
     public void addLostItem(long id, long itemId) {
-        writer.addLostItem(getAccountFromId(id), itemId);
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
     public void addFoundItem(long id, long itemId) {
-        writer.addFoundItem(getAccountFromId(id), itemId);
-    }
-
-    private Account getAccountFromId(long id) {
-        try {
-            Collection<Account> accounts = getAllAccounts();
-            for (Account a : accounts) {
-                if (id == a.getId()) {
-                    return a;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        throw new IllegalArgumentException("No account with id found");
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
 }

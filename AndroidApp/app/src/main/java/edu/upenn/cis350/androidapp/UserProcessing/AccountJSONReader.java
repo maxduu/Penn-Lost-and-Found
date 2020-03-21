@@ -2,9 +2,6 @@ package edu.upenn.cis350.androidapp.UserProcessing;
 
 
 import java.io.FileReader;
-import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,8 +12,6 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import edu.upenn.cis350.androidapp.AccessWebTask;
 
 public class AccountJSONReader {
 
@@ -39,41 +34,45 @@ public class AccountJSONReader {
      */
     public Collection<Account> getAllAccounts() throws Exception {
         Collection<Account> accounts = new LinkedList<Account>();
+        JSONParser parser = new JSONParser();
         try {
-            URL url = new URL("http://10.0.2.2:3000/all-users");
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-            JSONParser parser = new JSONParser();
-            JSONObject full = (JSONObject) parser.parse(task.get());
-            JSONArray items = (JSONArray) full.get("items");
-            Iterator iter = items.iterator();
+            JSONArray infos = (JSONArray) parser.parse(new FileReader(filename));
+            Iterator iter = infos.iterator();
             while (iter.hasNext()) {
                 JSONObject info = (JSONObject) iter.next();
                 long id = (long) info.get("id");
                 String username = (String) info.get("username");
                 String password = (String) info.get("password");
-                JSONArray lostItems = (JSONArray) info.get("lost_items");
-                JSONArray foundItems = (JSONArray) info.get("found_items");
-                String rawDate = (String) info.get("last_login");
+                String lostItems = (String) info.get("lost_items");
+                String foundItems = (String) info.get("found_items");
+                long login = (long) info.get("last_login");
                 long status = (long) info.get("status");
-                System.out.println(rawDate);
-                Date date = null;
-                SimpleDateFormat dateFormat = new SimpleDateFormat(
-                        "yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-                try {
-                    date = dateFormat.parse(rawDate.replaceAll("Z$", "+0000"));
-                } catch (ParseException e) {
-                    System.out.println("date parse error");
-                }
-
                 Account acc = new Account(id, username, password,
-                        lostItems, foundItems, date, (int) status);
+                        toList(lostItems), toList(foundItems), new Date(login), (int) status);
                 accounts.add(acc);
             }
         } catch (Exception e) {
-            System.out.println(e);
+            throw e;
         }
         return accounts;
+    }
+
+    /**
+     * Helper method: converts a string representation of a list to the list object
+     * @param items A list of found or lost items
+     * @return a List representation of the given items
+     */
+    private List<Long> toList(String items) {
+        if (items.isEmpty() || items.length() < 3) {
+            return new LinkedList<Long>();
+        }
+        List<String> stringList = Arrays.asList(
+                items.substring(1, items.length() - 1).split(", "));
+        List<Long> longList = new LinkedList<Long>();
+        for (String s : stringList) {
+            longList.add(Long.valueOf(s));
+        }
+        return longList;
     }
 
 

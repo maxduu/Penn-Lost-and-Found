@@ -12,12 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.content.*;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import java.net.URL;
-import java.util.Iterator;
 
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 
@@ -48,25 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 "Login ID: " + userId + " Username: " +
                         getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
 
-
-
-
-        // Jeffrey- use this to make scrolling screen.
         try {
             URL url = new URL("http://10.0.2.2:3000/all-lost-items");
             AccessWebTask task = new AccessWebTask();
             task.execute(url);
-            JSONParser parser = new JSONParser();
-            JSONObject full = (JSONObject) parser.parse(task.get());
-            JSONArray items = (JSONArray) full.get("items");
-            Iterator iter = items.iterator();
-            while (iter.hasNext()) {
-                JSONObject info = (JSONObject) iter.next();
-                // Code goes here
-            }
+            System.out.println(task.get());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
+
     }
 
     public void onPlusClick(View v){

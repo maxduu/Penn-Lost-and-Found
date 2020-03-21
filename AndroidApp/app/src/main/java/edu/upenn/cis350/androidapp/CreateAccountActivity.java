@@ -12,14 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.R;
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
 
 public class CreateAccountActivity extends AppCompatActivity  {
 
     private EditText usernameInput;
     private EditText passwordInput;
     private EditText passwordVerifyInput;
-    private AccountJSONProcessor processor = AccountJSONProcessor.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,15 +32,8 @@ public class CreateAccountActivity extends AppCompatActivity  {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
         String passwordVerify = passwordVerifyInput.getText().toString();
-
+        
         if (!usernameWorks(username)) {
-            return;
-        }
-
-        if (!processor.usernameIsNew(username)) {
-            Toast.makeText(getApplicationContext(),
-                    "Username already has an associated account.",
-                    Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -61,9 +52,6 @@ public class CreateAccountActivity extends AppCompatActivity  {
         Toast.makeText(getApplicationContext(),
                 "Verification email sent to " + username +
                         ". Return to login screen after verifying.", Toast.LENGTH_LONG).show();
-
-        // After verification
-        confirmAccountCreation(username, password);
     }
 
     // TODO: Verification link (through Node.js?)
@@ -86,11 +74,6 @@ public class CreateAccountActivity extends AppCompatActivity  {
             protected void onPostExecute(String input) {
             }
         }.execute();
-    }
-
-    // Call after email has been verified
-    private void confirmAccountCreation(String username, String password) {
-        processor.createNewAccount(username, password);
     }
 
     public boolean passwordWorks(String pass) {

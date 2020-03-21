@@ -8,15 +8,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import edu.upenn.cis350.androidapp.UserProcessing.Account;
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
-
 public class LoginActivity extends AppCompatActivity  {
 
     private int failedAttempts; // implement later
     private EditText usernameInput;
     private EditText passwordInput;
-    private AccountJSONProcessor processor = AccountJSONProcessor.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,15 +26,12 @@ public class LoginActivity extends AppCompatActivity  {
     public void onLoginButtonClick(View view) {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-        processor = AccountJSONProcessor.getInstance();
-        int loginResult = processor.attemptLogin(username, password);
-        if (loginResult == 0) {
-            successfulLogin(username);
-        } else if (loginResult == 1){
+        if (!checkUsername(username)) {
             Toast.makeText(getApplicationContext(),
                     "Username not found. Create an account?", Toast.LENGTH_LONG).show();
             return;
-        } else if (loginResult == 2) {
+        }
+        if (!checkPassword(username, password)) {
             if (failedAttempts == 5) {
                 lockLogin();
                 failedAttempts = 0;
@@ -50,6 +43,19 @@ public class LoginActivity extends AppCompatActivity  {
                 return;
             }
         }
+        successfulLogin(username);
+    }
+
+    // TODO
+    public boolean checkUsername(String username) {
+        // Check if username exists in database (using processor)
+        return true;
+    }
+
+    // TODO
+    public boolean checkPassword(String username, String password) {
+        // Check if username/password combo exists in database
+        return true;
     }
 
     public void onCreateNewAccountButtonClick(View view) {
@@ -66,8 +72,8 @@ public class LoginActivity extends AppCompatActivity  {
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("username", name);
 
-        long id = processor.getIdFromUsername(name);
-        processor.updateLastLogin(id);
+        //TODO need userId to be passed around as well, use the processor
+        long id = -1;
         i.putExtra("userId", id);
         startActivity(i);
     }
@@ -75,8 +81,7 @@ public class LoginActivity extends AppCompatActivity  {
     // TODO
     // Lock login after 5 failed attempts
     private void lockLogin() {
-        Toast.makeText(getApplicationContext(),
-                "Try again in 30 seconds.", Toast.LENGTH_LONG).show();
+
     }
 
 }
