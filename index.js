@@ -16,13 +16,16 @@ app.listen(3000, () => {
 // GET to create a new user, ex: 'http://localhost:3000/create-user' and get request
 // query with body being user object json attributes
 app.use('/create-user', (req, res) => {
+	var lost_items_array= JSON.parse(req.query.lost_items)
+	var found_items_array= JSON.parse(req.query.found_items)
+	console.log(lost_items_array)
     var newUser = new user ({
     	id: parseInt(req.query.id),
     	username: req.query.username,
     	password: req.query.password,
     	last_login: Date.parse(req.query.last_login),
-    	lost_items: req.query.lost_items,
-    	found_items: req.query.found_items,
+    	lost_items: lost_items_array,
+    	found_items: found_items_array,
     	status: parseInt(req.query.status)
     });
 
@@ -84,12 +87,26 @@ app.use('/update-user', (req, res) => {
             res.json({'status': 'no item'});
         }
         else {
-    		item.username = req.query.username,
-    		item.password = req.query.password,
-    		item.last_login = Date.parse(req.query.last_login),
-    		item.lost_items = req.query.lost_items,
-    		item.found_items = req.query.found_items,
-    		item.status = parseInt(req.query.status)
+        	if (req.query.username) {
+        		item.username = req.query.username;
+        	}
+        	if (req.query.password) {
+        		item.password = req.query.password;
+        	}
+        	if (req.query.last_login) {
+        		item.last_login = Date.parse(req.query.last_login);
+        	}
+        	if (req.query.lost_items) {
+        		var lost_items_array= JSON.parse(req.query.lost_items);
+        		item.lost_items = lost_items_array;
+        	}
+        	if (req.query.found_items) {
+        		var found_items_array= JSON.parse(req.query.found_items);
+        		item.found_items = found_items_array;
+        	}
+        	if (req.query.status) {
+        		item.status = parseInt(req.query.status)
+        	}
             item.save((err) => {
                 if (err) {
                     res.json({'status': err});
