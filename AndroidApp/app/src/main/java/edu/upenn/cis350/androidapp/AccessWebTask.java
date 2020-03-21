@@ -26,6 +26,9 @@ public class AccessWebTask extends AsyncTask<URL, String, String> {
             // use Android JSON library to parse JSON
             JSONObject jo = new JSONObject(msg);
 
+            in.close();
+            conn.disconnect();
+
             return jo.toString();
         }
         catch (Exception e) {
