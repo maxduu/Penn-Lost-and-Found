@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 import android.content.*;
+import edu.upenn.cis350.androidapp.UserProcessing.*;
 
 import java.net.URL;
-
+import java.util.*;
+import edu.upenn.cis350.androidapp.UserProcessing.LostJSONReader;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,13 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 "Login ID: " + userId + " Username: " +
                         getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
 
-        try {
-            URL url = new URL("http://10.0.2.2:3000/all-lost-items");
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-            System.out.println(task.get());
-        } catch (Exception e) {
-            System.out.println(e);
+        Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
+        for (LostItem i : lostItems) {
+            System.out.println(i);
         }
 
     }

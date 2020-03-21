@@ -10,6 +10,8 @@ import android.view.*;
 import org.json.*;
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.upenn.cis350.androidapp.UserProcessing.LostJSONWriter;
+
 public class PostLost2Activity extends AppCompatActivity {
 
     private long posterId;
@@ -32,29 +34,20 @@ public class PostLost2Activity extends AppCompatActivity {
         description = describe.getText().toString();
         EditText addInfoField = (EditText) findViewById(R.id.lost_addinfo);
         additionalInfo = addInfoField.getText().toString();
-        int id = 3;
+        int id = 4;
         Date date = new Date();
-        double latitude = -1;
-        double longitude = -1;
+
+        // must have decimals!
+        double latitude = -1.0;
+        double longitude = -1.0;
         String attachmentLoc = "";
 
-        try {
-            URL url = new URL("http://10.0.2.2:3000/create-lost-item?"
-                    + "id=" + id + "&posterId=" + posterId +
-                    "&category=" + category + "&date=" + date +
-                    "&latitude=" + latitude + "&longitude=" + longitude +
-                    "&around=" + around + "&description=" + description +
-                    "&attachmentLoc=" + attachmentLoc + "&additionalInfo="
-                    + additionalInfo);
-            AccessWebTask task = new AccessWebTask();
-            task.execute(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        LostJSONWriter.getInstance().createLostItem(posterId, category, date, latitude, longitude,
+                around, attachmentLoc, description, additionalInfo);
+
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("userId", posterId);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 
