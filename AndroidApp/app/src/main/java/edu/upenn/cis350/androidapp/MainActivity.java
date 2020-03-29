@@ -16,9 +16,10 @@ import android.view.View;
 import android.widget.*;
 import android.content.*;
 import android.R.style.*;
+<<<<<<< HEAD
+=======
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.*;
-
-
+>>>>>>> 3f7f0c82e9990a6fb1272926265d88f8b94c6a02
 
 import java.util.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
