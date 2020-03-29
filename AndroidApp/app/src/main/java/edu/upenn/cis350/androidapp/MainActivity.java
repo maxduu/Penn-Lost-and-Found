@@ -8,15 +8,17 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.content.*;
-import edu.upenn.cis350.androidapp.UserProcessing.*;
 
-import java.net.URL;
+
 import java.util.*;
-import edu.upenn.cis350.androidapp.UserProcessing.LostJSONReader;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
+import edu.upenn.cis350.androidapp.MessagingActivities.ChatsActivity;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,11 +51,17 @@ public class MainActivity extends AppCompatActivity {
         for (LostItem i : lostItems) {
             System.out.println(i);
         }
-
+        Log.d("MainActivity", "Got all lost items");
     }
 
     public void onPlusClick(View v){
         Intent i = new Intent(this, NewPostActivity.class);
+        i.putExtra("userId", userId);
+        startActivity(i);
+    }
+
+   public void onMessageClick(View v) {
+        Intent i = new Intent(this, ChatsActivity.class);
         i.putExtra("userId", userId);
         startActivity(i);
     }

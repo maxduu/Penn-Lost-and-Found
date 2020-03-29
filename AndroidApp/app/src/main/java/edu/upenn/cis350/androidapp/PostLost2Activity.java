@@ -10,7 +10,7 @@ import android.view.*;
 import org.json.*;
 import androidx.appcompat.app.AppCompatActivity;
 
-import edu.upenn.cis350.androidapp.UserProcessing.LostJSONWriter;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
 
 public class PostLost2Activity extends AppCompatActivity {
 

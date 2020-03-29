@@ -5,15 +5,27 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
 
-var lost_item = require('./lost_item.js');
-var found_item = require('./found_item.js');
-var user = require('./user.js');
+var lost_item = require('./Schemas/lost_item');
+var found_item = require('./Schemas/found_item');
+var user = require('./Schemas/user');
+const Chat = require('./Schemas/chat'); 
+const Message = require('./Schemas/message'); 
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');
 });
 
-// GET rout to create a new user, ex: 'http://localhost:3000/create-user...' and get request
+//Import Routes
+
+const chatRoute = require('./routes/chatRoute')
+const messageRoute = require('./routes/messageRoute')
+
+//Use middleware chat and messaging routes
+
+app.use('/chat', chatRoute); 
+app.use('/message', messageRoute); 
+
+// GET route to create a new user, ex: 'http://localhost:3000/create-user...' and get request
 // query has parameters that are the user object json attributes
 app.use('/create-user', (req, res) => {
 	var lost_items_array= JSON.parse(req.query.lost_items)
@@ -307,4 +319,6 @@ app.use('/update-found-item', (req, res) => {
         }
     })
 });
+
+
 

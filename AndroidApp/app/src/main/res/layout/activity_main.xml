@@ -12,11 +12,6 @@
         android:layout_gravity="end|bottom"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
@@ -29,8 +24,25 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|top"
+        android:layout_gravity="right|bottom"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onPlusClick"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary" />
+
+    <Button
+        android:id="@+id/message_button"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_height="wrap_content"
+        android:onClick="onMessageClick"
+        android:text="Messages" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

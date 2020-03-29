@@ -1,17 +1,15 @@
 package edu.upenn.cis350.androidapp;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import edu.upenn.cis350.androidapp.UserProcessing.Account;
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.*;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Account;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 

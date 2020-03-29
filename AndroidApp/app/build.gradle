@@ -31,4 +31,8 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/json-simple-1.1.1.jar')
     implementation 'com.google.android.libraries.places:places:2.2.0'
+
+    //added
+    implementation("com.squareup.okhttp3:okhttp:4.4.0")
+
 }

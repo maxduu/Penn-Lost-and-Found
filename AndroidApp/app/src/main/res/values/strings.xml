@@ -2,6 +2,7 @@
     <string name="app_name">Lost and Found</string>
     <string name="tab_text_1">Lost Items</string>
     <string name="tab_text_2">Found Items</string>
+    <string name="input_placeholder">Write a message</string>
 
     <string-array name="lost_categories">
         <item>Sweatshirt</item>

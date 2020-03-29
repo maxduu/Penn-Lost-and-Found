@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.*;
 
 public class VerifyEmailActivity extends AppCompatActivity  {
 

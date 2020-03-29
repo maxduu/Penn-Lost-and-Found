@@ -37,6 +37,8 @@
         <activity android:name=".PostLost1Activity" />
         <activity android:name=".PostLost2Activity" />
         <activity android:name=".PostFoundActivity" />
+        <activity android:name=".MessagingActivities.ChatsActivity"/>
+        <activity android:name=".MessagingActivities.MessagesActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

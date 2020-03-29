@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
-
 public class ForgotPasswordVerifyEmailActivity extends AppCompatActivity  {
 
     private String username;
@@ -51,6 +49,7 @@ public class ForgotPasswordVerifyEmailActivity extends AppCompatActivity  {
         code = random.nextInt(900000) + 100000;
         final String email = username;
         final int emailCode = code;
+
         new AsyncTask<String, String, String>() {
             protected String doInBackground(String... inputs) {
                 try {

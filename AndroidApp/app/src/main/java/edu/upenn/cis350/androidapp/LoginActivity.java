@@ -8,8 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import edu.upenn.cis350.androidapp.UserProcessing.Account;
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.*;
 
 public class LoginActivity extends AppCompatActivity  {
 

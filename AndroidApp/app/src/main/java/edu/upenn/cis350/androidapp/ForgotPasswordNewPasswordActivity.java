@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import edu.upenn.cis350.androidapp.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.*;
 
 public class ForgotPasswordNewPasswordActivity extends AppCompatActivity {
 
