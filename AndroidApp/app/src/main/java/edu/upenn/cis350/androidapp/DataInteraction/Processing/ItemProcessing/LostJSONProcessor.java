@@ -9,6 +9,8 @@ public class LostJSONProcessor {
 
     private LostJSONReader reader = LostJSONReader.getInstance();
 
+    private Collection<LostItem> items = reader.getAllLostItems();
+
     private LostJSONProcessor() {}
 
     private static LostJSONProcessor instance = new LostJSONProcessor();
@@ -23,7 +25,7 @@ public class LostJSONProcessor {
 
     public long getLargestId() {
         long max = 0;
-        for (LostItem i : reader.getAllLostItems()) {
+        for (LostItem i : items) {
             if (i.getId() > max) {
                 max = i.getId();
             }
@@ -32,7 +34,7 @@ public class LostJSONProcessor {
     }
 
     public LostItem getLostItemById(long id) {
-        for (LostItem i : reader.getAllLostItems()) {
+        for (LostItem i : items) {
             if (i.getId() == id) {
                 return i;
             }

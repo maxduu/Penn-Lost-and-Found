@@ -47,7 +47,7 @@
     <ScrollView
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="639dp">
+        android:layout_height="638dp">
 
         <LinearLayout
             android:id="@+id/lost_items_list"
