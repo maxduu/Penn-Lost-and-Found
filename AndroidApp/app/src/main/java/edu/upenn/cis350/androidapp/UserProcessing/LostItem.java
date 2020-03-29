@@ -22,6 +22,10 @@ public class LostItem extends Item {
         this.description = description;
     }
 
+    public String getLocation() {
+        return around;
+    }
+
     public String getAdditionalInfo() {
         return additionalInfo;
     }
