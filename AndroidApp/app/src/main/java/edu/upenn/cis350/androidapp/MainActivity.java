@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.*;
 import android.content.*;
 import android.R.style.*;
-import edu.upenn.cis350.androidapp.UserProcessing.*;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.*;
 
 import java.util.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
@@ -38,14 +38,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
-
-//        // You could make this the Create Posting button
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(this, NewPostActivity.class);
-//            }
-//        });
         userId = getIntent().getLongExtra("userId", -1);
         Toast.makeText(getApplicationContext(),
                 "Login ID: " + userId + " Username: " +
