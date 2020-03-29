@@ -57,14 +57,9 @@
         app:rippleColor="#FFFFFF"
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
-<!--    <Button-->
-<!--        android:id="@+id/message_button"-->
-<!--        android:layout_margin="@dimen/fab_margin"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_gravity="left|bottom"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:onClick="onMessageClick"-->
-<!--        android:text="Messages" />-->
-
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="638dp">
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
