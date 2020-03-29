@@ -29,25 +29,10 @@
         android:onClick="onPlusClick"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary" />
-
-    <Button
-        android:id="@+id/message_button"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:layout_height="wrap_content"
-        android:onClick="onMessageClick"
-        android:text="Messages" />
-
     <ScrollView
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="639dp">
+        android:layout_height="515dp">
 
         <LinearLayout
             android:id="@+id/lost_items_list"
@@ -55,6 +40,31 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/message_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="onMessageClick"
+        app:rippleColor="#FFFFFF"
+        app:srcCompat="@android:drawable/stat_notify_chat" />
+
+<!--    <Button-->
+<!--        android:id="@+id/message_button"-->
+<!--        android:layout_margin="@dimen/fab_margin"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_gravity="left|bottom"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:onClick="onMessageClick"-->
+<!--        android:text="Messages" />-->
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
