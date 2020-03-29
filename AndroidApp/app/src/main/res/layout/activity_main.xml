@@ -29,7 +29,6 @@
         android:onClick="onPlusClick"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
@@ -44,5 +43,18 @@
         android:layout_height="wrap_content"
         android:onClick="onMessageClick"
         android:text="Messages" />
+
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="638dp">
+
+        <LinearLayout
+            android:id="@+id/lost_items_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

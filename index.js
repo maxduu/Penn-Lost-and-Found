@@ -206,15 +206,33 @@ app.use('/update-lost-item', (req, res) => {
             res.json({'status': 'no item'});
         }
         else {
-            item.posterId = parseInt(req.query.posterId);
-            item.category = req.query.category;
-            item.date = Date.parse(req.query.date);
-            item.latitude = parseFloat(req.query.latitude);
-            item.longitude = parseFloat(req.query.longitude);
-            item.around = req.query.around;
-            item.description = req.query.description;
-            item.attachmentLoc = req.query.attachmentLoc;
-            item.additionalInfo = req.query.additionalInfo;
+        	if (req.query.posterId) {
+        		item.posterId = parseInt(req.query.posterId);
+        	}
+        	if (req.query.category) {
+        		item.category = req.query.category;
+        	}
+        	if (req.query.date) {
+        		item.date = Date.parse(req.query.date);
+        	}
+            if (req.query.latitude) {
+            	item.latitude = parseFloat(req.query.latitude);
+            }
+            if (req.query.longitude) {
+            	item.longitude = parseFloat(req.query.longitude);
+            }
+            if (req.query.around) {
+            	item.around = req.query.around;
+            }
+            if (req.query.description) {
+            	item.description = req.query.description;
+            }
+            if (req.query.attachmentLoc) {
+            	item.attachmentLoc = req.query.attachmentLoc;
+            }
+            if (req.query.additionalInfo) {
+            	item.additionalInfo = req.query.additionalInfo;
+            }
             item.save((err) => {
                 if (err) {
                     res.json({'status': err});
@@ -301,12 +319,24 @@ app.use('/update-found-item', (req, res) => {
             res.json({'status': 'no item'});
         }
         else {
-            item.posterId = parseInt(req.query.posterId);
-            item.category = req.query.category;
-            item.date = Date.parse(req.query.date);
-            item.latitude = parseFloat(req.query.latitude);
-            item.longitude = parseFloat(req.query.longitude);
-            item.around = req.query.around;
+        	if (req.query.posterId) {
+        		item.posterId = parseInt(req.query.posterId);
+        	}
+        	if (req.query.category) {
+        		item.category = req.query.category;
+        	}
+        	if (req.query.date) {
+        		item.date = Date.parse(req.query.date);
+        	}
+            if (req.query.latitude) {
+            	item.latitude = parseFloat(req.query.latitude);
+            }
+            if (req.query.longitude) {
+            	item.longitude = parseFloat(req.query.longitude);
+            }
+            if (req.query.around) {
+            	item.around = req.query.around;
+            }
             item.save((err) => {
                 if (err) {
                     res.json({'status': err});

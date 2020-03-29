@@ -8,11 +8,15 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-import android.content.*;
 
+import android.util.Log;
+import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.*;
+import android.content.*;
+import android.R.style.*;
+import edu.upenn.cis350.androidapp.UserProcessing.*;
 
 import java.util.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
@@ -47,12 +51,32 @@ public class MainActivity extends AppCompatActivity {
                 "Login ID: " + userId + " Username: " +
                         getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
 
+        createLostItemButtons();
+
+    }
+
+    public void createLostItemButtons() {
         Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
         for (LostItem i : lostItems) {
-            System.out.println(i);
+            LinearLayout s = (LinearLayout) findViewById(R.id.lost_items_list);
+            Button b = new Button(this);
+            b.setGravity(Gravity.LEFT);
+
+            b.setTransformationMethod(null);
+            String output = i.getCategory()+ "\n" + i.getLocation() + "\n" + i.getDate().toString();
+            b.setText(output);
+            b.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+                    // put code on click operation
+                }
+            });
+            s.addView(b);
         }
-        Log.d("MainActivity", "Got all lost items");
     }
+
+    public String setDate(Date date) { return ""; }
 
     public void onPlusClick(View v){
         Intent i = new Intent(this, NewPostActivity.class);
