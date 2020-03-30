@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.*;
 import android.content.*;
 import android.R.style.*;
-import edu.upenn.cis350.androidapp.UserProcessing.*;
 
 import java.util.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
