@@ -80,7 +80,6 @@ router.use('/get-all', (req, res) => {
             res.json({ 'status' : 'success', 
                         'chats': allChats }); 
             console.log('successfully got all chats: '); 
-            console.log(allChats)
         }
     })
 });

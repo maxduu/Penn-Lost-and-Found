@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
@@ -17,7 +16,7 @@ import edu.upenn.cis350.androidapp.R;
 
 public class MessageAdapter extends BaseAdapter {
 
-    List<Message> messages = new ArrayList<Message>();
+    List<Message> messages;
     Context context;
     long userId;
     long otherId;
@@ -50,7 +49,8 @@ public class MessageAdapter extends BaseAdapter {
 
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         MessageViewHolder holder = new MessageViewHolder();
-        LayoutInflater messageInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater messageInflater =
+                (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         Message message = messages.get(i);
 
         if ((int)message.getSenderId() == (int)userId) { // this message was sent by us so let's create a basic chat bubble on the right
