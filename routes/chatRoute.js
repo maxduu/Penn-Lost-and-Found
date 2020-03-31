@@ -7,12 +7,12 @@ const router = express.Router();
 router.use('/post', async (req, res) => {
     console.log("in chat/ path for posting");
     const newChat = new Chat({
-        id: parseInt(req.body.id), 
-        initiatorId: parseInt(req.body.initiatorId), 
-        receiverId: parseInt(req.body.receiverId), 
-        item: req.body.item, 
-        lastActive: Date.parse(req.body.lastActive), 
-        messages: req.body.messages
+        id: parseInt(req.query.id), 
+        initiatorId: parseInt(req.query.initiatorId), 
+        receiverId: parseInt(req.query.receiverId), 
+        item: req.query.item, 
+        lastActive: Date.parse(req.query.lastActive), 
+        messages: req.query.messages
     }); 
     try {
         const savedChat = await newChat.save()
@@ -26,7 +26,7 @@ router.use('/update', (req, res) => {
     console.log("in chat/update path");
     var updateId = parseInt(req.query.id);
     console.log("updateId is " + updateId); 
-    Chat.findOne({ id: updateId }), (err, chat) => {
+    Chat.findOne( { id: updateId }, (err, chat) => {
         console.log('inside findOne');
         if (err) {
             console.log(err); 
@@ -35,23 +35,23 @@ router.use('/update', (req, res) => {
             console.log("no such chat"); 
             res.json({ 'status': 'no such chat'}); 
         } else {
-            //updates messages if in body
-            console.log("found chat " + id); 
-            if (req.body.message != null) {
-                var messsageId = parse(req.body.message); 
-                console.log("found message " + messsageId); 
-                if (messsageId) {
-                    chat.messages.push(messsageId);    
+            //updates messages if in query
+            console.log("found chat " + req.query.id); 
+            if (req.query.message != null) {
+                var messageId = parseInt(req.query.message); 
+                console.log("found message " + messageId); 
+                if (messageId) {
+                    chat.messages.push(messageId);    
                 } else {
                     res.json({ message: 'Invalid messageId'})
-                }
+                } 
             }
-            //updates date if in body
-            if (req.body.lastActive != null) {
-                var newDate = Date.parse(req.body.lastActive);
+            //updates date if in query
+            if (req.query.lastActive != null) {
+                var newDate = Date.parse(req.query.lastActive);
                 if (newDate) {
                     chat.lastActive = newDate;
-                    console.log("found lastActive " +newDate.toString); 
+                    console.log("found lastActive " +newDate); 
                 } else {
                     res.json({ message: 'Invalid date'})
                 }
@@ -60,14 +60,13 @@ router.use('/update', (req, res) => {
                 if (err) {
                     res.json({ 'status': err}); 
                 } else {
-                    console.log("saved chat " + updateId + " with text " + 
-                        messsageId + " at time " + newDate.toString);
+                    console.log("saved chat");
                     res.json({ 'status' : 'success' }); 
                 }
             })
         }
-    }
-})
+    })
+});
 
 //Get back all chats
 router.use('/get-all', (req, res) => {

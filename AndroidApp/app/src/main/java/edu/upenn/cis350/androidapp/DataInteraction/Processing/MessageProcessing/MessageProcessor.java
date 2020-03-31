@@ -3,12 +3,15 @@ package edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing
 
 import android.util.Log;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.MessageComparator;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.MessageJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.MessageJSONWriter;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
-
-import java.util.*;
 
 public class MessageProcessor {
 
@@ -62,6 +65,31 @@ public class MessageProcessor {
         Log.d("MessageProcessor", "number of messages now is " + idToMessage.size());
         chatProcessor.addMessageToChat(chatId, message);
         writer.postNewMessage(message);
+    }
+
+    /**
+     * Helper method used to create a new unique id not yet in database.
+     * @return an id
+     */
+    public long findNewId() {
+        long id = 1;
+        Collection<Long> messageIds = idToMessage.keySet();
+        try {
+            if (messageIds.size() == 0) {
+                return id;
+            } else {
+                long maxID = -1;
+                for (long mId : messageIds) {
+                    if (mId > maxID) {
+                        maxID = mId;
+                    }
+                }
+                id = maxID + 1;
+                return id;
+            }
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
 }

@@ -86,6 +86,9 @@ public class MessagesActivity extends AppCompatActivity {
 
     public void sendText(View view) {
 
+        /*finish();
+        startActivity(getIntent());*/
+
         EditText edit = (EditText) findViewById(R.id.enterMessage);
         String text = edit.getText().toString();
         Log.d("MessagesActivity", "sentText called in chat " + chatId + " with " +
@@ -97,9 +100,8 @@ public class MessagesActivity extends AppCompatActivity {
             long senderId = userId;
             long receiverId = otherUserId;
             Date time = new Date();
-            int id = mp.getNumMessages() + 1;
+            long id = mp.findNewId();
             Message message = new Message(id, senderId, receiverId, time, text, chatId);
-
             //register message
             mp.registerMessage(message);
             adapter.add(message);
@@ -109,4 +111,5 @@ public class MessagesActivity extends AppCompatActivity {
             edit.getText().clear();
         }
     }
+
 }

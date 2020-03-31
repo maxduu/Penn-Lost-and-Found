@@ -53,7 +53,6 @@ router.use('/get-all', (req, res) => {
         } else {
             res.json({ 'status' : 'success', 
                         'messages': allMessages }); 
-            console.log("all messages: " + allMessages);
         }
     })
 });
