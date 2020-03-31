@@ -32,7 +32,7 @@ public class MessageJSONReader {
 
         try {
 
-            URL url = new URL(BASE_URL);
+            URL url = new URL(BASE_URL+"/get-all");
             AccessWebTask task = new AccessWebTask();
             task.execute(url);
             JSONObject allMessagesJSON = (JSONObject) parser.parse(task.get());

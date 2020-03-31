@@ -28,7 +28,7 @@ public class MessageProcessor {
 
     public static MessageProcessor getInstance() { return instance; }
 
-    public int getNumMessages() { return idToMessage.keySet().size(); }
+    public int getNumMessages() { return idToMessage.size(); }
 
     /**
      * @param messageId The Id of the Message to be obtained
@@ -55,8 +55,11 @@ public class MessageProcessor {
      * @param message The Message object to be registered
      */
     public void registerMessage(Message message) {
+        Log.d("MessageProcessor", "registering message " + message.getText());
         long chatId = message.getChatId();
         ChatProcessor chatProcessor = ChatProcessor.getInstance();
+        idToMessage.put(message.getId(), message);
+        Log.d("MessageProcessor", "number of messages now is " + idToMessage.size());
         chatProcessor.addMessageToChat(chatId, message);
         writer.postNewMessage(message);
     }

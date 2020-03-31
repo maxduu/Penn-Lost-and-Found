@@ -68,13 +68,12 @@ public class ChatProcessor {
      * @param message The new Message object to be registered
      */
     public void addMessageToChat(long chatId, Message message) {
-
         Chat targetChat = idToChats.get(chatId);
         if (!targetChat.getMessages().contains(message.getId())) {
             targetChat.addMessage(message);
             idToChats.put(chatId, targetChat);
             writer.postMessageInChat(chatId, message);
-            Log.d("ChatProcessor", "Added text" + message.getText() + " to chat " + chatId);
+            Log.d("ChatProcessor", "Added text " + message.getText() + " to chat " + chatId);
         }
     }
 

@@ -13,4 +13,4 @@ var chatSchema = new Schema({
     messages: [{type: Number, required: false, unique: true}]
 })
 
-module.exports = mongoose.model('chat', chatSchema); 
+module.exports = mongoose.model('chats', chatSchema); 

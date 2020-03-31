@@ -1,7 +1,10 @@
 package edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing;
 
-import java.util.Collection;
+import android.util.Log;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Account;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.UserManagement.AccountJSONReader;
@@ -11,10 +14,13 @@ public class AccountJSONProcessor {
 
     private AccountJSONReader reader;
     private AccountJSONWriter writer;
+    private Map<Long, Account> idToAccount;
 
     private AccountJSONProcessor() {
         reader = AccountJSONReader.getInstance();
         writer = AccountJSONWriter.getInstance();
+        idToAccount = new HashMap<Long, Account>();
+        createIdToAccountMap();
     }
 
     private static AccountJSONProcessor instance = new AccountJSONProcessor();
@@ -23,15 +29,26 @@ public class AccountJSONProcessor {
         return instance;
     }
 
+    public Account getAccount(long userId) { return idToAccount.get(userId); }
+
     /**
      * Uses the reader to get all Account objects.
      * @return a Collection of all Accounts in the database.
      */
-    public Collection<Account> getAllAccounts() {
+    public Collection<Account> getAllAccounts() { return idToAccount.values(); }
+
+    /**
+     * Creates a mapping from user id to Account object for faster accessing of data
+     */
+    private void createIdToAccountMap() {
+        Collection<Account> accounts = null;
         try {
-            return reader.getAllAccounts();
+             accounts = reader.getAllAccounts();
         } catch (Exception e) {
-            return null;
+            Log.d("AccountProcessor", "error while getting all accounts: " + e);
+        }
+        for (Account acc : accounts) {
+            idToAccount.put(acc.getId(), acc);
         }
     }
 
