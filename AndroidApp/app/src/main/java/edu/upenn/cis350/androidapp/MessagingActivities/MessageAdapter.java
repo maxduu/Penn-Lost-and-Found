@@ -63,7 +63,6 @@ public class MessageAdapter extends BaseAdapter {
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
             convertView.setTag(holder);
-
             String email = AccountJSONProcessor.getInstance().getAccount(otherId).getUsername();
             String user = email.substring(0, email.indexOf("@"));
             holder.name.setText(user);

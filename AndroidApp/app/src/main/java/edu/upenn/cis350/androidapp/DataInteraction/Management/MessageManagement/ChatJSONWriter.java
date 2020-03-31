@@ -2,19 +2,12 @@ package edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement
 
 import android.util.Log;
 
-import org.json.JSONObject;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import java.util.Date;
 import java.net.URL;
+import java.util.Date;
 
 import edu.upenn.cis350.androidapp.AccessWebTask;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 
 public class ChatJSONWriter {
 
@@ -106,7 +99,5 @@ public class ChatJSONWriter {
             Log.d("ChatWriter", "failed to execute patch request for chat");
             e.printStackTrace();
         }
-
-
     }
 }

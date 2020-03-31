@@ -10,7 +10,7 @@ var chatSchema = new Schema({
     receiverId:  {type: Number, required: true, unique: false},
     item: {type: String, required: true, unique: false},
     lastActive: {type: Date, required: true, unique: false, default: Date.now},
-    messages: [{type: Number, required: false, unique: true}]
+    messages: [{type: Number, required: false, unique: false}]
 })
 
 module.exports = mongoose.model('chats', chatSchema); 
