@@ -62,7 +62,6 @@ public class LostJSONReader {
         } catch (Exception e) {
             System.out.println(e);
         }
-
         return lostItems;
 
     }
