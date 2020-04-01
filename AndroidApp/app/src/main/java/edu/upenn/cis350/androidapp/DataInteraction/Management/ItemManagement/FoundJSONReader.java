@@ -1,25 +1,18 @@
 package edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement;
-
+import java.net.URL;
 import java.util.*;
-import java.io.FileReader;
-
-import org.json.simple.*;
 import org.json.simple.parser.*;
+import org.json.simple.*;
+import java.text.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import edu.upenn.cis350.androidapp.AccessWebTask;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.*;
 
 public class FoundJSONReader {
 
-    private String filename;
+    private FoundJSONReader() {}
 
-    private FoundJSONReader(String fname) {
-        this.filename = fname;
-    }
-
-    // once migrated to db we will have to change the instance
-    private static FoundJSONReader instance = new FoundJSONReader("../data/found-items.json");
+    private static FoundJSONReader instance = new FoundJSONReader();
 
     public static FoundJSONReader getInstance() {
         return instance;
@@ -27,48 +20,49 @@ public class FoundJSONReader {
 
     public Collection<FoundItem> getAllFoundItems() {
 
-        Collection<FoundItem> foundItems = new HashSet<FoundItem>();
+        Collection<FoundItem> FoundItems = new HashSet<FoundItem>();
         JSONParser parser = new JSONParser();
-        JSONArray items = null;
 
         try {
-            items = (JSONArray)parser.parse(new FileReader(filename));
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
+            URL url = new URL("http://10.0.2.2:3000/all-found-items");
+            AccessWebTask task = new AccessWebTask();
+            task.execute(url);
+            JSONObject jo = (JSONObject) parser.parse(task.get());
+            JSONArray items = (JSONArray) jo.get("items");
 
-        Iterator iter = items.iterator();
+            Iterator iter = items.iterator();
 
-        while (iter.hasNext()) {
+            while (iter.hasNext()) {
 
-            JSONObject item = (JSONObject) iter.next();
+                JSONObject item = (JSONObject) iter.next();
 
-            long id = (Long) item.get("id");
-            long posterId = ((Long) item.get("posterId"));
-            String category = (String) item.get("category");
+                long id = (long) item.get("id");
+                long posterId = ((long) item.get("posterId"));
+                String category = (String) item.get("category");
 
-            String rawDate = (String) item.get("date");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = null;
-            try {
+                String rawDate = (String) item.get("date");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                // Kevin look in discord chat to see what you have to do for SimpleDateFormat
+                Date date = null;
+
                 date = dateFormat.parse(rawDate);
-            } catch (ParseException e) {
-                System.out.println("date parse error");
-                continue;
+
+                double latitude = Double.valueOf(item.get("latitude").toString());
+                double longitude = Double.valueOf(item.get("longitude").toString());
+                String around = (String) item.get("around");
+                String attachmentLoc = (String) item.get("attachmentLoc");
+                String description = (String) item.get("description");
+                String additionalInfo = (String) item.get("additionalInfo");
+
+                FoundItem l = new FoundItem(id, posterId, category, date, latitude, longitude,
+                        around, attachmentLoc);
+                FoundItems.add(l);
+
             }
-
-            double latitude = (double) item.get("latitude");
-            double longitude = (double) item.get("longitude");
-            String around = (String) item.get("around");
-            String attachmentLoc = (String) item.get("attachmentLoc");
-
-            FoundItem f = new FoundItem(id, posterId, category, date, latitude, longitude,
-                    around, attachmentLoc);
-            foundItems.add(f);
-
+        } catch (Exception e) {
+            System.out.println(e);
         }
-
-        return foundItems;
+        return FoundItems;
 
     }
 

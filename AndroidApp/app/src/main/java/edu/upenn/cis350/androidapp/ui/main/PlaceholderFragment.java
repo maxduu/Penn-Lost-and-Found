@@ -19,7 +19,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
@@ -63,49 +65,73 @@ public class PlaceholderFragment extends Fragment {
         LinearLayout items_list = view.findViewById(R.id.items_list);
         if (index == 1) {
             Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
-            for (LostItem i : lostItems) {
-                Button b = new Button(items_list.getContext());
-                b.setGravity(Gravity.LEFT);
-                int color = Color.parseColor("#8BF44336");
-                b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
-                b.setTransformationMethod(null);
-                String output = i.getCategory() + "\n" + i.getLocation() + "\n" + i.getDate().toString();
-                b.setText(output);
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // put code on click operation
-                    }
-                });
-                items_list.addView(b);
+            if (lostItems.isEmpty()) {
+                TextView t = new TextView(items_list.getContext());
+                t.setGravity(Gravity.CENTER);
+                t.setTextColor(Color.GRAY);
+                t.setText("Looks like no one has lost anything recently :)");
+                items_list.addView(t);
+            } else {
+                for (LostItem i : lostItems) {
+                    Button b = new Button(items_list.getContext());
+                    b.setGravity(Gravity.LEFT);
+                    int color = Color.parseColor("#8BF44336");
+                    b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
+                    b.setTransformationMethod(null);
+                    String output = i.getCategory() + "\n" + i.getLocation() + "\nLost " + setDate(i.getDate());
+                    b.setText(output);
+                    b.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // put code on click operation
+                        }
+                    });
+                    items_list.addView(b);
+                }
             }
-//        } else if (index == 2) {
-//            Collection<FoundItem> foundItems = FoundJSONReader.getInstance().getAllFoundItems();
-//            if (foundItems.isEmpty()) {
-//                items_list.setGravity(Gravity.CENTER);
-//                TextView t = new TextView(items_list.getContext());
-//                t.setGravity(Gravity.CENTER);
-//                t.setTextColor(Color.GRAY);
-//                t.setText("No found items yet :(");
-//            } else {
-//                for (FoundItem i : foundItems) {
-//                    Button b = new Button(items_list.getContext());
-//                    b.setGravity(Gravity.LEFT);
-//                    int color = Color.parseColor("#6B0347F4");
-//                    b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
-//                    b.setTransformationMethod(null);
-//                    String output = i.getCategory() + "\n" + i.getLocation() + "\n" + i.getDate().toString();
-//                    b.setText(output);
-//                    b.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            // put code on click operation
-//                        }
-//                    });
-//                    items_list.addView(b);
-//                }
-//            }
+        } else if (index == 2) {
+            Collection<FoundItem> foundItems = FoundJSONReader.getInstance().getAllFoundItems();
+            if (foundItems.isEmpty()) {
+                TextView t = new TextView(items_list.getContext());
+                t.setGravity(Gravity.CENTER);
+                t.setTextColor(Color.GRAY);
+                t.setText("Sorry, no items found yet :(");
+                items_list.addView(t);
+            } else {
+                for (FoundItem i : foundItems) {
+                    Button b = new Button(items_list.getContext());
+                    b.setGravity(Gravity.LEFT);
+                    int color = Color.parseColor("#6B0347F4");
+                    b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
+                    b.setTransformationMethod(null);
+                    String output = i.getCategory() + "\n" + i.getLocation() + "\nFound " + setDate(i.getDate());
+                    b.setText(output);
+                    b.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // put code on click operation
+                        }
+                    });
+                    items_list.addView(b);
+                }
+            }
         }
         return view;
     }
+
+    public String setDate (Date old) {
+        long diff = System.currentTimeMillis() - old.getTime() + 7 * 3600 * 1000;
+        if (diff < 1000) {
+            return "now";
+        } else if (diff < 60 * 1000) {
+            return diff / 1000 + " second(s) ago";
+        } else if (diff < 3600 * 1000) {
+            return diff / (60 * 1000) + " minute(s) ago";
+        } else if (diff < 216000 * 1000) {
+            return diff / (3600 * 1000) + " hour(s) ago";
+        } else {
+            return diff / (216000 * 1000) + " day(s) ago";
+        }
+    }
+
 }
