@@ -33,8 +33,8 @@ public class PlaceAPI {
                 JSONObject venue = (JSONObject) iter.next();
                 String name = (String) venue.get("name");
                 JSONObject location = (JSONObject) venue.get("location");
-                double latitude = Double.valueOf(venue.get("lat").toString());
-                double longitude = Double.valueOf(venue.get("lng").toString());
+                double latitude = Double.valueOf(location.get("lat").toString());
+                double longitude = Double.valueOf(location.get("lng").toString());
                 list.add(new Place(name, latitude, longitude));
             }
         } catch (Exception e) {

@@ -38,6 +38,9 @@ public class PlaceAutoSuggestAdapter extends ArrayAdapter implements Filterable 
         ArrayList<String> arr = new ArrayList<String>();
         for (Place p : l) {
             arr.add(p.getName());
+            if (arr.size() > 4) {
+                break;
+            }
         }
         return arr;
     }

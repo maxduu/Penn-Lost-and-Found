@@ -7,6 +7,8 @@ import android.content.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.AdapterView.*;
 
+import edu.upenn.cis350.androidapp.LocationAdapter.PlaceAutoSuggestAdapter;
+
 public class PostLost1Activity extends AppCompatActivity {
 
     private long userId;
@@ -17,6 +19,8 @@ public class PostLost1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_lost1);
         userId = getIntent().getLongExtra("userId", -1);
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.lost_location);
+        autoCompleteTextView.setAdapter(new PlaceAutoSuggestAdapter(PostLost1Activity.this, android.R.layout.simple_list_item_1));
         Spinner spinner = (Spinner) findViewById(R.id.lost_category_spinner);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override

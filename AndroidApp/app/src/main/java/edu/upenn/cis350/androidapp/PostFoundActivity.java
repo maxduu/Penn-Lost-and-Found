@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
+
+import edu.upenn.cis350.androidapp.LocationAdapter.PlaceAutoSuggestAdapter;
 
 public class PostFoundActivity extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class PostFoundActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_found);
         posterId = getIntent().getLongExtra("userId", -1);
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.found_location);
+        autoCompleteTextView.setAdapter(new PlaceAutoSuggestAdapter(this, android.R.layout.simple_list_item_1));
         Spinner spinner = (Spinner) findViewById(R.id.found_category_spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
