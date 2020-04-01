@@ -1,8 +1,9 @@
 package edu.upenn.cis350.androidapp.DataInteraction.Data;
 
-import java.util.Date;
-import java.util.*;
 import android.util.Log;
+
+import java.util.Date;
+import java.util.List;
 
 public class Chat {
 
@@ -32,6 +33,8 @@ public class Chat {
     public Date getLastActive() { return lastActive; }
 
     public List<Long> getMessages() { return messages; }
+
+    public long getLastMessage() { return messages.get(messages.size()-1); }
 
     public String getItem() { return item; }
 

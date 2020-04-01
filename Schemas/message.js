@@ -9,8 +9,8 @@ var messageSchema = new Schema({
     senderId: {type: Number, required: true, unique: false},
     receiverId:  {type: Number, required: true, unique: false},
     time: {type: Date, required: true, unique: false, default: Date.now},
-    text: {type: String, required: true, unique: true}, 
+    text: {type: String, required: true, unique: false}, 
     chatId:  {type: Number, required: true, unique: false}
 })
 
-module.exports = mongoose.model('message', messageSchema); 
+module.exports = mongoose.model('messages', messageSchema); 

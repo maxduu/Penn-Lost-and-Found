@@ -1,23 +1,23 @@
 package edu.upenn.cis350.androidapp.MessagingActivities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.MessageProcessor;
 import edu.upenn.cis350.androidapp.R;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
-
-import java.util.*;
 
 
 public class MessagesActivity extends AppCompatActivity {
@@ -29,6 +29,7 @@ public class MessagesActivity extends AppCompatActivity {
     private ArrayList<String> texts;
     private List<Message> messages;
     private ArrayAdapter textAdapter;
+    private MessageAdapter adapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,13 @@ public class MessagesActivity extends AppCompatActivity {
         List<Long> messageIds = chat.getMessages();
         messages = messageProcessor.getMessages(messageIds);
 
+        adapter = new MessageAdapter(this, userId, otherUserId, messages);
+        ListView textListView = (ListView) findViewById(R.id.textsListView);
+        textListView.setAdapter(adapter);
+
+        /*List<Long> messageIds = chat.getMessages();
+        messages = messageProcessor.getMessages(messageIds);
+
         texts = new ArrayList<String>();
         for (Message m : messages) {
             texts.add(m.getText());
@@ -70,10 +78,16 @@ public class MessagesActivity extends AppCompatActivity {
                         Toast.makeText(MessagesActivity.this, s, Toast.LENGTH_LONG).show();
                     }
                 }
-        );
+        );*/
+
+
     }
 
+
     public void sendText(View view) {
+
+        /*finish();
+        startActivity(getIntent());*/
 
         EditText edit = (EditText) findViewById(R.id.enterMessage);
         String text = edit.getText().toString();
@@ -81,18 +95,21 @@ public class MessagesActivity extends AppCompatActivity {
                 "message: " + text);
         if (text.length() > 0) {
             MessageProcessor mp = MessageProcessor.getInstance();
+
             //create new message
             long senderId = userId;
             long receiverId = otherUserId;
             Date time = new Date();
-            int id = mp.getNumMessages() + 1;
-
+            long id = mp.findNewId();
             Message message = new Message(id, senderId, receiverId, time, text, chatId);
+            //register message
             mp.registerMessage(message);
-            messages.add(message);
+            adapter.add(message);
+           /* messages.add(message);
             texts.add(text);
-            textAdapter.notifyDataSetChanged();
+            textAdapter.notifyDataSetChanged();*/
             edit.getText().clear();
         }
     }
+
 }

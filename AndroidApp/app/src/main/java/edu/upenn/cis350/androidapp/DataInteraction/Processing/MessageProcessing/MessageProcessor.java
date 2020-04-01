@@ -3,12 +3,15 @@ package edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing
 
 import android.util.Log;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.MessageComparator;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.MessageJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.MessageJSONWriter;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
-
-import java.util.*;
 
 public class MessageProcessor {
 
@@ -28,7 +31,7 @@ public class MessageProcessor {
 
     public static MessageProcessor getInstance() { return instance; }
 
-    public int getNumMessages() { return idToMessage.keySet().size(); }
+    public int getNumMessages() { return idToMessage.size(); }
 
     /**
      * @param messageId The Id of the Message to be obtained
@@ -55,10 +58,38 @@ public class MessageProcessor {
      * @param message The Message object to be registered
      */
     public void registerMessage(Message message) {
+        Log.d("MessageProcessor", "registering message " + message.getText());
         long chatId = message.getChatId();
         ChatProcessor chatProcessor = ChatProcessor.getInstance();
+        idToMessage.put(message.getId(), message);
+        Log.d("MessageProcessor", "number of messages now is " + idToMessage.size());
         chatProcessor.addMessageToChat(chatId, message);
         writer.postNewMessage(message);
+    }
+
+    /**
+     * Helper method used to create a new unique id not yet in database.
+     * @return an id
+     */
+    public long findNewId() {
+        long id = 1;
+        Collection<Long> messageIds = idToMessage.keySet();
+        try {
+            if (messageIds.size() == 0) {
+                return id;
+            } else {
+                long maxID = -1;
+                for (long mId : messageIds) {
+                    if (mId > maxID) {
+                        maxID = mId;
+                    }
+                }
+                id = maxID + 1;
+                return id;
+            }
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
 }

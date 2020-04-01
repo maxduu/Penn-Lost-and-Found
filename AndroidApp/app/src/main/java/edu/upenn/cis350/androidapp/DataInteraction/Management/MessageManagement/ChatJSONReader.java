@@ -30,7 +30,7 @@ public class ChatJSONReader {
 
         try {
 
-            URL url = new URL(BASE_URL);
+            URL url = new URL(BASE_URL+"get-all");
             AccessWebTask task = new AccessWebTask();
             task.execute(url);
             JSONObject allChatsJSON = (JSONObject) parser.parse(task.get());
