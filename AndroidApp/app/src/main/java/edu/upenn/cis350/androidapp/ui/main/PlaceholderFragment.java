@@ -1,9 +1,16 @@
 package edu.upenn.cis350.androidapp.ui.main;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -12,6 +19,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.util.Collection;
+
+import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONReader;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONReader;
 import edu.upenn.cis350.androidapp.R;
 
 /**
@@ -20,6 +33,7 @@ import edu.upenn.cis350.androidapp.R;
 public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private int index = 1;
 
     private PageViewModel pageViewModel;
 
@@ -35,7 +49,6 @@ public class PlaceholderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
-        int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
@@ -46,14 +59,53 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
-        final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        LinearLayout items_list = view.findViewById(R.id.items_list);
+        if (index == 1) {
+            Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
+            for (LostItem i : lostItems) {
+                Button b = new Button(items_list.getContext());
+                b.setGravity(Gravity.LEFT);
+                int color = Color.parseColor("#8BF44336");
+                b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
+                b.setTransformationMethod(null);
+                String output = i.getCategory() + "\n" + i.getLocation() + "\n" + i.getDate().toString();
+                b.setText(output);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // put code on click operation
+                    }
+                });
+                items_list.addView(b);
             }
-        });
-        return root;
+//        } else if (index == 2) {
+//            Collection<FoundItem> foundItems = FoundJSONReader.getInstance().getAllFoundItems();
+//            if (foundItems.isEmpty()) {
+//                items_list.setGravity(Gravity.CENTER);
+//                TextView t = new TextView(items_list.getContext());
+//                t.setGravity(Gravity.CENTER);
+//                t.setTextColor(Color.GRAY);
+//                t.setText("No found items yet :(");
+//            } else {
+//                for (FoundItem i : foundItems) {
+//                    Button b = new Button(items_list.getContext());
+//                    b.setGravity(Gravity.LEFT);
+//                    int color = Color.parseColor("#6B0347F4");
+//                    b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
+//                    b.setTransformationMethod(null);
+//                    String output = i.getCategory() + "\n" + i.getLocation() + "\n" + i.getDate().toString();
+//                    b.setText(output);
+//                    b.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            // put code on click operation
+//                        }
+//                    });
+//                    items_list.addView(b);
+//                }
+//            }
+        }
+        return view;
     }
 }

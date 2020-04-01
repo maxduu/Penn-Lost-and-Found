@@ -74,7 +74,7 @@ public abstract class Item {
         this.longitude = longitude;
     }
 
-    public String getAround() {
+    public String getLocation() {
         return around;
     }
 

@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.*;
 import android.content.*;
 import android.R.style.*;
-import edu.upenn.cis350.androidapp.UserProcessing.*;
 
 import java.util.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
@@ -27,38 +26,30 @@ import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 public class MainActivity extends AppCompatActivity {
 
     private long userId;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
-
-//        // You could make this the Create Posting button
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(this, NewPostActivity.class);
-//            }
-//        });
         userId = getIntent().getLongExtra("userId", -1);
         Toast.makeText(getApplicationContext(),
                 "Login ID: " + userId + " Username: " +
                         getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
 
-        createLostItemButtons();
-
+        createLostItemsList();
     }
 
-    public void createLostItemButtons() {
+    public void createLostItemsList() {
         Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
         for (LostItem i : lostItems) {
-            LinearLayout s = (LinearLayout) findViewById(R.id.lost_items_list);
+//            LinearLayout s = (LinearLayout) findViewById(R.id.lost_items_list);
             Button b = new Button(this);
             b.setGravity(Gravity.LEFT);
 
@@ -72,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     // put code on click operation
                 }
             });
-            s.addView(b);
+//            s.addView(b);
         }
     }
 
