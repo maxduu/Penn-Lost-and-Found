@@ -19,6 +19,8 @@ public class PostLost2Activity extends AppCompatActivity {
     private String around;
     private String description;
     private String additionalInfo;
+    private double lat;
+    private double lng;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,8 @@ public class PostLost2Activity extends AppCompatActivity {
         posterId = getIntent().getLongExtra("posterId",-1);
         category = getIntent().getStringExtra("category");
         around = getIntent().getStringExtra("around");
+        lat = getIntent().getDoubleExtra("latitude", 39.9522);
+        lng = getIntent().getDoubleExtra("longitude", -75.1932);
     }
 
     public void onMakeLostClick(View v) {
@@ -38,11 +42,9 @@ public class PostLost2Activity extends AppCompatActivity {
         Date date = new Date();
 
         // must have decimals!
-        double latitude = -1.0;
-        double longitude = -1.0;
         String attachmentLoc = "";
 
-        LostJSONWriter.getInstance().createLostItem(posterId, category, date, latitude, longitude,
+        LostJSONWriter.getInstance().createLostItem(posterId, category, date, lat, lng,
                 around, attachmentLoc, description, additionalInfo);
 
         Intent i = new Intent(this, MainActivity.class);

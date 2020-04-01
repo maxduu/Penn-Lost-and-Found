@@ -15,6 +15,7 @@ import edu.upenn.cis350.androidapp.LocationAdapter.Models.*;
 public class PlaceAutoSuggestAdapter extends ArrayAdapter implements Filterable {
 
     ArrayList<String> results;
+    ArrayList<Place> places;
     Context context;
     PlaceAPI api = new PlaceAPI();
     int resource;
@@ -32,6 +33,10 @@ public class PlaceAutoSuggestAdapter extends ArrayAdapter implements Filterable 
 
     public String getItem(int pos){
         return results.get(pos);
+    }
+
+    public Place getPlace(int pos){
+        return places.get(pos);
     }
 
     private ArrayList<String> toStringArr(List<Place> l) {
@@ -52,7 +57,8 @@ public class PlaceAutoSuggestAdapter extends ArrayAdapter implements Filterable 
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null) {
-                    results = toStringArr(api.autoComplete(constraint.toString()));
+                    places = api.autoComplete(constraint.toString());
+                    results = toStringArr(places);
                     filterResults.values = results;
                     filterResults.count = results.size();
                 }

@@ -14,13 +14,22 @@ public class PostLost1Activity extends AppCompatActivity {
     private long userId;
     private String category = "";
     private String place = "";
+    private double lat = 39.9522;
+    private double lng = -75.1932;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_lost1);
         userId = getIntent().getLongExtra("userId", -1);
         AutoCompleteTextView autoCompleteTextView = findViewById(R.id.lost_location);
-        autoCompleteTextView.setAdapter(new PlaceAutoSuggestAdapter(PostLost1Activity.this, android.R.layout.simple_list_item_1));
+        final PlaceAutoSuggestAdapter p = new PlaceAutoSuggestAdapter(PostLost1Activity.this, android.R.layout.simple_list_item_1);
+        autoCompleteTextView.setAdapter(p);
+        autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+                lat = p.getPlace(position).getLat();
+                lng = p.getPlace(position).getLng();
+            }
+        });
         Spinner spinner = (Spinner) findViewById(R.id.lost_category_spinner);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -48,13 +57,15 @@ public class PostLost1Activity extends AppCompatActivity {
             category = spinner.getSelectedItem().toString();
         }
 
-        EditText location = (EditText) findViewById(R.id.lost_location);
+        AutoCompleteTextView location = (AutoCompleteTextView) findViewById(R.id.lost_location);
         place = location.getText().toString();
 
         Intent i = new Intent(this, PostLost2Activity.class);
         i.putExtra("posterId", userId);
         i.putExtra("category", category);
         i.putExtra("around", place);
+        i.putExtra("latitude", lat);
+        i.putExtra("longitude", lng);
         startActivity(i);
     }
 
