@@ -112,7 +112,7 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/found_location"
             android:layout_width="240dp"
             android:layout_height="wrap_content"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -12,16 +13,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
 
+import edu.upenn.cis350.androidapp.LocationAdapter.PlaceAutoSuggestAdapter;
+
 public class PostFoundActivity extends AppCompatActivity {
 
     private long posterId;
     private String category = "";
     private String around = "";
+    private double lat = 39.9522;
+    private double lng = -75.1932;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_found);
         posterId = getIntent().getLongExtra("userId", -1);
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.found_location);
+        final PlaceAutoSuggestAdapter p = new PlaceAutoSuggestAdapter(PostFoundActivity.this, android.R.layout.simple_list_item_1);
+        autoCompleteTextView.setAdapter(p);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+                lat = p.getPlace(position).getLat();
+                lng = p.getPlace(position).getLng();
+            }
+        });
         Spinner spinner = (Spinner) findViewById(R.id.found_category_spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -54,8 +68,6 @@ public class PostFoundActivity extends AppCompatActivity {
 
         int id = -1;
         Date date = new Date();
-        double latitude = -1;
-        double longitude = -1;
         String attachmentLoc = "";
 
         Intent i = new Intent(this, MainActivity.class);
