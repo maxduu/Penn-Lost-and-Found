@@ -12,10 +12,8 @@ public abstract class Item {
     double latitude;
     double longitude;
     String around;
-    String attachmentLoc;
 
-    public Item(long id, long posterId, String category, Date date, double latitude, double longitude, String around,
-                String attachmentLoc) {
+    public Item(long id, long posterId, String category, Date date, double latitude, double longitude, String around) {
         this.id = id;
         this.posterId = posterId;
         this.category = category;
@@ -23,7 +21,6 @@ public abstract class Item {
         this.latitude = latitude;
         this.longitude = longitude;
         this.around = around;
-        this.attachmentLoc = attachmentLoc;
     }
 
     public long getId() {
@@ -80,14 +77,6 @@ public abstract class Item {
 
     public void setAround(String around) {
         this.around = around;
-    }
-
-    public String getAttachmentLoc() {
-        return attachmentLoc;
-    }
-
-    public void setAttachmentLoc(String attachmentLoc) {
-        this.attachmentLoc = attachmentLoc;
     }
 
 }

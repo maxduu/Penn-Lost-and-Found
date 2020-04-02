@@ -6,10 +6,12 @@ public class LostItem extends Item {
 
     String description;
     String additionalInfo;
+    String attachmentLoc;
 
     public LostItem(long id, long posterId, String category, Date date, double latitude, double longitude,
                     String around, String attachmentLoc, String description, String additionalInfo) {
-        super(id, posterId, category, date, latitude, longitude, around, attachmentLoc);
+        super(id, posterId, category, date, latitude, longitude, around);
+        this.attachmentLoc = attachmentLoc;
         this.description = description;
         this.additionalInfo = additionalInfo;
     }
@@ -28,6 +30,14 @@ public class LostItem extends Item {
 
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
+    }
+
+    public String getAttachmentLoc() {
+        return attachmentLoc;
+    }
+
+    public void setAttachmentLoc(String attachmentLoc) {
+        this.attachmentLoc = attachmentLoc;
     }
 
     public String toString() {

@@ -9,17 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"><![CDATA[
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="onPlusClick"
-        app:srcCompat="@drawable/ic_add_white_24dp" />
+    ]]>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -54,6 +47,6 @@
         android:layout_gravity="right|bottom"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onPlusClick"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_add_white_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

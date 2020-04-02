@@ -38,7 +38,6 @@ public class PostLost2Activity extends AppCompatActivity {
         description = describe.getText().toString();
         EditText addInfoField = (EditText) findViewById(R.id.lost_addinfo);
         additionalInfo = addInfoField.getText().toString();
-        int id = 4;
         Date date = new Date();
 
         // must have decimals!

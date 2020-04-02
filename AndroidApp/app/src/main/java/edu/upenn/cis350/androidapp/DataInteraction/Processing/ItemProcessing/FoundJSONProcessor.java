@@ -2,7 +2,7 @@ package edu.upenn.cis350.androidapp.DataInteraction.Processing.ItemProcessing;
 
 import java.util.*;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.*;
 
 
 public class FoundJSONProcessor {

@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
 
 import java.util.Date;
 
@@ -65,15 +66,14 @@ public class PostFoundActivity extends AppCompatActivity {
 
         EditText location = (EditText) findViewById(R.id.found_location);
         around = location.getText().toString();
-
-        int id = -1;
         Date date = new Date();
-        String attachmentLoc = "";
+
+        FoundJSONWriter.getInstance().createFoundItem(posterId, category, date, lat, lng,
+                around);
 
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("userId", posterId);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 

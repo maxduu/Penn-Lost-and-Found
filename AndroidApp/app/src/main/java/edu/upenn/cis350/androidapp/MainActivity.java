@@ -42,32 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),
                 "Login ID: " + userId + " Username: " +
                         getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
-
-        createLostItemsList();
     }
-
-    public void createLostItemsList() {
-        Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
-        for (LostItem i : lostItems) {
-//            LinearLayout s = (LinearLayout) findViewById(R.id.lost_items_list);
-            Button b = new Button(this);
-            b.setGravity(Gravity.LEFT);
-
-            b.setTransformationMethod(null);
-            String output = i.getCategory()+ "\n" + i.getLocation() + "\n" + i.getDate().toString();
-            b.setText(output);
-            b.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v) {
-                    // put code on click operation
-                }
-            });
-//            s.addView(b);
-        }
-    }
-
-    public String setDate(Date date) { return ""; }
 
     public void onPlusClick(View v){
         Intent i = new Intent(this, NewPostActivity.class);
