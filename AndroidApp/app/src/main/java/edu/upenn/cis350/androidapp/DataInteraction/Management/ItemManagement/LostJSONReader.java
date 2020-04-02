@@ -42,6 +42,7 @@ public class LostJSONReader {
 
                 String rawDate = (String) item.get("date");
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
                 // Kevin look in discord chat to see what you have to do for SimpleDateFormat
                 Date date = null;
 

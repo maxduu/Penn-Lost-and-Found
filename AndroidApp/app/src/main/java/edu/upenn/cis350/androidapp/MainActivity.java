@@ -21,7 +21,7 @@ import java.util.*;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
 import edu.upenn.cis350.androidapp.MessagingActivities.ChatsActivity;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.*;
 
 public class MainActivity extends AppCompatActivity {
 
