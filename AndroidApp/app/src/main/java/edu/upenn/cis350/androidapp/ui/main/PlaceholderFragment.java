@@ -126,7 +126,7 @@ public class PlaceholderFragment extends Fragment {
     }
 
     public String setTime (Date old) {
-        long diff = new Date().getTime() - old.getTime() + 7 * 3600 * 1000;
+        long diff = new Date().getTime() - old.getTime();
         if (diff < 1000) {
             return "now";
         } else if (diff < 60 * 1000) {
