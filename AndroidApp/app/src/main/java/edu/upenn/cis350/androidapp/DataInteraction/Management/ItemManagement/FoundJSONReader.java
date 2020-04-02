@@ -20,7 +20,7 @@ public class FoundJSONReader {
 
     public Collection<FoundItem> getAllFoundItems() {
 
-        Collection<FoundItem> FoundItems = new HashSet<FoundItem>();
+        Collection<FoundItem> foundItems = new HashSet<FoundItem>();
         JSONParser parser = new JSONParser();
 
         try {
@@ -50,19 +50,16 @@ public class FoundJSONReader {
                 double latitude = Double.valueOf(item.get("latitude").toString());
                 double longitude = Double.valueOf(item.get("longitude").toString());
                 String around = (String) item.get("around");
-                String attachmentLoc = (String) item.get("attachmentLoc");
-                String description = (String) item.get("description");
-                String additionalInfo = (String) item.get("additionalInfo");
 
-                FoundItem l = new FoundItem(id, posterId, category, date, latitude, longitude,
-                        around, attachmentLoc);
-                FoundItems.add(l);
+                FoundItem f = new FoundItem(id, posterId, category, date, latitude, longitude,
+                        around);
+                foundItems.add(f);
 
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return FoundItems;
+        return foundItems;
 
     }
 
