@@ -22,8 +22,12 @@ import androidx.lifecycle.ViewModelProviders;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Item;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONReader;
@@ -74,11 +78,12 @@ public class PlaceholderFragment extends Fragment {
             } else {
                 for (LostItem i : lostItems) {
                     Button b = new Button(items_list.getContext());
+                    b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
                     int color = Color.parseColor("#8BF44336");
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
-                    String output = i.getCategory() + "\n" + i.getLocation() + "\nLost " + setDate(i.getDate());
+                    String output = i.getCategory() + "\n" + i.getLocation() + "\nLost " + setTime(i.getDate());
                     b.setText(output);
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -100,11 +105,12 @@ public class PlaceholderFragment extends Fragment {
             } else {
                 for (FoundItem i : foundItems) {
                     Button b = new Button(items_list.getContext());
+                    b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
                     int color = Color.parseColor("#6B0347F4");
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
-                    String output = i.getCategory() + "\n" + i.getLocation() + "\nFound " + setDate(i.getDate());
+                    String output = i.getCategory() + "\n" + i.getLocation() + "\nFound " + setTime(i.getDate());
                     b.setText(output);
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -119,8 +125,8 @@ public class PlaceholderFragment extends Fragment {
         return view;
     }
 
-    public String setDate (Date old) {
-        long diff = System.currentTimeMillis() - old.getTime() + 7 * 3600 * 1000;
+    public String setTime (Date old) {
+        long diff = new Date().getTime() - old.getTime() + 7 * 3600 * 1000;
         if (diff < 1000) {
             return "now";
         } else if (diff < 60 * 1000) {
