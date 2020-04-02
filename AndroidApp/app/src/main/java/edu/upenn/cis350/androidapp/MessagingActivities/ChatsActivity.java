@@ -25,6 +25,7 @@ public class ChatsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
+        setTitle("Chats");
         Log.d("ChatsActivity", "Set content view");
 
         chatProcessor = ChatProcessor.getInstance();
@@ -50,39 +51,6 @@ public class ChatsActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        /*chatIds = new long[chats.size()];
-        final String[] printed = new String[chats.size()];
-        if (chats.size() != 0) {
-
-            for (int i = 0; i < chats.size(); i++) {
-                chatIds[i] = chats.get(i).getId();
-                printed[i] = Long.toString(chatIds[i]);
-                System.out.println(chatIds[i]);
-            }
-        }
-
-        int[] other = new int[3];
-
-        ListAdapter chatIdAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, printed);
-
-        ListView chatListView = (ListView) findViewById(R.id.chatsListView);
-
-        chatListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        long chatId = chatIds[position];
-                        Intent i = new Intent(ChatsActivity.this,
-                                MessagesActivity.class);
-                        i.putExtra("userId", userId);
-                        i.putExtra("chatId", chatId);
-                        startActivity(i);
-                    }
-                }
-        );
-        chatListView.setAdapter(chatIdAdapter);*/
     }
 
 

@@ -17,6 +17,7 @@ import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.MessageProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.AccountJSONProcessor;
 import edu.upenn.cis350.androidapp.R;
 
 
@@ -49,38 +50,15 @@ public class MessagesActivity extends AppCompatActivity {
         } else {
             otherUserId = (long)initiatorId;
         }
-
+        String email = AccountJSONProcessor.getInstance().getAccount(otherUserId).getUsername();
+        String user = email.substring(0, email.indexOf("@"));
+        setTitle(user);
         List<Long> messageIds = chat.getMessages();
         messages = messageProcessor.getMessages(messageIds);
 
         adapter = new MessageAdapter(this, userId, otherUserId, messages);
         ListView textListView = (ListView) findViewById(R.id.textsListView);
         textListView.setAdapter(adapter);
-
-        /*List<Long> messageIds = chat.getMessages();
-        messages = messageProcessor.getMessages(messageIds);
-
-        texts = new ArrayList<String>();
-        for (Message m : messages) {
-            texts.add(m.getText());
-        }
-
-        textAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, texts);
-        ListView textListView = (ListView) findViewById(R.id.textsListView);
-        textListView.setAdapter(textAdapter);
-
-        textListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String s = "sent by user "  + messages.get(position).getSenderId();
-                        Toast.makeText(MessagesActivity.this, s, Toast.LENGTH_LONG).show();
-                    }
-                }
-        );*/
-
-
     }
 
 
