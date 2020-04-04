@@ -2,15 +2,10 @@ package edu.upenn.cis350.androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
-import android.widget.Button;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.ItemProcessing.FoundJSONProcessor;
@@ -28,11 +23,17 @@ public class FoundItem1 extends AppCompatActivity {
     }
 
     public void onYourItemMessageUserToClaimClick(View v){
-        Intent i = new Intent(this, FoundItem2.class);
-        i.putExtra("item", item.getCategory());
-        i.putExtra("posterId", item.getPosterId());
-        i.putExtra("postDate", item.getDate().toString());
-        startActivity(i);
+        if (item.getPosterId() == MainActivity.userId) {
+            Toast.makeText(getApplicationContext(),
+                    "This was posted by you.", Toast.LENGTH_LONG).show();
+        } else {
+            Intent i = new Intent(this, StartMessageActivity.class);
+            i.putExtra("item", item.getCategory());
+            i.putExtra("posterId", item.getPosterId());
+            i.putExtra("postDate", item.getDate().toString());
+            i.putExtra("purpose", "claim");
+            startActivity(i);
+        }
     }
 }
 

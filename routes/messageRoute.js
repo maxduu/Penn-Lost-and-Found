@@ -12,14 +12,15 @@ router.use('/post', async (req, res) => {
         receiverId: parseInt(req.query.receiverId), 
         time: Date.parse(req.query.time), 
         text: req.query.text, 
-        chatId: parseInt(req.query.id)
+        chatId: parseInt(req.query.chatId)
     }); 
 
     try {
         const savedMessage = await newMessage.save();
         console.log('successfully saved new message ' + savedMessage.text); 
     } catch (err) {
-        res.json({ 'message': err }); 
+        res.json({ 'message': err });
+        console.log("error saving message: "  + err);  
     } 
 }); 
 

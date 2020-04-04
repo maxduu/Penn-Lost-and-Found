@@ -10,10 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
 
 import java.util.Date;
 
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONWriter;
 import edu.upenn.cis350.androidapp.LocationAdapter.PlaceAutoSuggestAdapter;
 
 public class PostFoundActivity extends AppCompatActivity {
