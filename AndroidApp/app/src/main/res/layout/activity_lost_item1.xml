@@ -132,7 +132,7 @@
         android:layout_height="match_parent"
         android:backgroundTint="#853F6EB5"
         android:fontFamily="@font/oswald_bold"
-        android:text="Next"
-        android:onClick="onNextLostClick"
+        android:onClick="onFoundItemMessageUserClick"
+        android:text="Found Item?\nMessage User"
         android:textSize="36sp" />
 </LinearLayout>

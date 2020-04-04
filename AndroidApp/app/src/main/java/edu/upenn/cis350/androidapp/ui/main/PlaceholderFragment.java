@@ -129,14 +129,14 @@ public class PlaceholderFragment extends Fragment {
         long diff = new Date().getTime() - old.getTime();
         if (diff < 1000) {
             return "now";
-        } else if (diff < 60 * 1000) {
+        } else if (diff < 60000) {
             return diff / 1000 + " second(s) ago";
-        } else if (diff < 3600 * 1000) {
-            return diff / (60 * 1000) + " minute(s) ago";
-        } else if (diff < 216000 * 1000) {
-            return diff / (3600 * 1000) + " hour(s) ago";
+        } else if (diff < 3600000) {
+            return diff / 60000 + " minute(s) ago";
+        } else if (diff < 86400000 * 2) {
+            return diff / 3600000 + " hour(s) ago";
         } else {
-            return diff / (216000 * 1000) + " day(s) ago";
+            return diff / 86400000 + " day(s) ago";
         }
     }
 

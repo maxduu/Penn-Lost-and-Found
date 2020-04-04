@@ -127,12 +127,12 @@
         android:layout_height="20dp" />
 
     <Button
-        android:id="@+id/found_item_message_user"
+        android:id="@+id/send_claim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="#853F6EB5"
         android:fontFamily="@font/oswald_bold"
-        android:text="Next"
-        android:onClick="onNextLostClick"
+        android:text="Send Claim"
+        android:onClick="onSendClaimClick"
         android:textSize="36sp" />
 </LinearLayout>
