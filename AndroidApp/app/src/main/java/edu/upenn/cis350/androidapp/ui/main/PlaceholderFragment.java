@@ -1,5 +1,6 @@
 package edu.upenn.cis350.androidapp.ui.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -31,6 +32,9 @@ import edu.upenn.cis350.androidapp.DataInteraction.Data.Item;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONReader;
+import edu.upenn.cis350.androidapp.FoundItem1;
+import edu.upenn.cis350.androidapp.LostItem1;
+import edu.upenn.cis350.androidapp.NewPostActivity;
 import edu.upenn.cis350.androidapp.R;
 
 /**
@@ -88,7 +92,8 @@ public class PlaceholderFragment extends Fragment {
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            // put code on click operation
+                            Intent i = new Intent(v.getContext(), LostItem1.class);
+                            startActivity(i);
                         }
                     });
                     items_list.addView(b);
@@ -115,7 +120,8 @@ public class PlaceholderFragment extends Fragment {
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            // put code on click operation
+                            Intent i = new Intent(v.getContext(), FoundItem1.class);
+                            startActivity(i);
                         }
                     });
                     items_list.addView(b);

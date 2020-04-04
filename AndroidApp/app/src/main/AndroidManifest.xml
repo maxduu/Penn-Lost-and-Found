@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.upenn.cis350.androidapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".FoundItem2"
+            android:label="@string/title_activity_found_item2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".LostItem2"
+            android:label="@string/title_activity_lost_item2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LostItem1"
+            android:label="@string/title_activity_lost_item1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FoundItem1"
+            android:label="@string/title_activity_found_item1"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -25,26 +41,20 @@
         </activity>
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".VerifyEmailActivity" />
-
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ForgotPasswordVerifyEmailActivity" />
         <activity android:name=".ForgotPasswordNewPasswordActivity" />
-
-
-
         <activity android:name=".MainActivity" />
         <activity android:name=".NewPostActivity" />
         <activity android:name=".PostLost1Activity" />
         <activity android:name=".PostLost2Activity" />
         <activity android:name=".PostFoundActivity" />
-        <activity android:name=".MessagingActivities.ChatsActivity"/>
-        <activity android:name=".MessagingActivities.MessagesActivity"/>
+        <activity android:name=".MessagingActivities.ChatsActivity" />
+        <activity android:name=".MessagingActivities.MessagesActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-
     </application>
 
 </manifest>

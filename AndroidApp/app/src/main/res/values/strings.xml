@@ -13,5 +13,17 @@
         <item>Wallet</item>
         <item>Other</item>
     </string-array>
+    <string name="title_activity_found_item1">FoundItem1</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_lost_item1">LostItem1</string>
+    <string name="title_activity_lost_item2">LostItem2</string>
+    <string name="title_activity_found_item2">FoundItem2</string>
 
 </resources>
