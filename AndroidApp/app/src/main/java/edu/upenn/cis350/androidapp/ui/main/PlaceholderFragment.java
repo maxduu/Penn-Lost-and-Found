@@ -121,6 +121,7 @@ public class PlaceholderFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(v.getContext(), FoundItem1.class);
+                            i.putExtra("itemId", (long) v.getId());
                             startActivity(i);
                         }
                     });

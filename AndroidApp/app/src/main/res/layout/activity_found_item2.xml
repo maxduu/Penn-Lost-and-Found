@@ -12,6 +12,6 @@
         android:backgroundTint="#853F6EB5"
         android:fontFamily="@font/oswald_bold"
         android:text="Send Claim"
-        android:onClick="onSendClaimClick"
+        android:onClick="onSendFoundClaimClick"
         android:textSize="36sp" />
 </LinearLayout>

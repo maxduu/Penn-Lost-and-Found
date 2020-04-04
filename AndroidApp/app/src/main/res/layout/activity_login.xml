@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:text="  jqu, adibhati, maxdu, kevc528" />
+                android:text="            " />
 
             <Button
                 android:id="@+id/forgotButton"

@@ -37,13 +37,17 @@ public class MessageProcessor {
      * @param messageId The Id of the Message to be obtained
      * @return The Message object corresponding to the input Id
      */
-    public Message getMessage(long messageId) { return idToMessage.get(messageId); }
+    public Message getMessage(long messageId) {
+        idToMessage = reader.getAllMessages();
+        return idToMessage.get(messageId);
+    }
 
     /**
      * @param messageIds List of ids of the messages to be obtained
      * @return The list of Messages corresponding to the ids
      */
     public List<Message> getMessages(List<Long> messageIds) {
+        idToMessage = reader.getAllMessages();
         List<Message> messages = new LinkedList<Message>();
         for (long id : messageIds) {
             messages.add(this.getMessage(id));

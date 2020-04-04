@@ -24,16 +24,25 @@ public class ChatProcessor {
         assignUsersToChats();
     }
 
+    private void update() {
+        idToChats = reader.getAllChats();
+        userToChats = new HashMap<Long, List<Long>>();
+        assignUsersToChats();
+    }
+
     private static ChatProcessor instance = new ChatProcessor();
 
-    public static ChatProcessor getInstance() { return instance; }
+    public static ChatProcessor getInstance() {return instance; }
 
     /**
      *
      * @param chatId The Id of the Chat to be obtained
      * @return The Chat object corresponding to the input Id
      */
-    public Chat getChat(Long chatId) { return idToChats.get(chatId); }
+    public Chat getChat(Long chatId) {
+        update();
+        return idToChats.get(chatId);
+    }
 
     /**
      * Gets the number of chats. Useful for creating new Chats since their
@@ -126,6 +135,27 @@ public class ChatProcessor {
             List<Long> userChats = new LinkedList<Long>();
             userChats.add(chatId);
             userToChats.put(userId, userChats);
+        }
+    }
+
+    public long findNewId() {
+        long id = 1;
+        Collection<Long> chatIds = idToChats.keySet();
+        try {
+            if (chatIds.size() == 0) {
+                return id;
+            } else {
+                long maxID = -1;
+                for (long mId : chatIds) {
+                    if (mId > maxID) {
+                        maxID = mId;
+                    }
+                }
+                id = maxID + 1;
+                return id;
+            }
+        } catch (Exception e) {
+            return 1;
         }
     }
 }

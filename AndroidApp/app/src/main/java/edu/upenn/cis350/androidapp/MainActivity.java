@@ -25,7 +25,7 @@ import edu.upenn.cis350.androidapp.DataInteraction.Data.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private long userId;
+    public static long userId;
     ViewPager viewPager;
 
     @Override
