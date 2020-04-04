@@ -14,13 +14,10 @@ public class AccountJSONProcessor {
 
     private AccountJSONReader reader;
     private AccountJSONWriter writer;
-    private Map<Long, Account> idToAccount;
 
     private AccountJSONProcessor() {
         reader = AccountJSONReader.getInstance();
         writer = AccountJSONWriter.getInstance();
-        idToAccount = new HashMap<Long, Account>();
-        createIdToAccountMap();
     }
 
     private static AccountJSONProcessor instance = new AccountJSONProcessor();
@@ -29,26 +26,18 @@ public class AccountJSONProcessor {
         return instance;
     }
 
-    public Account getAccount(long userId) { return idToAccount.get(userId); }
+    public Account getAccount(long userId) { return getAccountFromId(userId); }
 
     /**
      * Uses the reader to get all Account objects.
      * @return a Collection of all Accounts in the database.
      */
-    public Collection<Account> getAllAccounts() { return idToAccount.values(); }
-
-    /**
-     * Creates a mapping from user id to Account object for faster accessing of data
-     */
-    private void createIdToAccountMap() {
-        Collection<Account> accounts = null;
+    public Collection<Account> getAllAccounts() {
         try {
-             accounts = reader.getAllAccounts();
+            return reader.getAllAccounts();
         } catch (Exception e) {
-            Log.d("AccountProcessor", "error while getting all accounts: " + e);
-        }
-        for (Account acc : accounts) {
-            idToAccount.put(acc.getId(), acc);
+            System.out.println(e);
+            return null;
         }
     }
 
@@ -92,7 +81,7 @@ public class AccountJSONProcessor {
     private long findNewId() {
         long id = 1;
         try {
-            Collection<Account> existing = reader.getAllAccounts();
+            Collection<Account> existing = getAllAccounts();
             if (existing.size() == 0) {
                 return id;
             } else {
