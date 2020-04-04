@@ -5,21 +5,19 @@ const router = express.Router();
 
 //Create new chat
 router.use('/post', async (req, res) => {
-    console.log("in chat/post for posting new chat");
+    console.log("in chat/ path for posting");
     const newChat = new Chat({
         id: parseInt(req.query.id), 
         initiatorId: parseInt(req.query.initiatorId), 
         receiverId: parseInt(req.query.receiverId), 
         item: req.query.item, 
         lastActive: Date.parse(req.query.lastActive), 
-        messages: JSON.parse(req.query.messages)
+        messages: req.query.messages
     }); 
     try {
         const savedChat = await newChat.save()
-        console.log("saved chat" + savedChat.id);
     } catch (err) {
         res.json({ 'message': err }); 
-        console.log("error saving chat: " + err);
     } 
 }); 
 

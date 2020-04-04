@@ -11,21 +11,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Item;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONReader;
 import edu.upenn.cis350.androidapp.FoundItem1;
 import edu.upenn.cis350.androidapp.LostItem1;
+import edu.upenn.cis350.androidapp.NewPostActivity;
 import edu.upenn.cis350.androidapp.R;
 
 /**
@@ -84,7 +93,6 @@ public class PlaceholderFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(v.getContext(), LostItem1.class);
-                            i.putExtra("itemId", (long) v.getId());
                             startActivity(i);
                         }
                     });

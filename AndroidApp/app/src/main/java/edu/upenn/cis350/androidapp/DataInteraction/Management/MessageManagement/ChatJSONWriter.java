@@ -36,11 +36,56 @@ public class ChatJSONWriter {
             Log.d("ChatWriter", "failed to execute patch request for chat");
             e.printStackTrace();
         }
+
+        /*OkHttpClient client = new OkHttpClient();
+        MediaType JSON = MediaType.parse("application/json;charset=utf-8");
+        JSONObject chatJSON = new JSONObject();
+
+        //add fields to chatJSON
+        try {
+
+            chatJSON.put("id", chat.getId());
+            chatJSON.put("initiatorId", chat.getInitiatorId());
+            chatJSON.put("receiverId", chat.getReceiverId());
+            chatJSON.put("item", chat.getItem());
+            chatJSON.put("lastActive", chat.getLastActive());
+            chatJSON.put("messages", chat.getMessages());
+
+        } catch (Exception e) {
+            Log.d("OKHTTP", "failed to add fields to chatJSON");
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(chatJSON.toString(), JSON);
+        Request request = new Request.Builder()
+                .url(BASE_URL)
+                .post(body)
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (Exception e ) {
+            Log.d("OKHTTP", "failed to execute post request for chat");
+            e.printStackTrace();
+        }*/
     }
 
     public void postMessageInChat(long chatId, Message message) {
         long messageId = message.getId();
         Date lastActive = message.getTime();
+
+        /*JSONObject patchhJSON = new JSONObject();
+
+        //add fields to patchJSON
+        try {
+            patchhJSON.put("message", messageId);
+            patchhJSON.put("lastActive", lastActive);
+        } catch (Exception e) {
+            Log.d("OKHTTP", "failed to add fields to patchJSON");
+            e.printStackTrace();
+        }
+
+        Log.d("ChatWriter", "Patch JSON to update chat is: " + patchhJSON.toString());*/
 
         try {
             URL url = new URL(BASE_URL + "update?"

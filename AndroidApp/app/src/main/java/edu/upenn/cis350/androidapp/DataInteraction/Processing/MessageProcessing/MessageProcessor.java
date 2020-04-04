@@ -62,8 +62,7 @@ public class MessageProcessor {
      * @param message The Message object to be registered
      */
     public void registerMessage(Message message) {
-        Log.d("MessageProcessor", "registering message " + message.getText() +
-                " with id: " + message.getId());
+        Log.d("MessageProcessor", "registering message " + message.getText());
         long chatId = message.getChatId();
         ChatProcessor chatProcessor = ChatProcessor.getInstance();
         idToMessage.put(message.getId(), message);

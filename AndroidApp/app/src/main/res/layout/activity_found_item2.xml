@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1FADE"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/send_claim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#853F6EB5"
+        android:fontFamily="@font/oswald_bold"
+        android:text="Send Claim"
+        android:onClick="onSendFoundClaimClick"
+        android:textSize="36sp" />
+</LinearLayout>

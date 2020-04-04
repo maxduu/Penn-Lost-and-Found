@@ -14,6 +14,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".FoundItem2"
+            android:label="@string/title_activity_found_item2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".LostItem2"
+            android:label="@string/title_activity_lost_item2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".LostItem1"
             android:label="@string/title_activity_lost_item1"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -43,7 +51,6 @@
         <activity android:name=".PostFoundActivity" />
         <activity android:name=".MessagingActivities.ChatsActivity" />
         <activity android:name=".MessagingActivities.MessagesActivity" />
-        <activity android:name=".StartMessageActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

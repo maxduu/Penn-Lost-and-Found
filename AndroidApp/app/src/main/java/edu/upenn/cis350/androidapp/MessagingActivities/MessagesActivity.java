@@ -64,6 +64,8 @@ public class MessagesActivity extends AppCompatActivity {
 
     public void sendText(View view) {
 
+        /*finish();
+        startActivity(getIntent());*/
 
         EditText edit = (EditText) findViewById(R.id.enterMessage);
         String text = edit.getText().toString();
@@ -71,6 +73,7 @@ public class MessagesActivity extends AppCompatActivity {
                 "message: " + text);
         if (text.length() > 0) {
             MessageProcessor mp = MessageProcessor.getInstance();
+
             //create new message
             long senderId = userId;
             long receiverId = otherUserId;
