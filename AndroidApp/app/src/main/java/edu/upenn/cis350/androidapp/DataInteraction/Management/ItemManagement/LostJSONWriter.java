@@ -23,7 +23,7 @@ public class LostJSONWriter {
                                double latitude, double longitude, String around,
                                String attachmentLoc, String description, String additionalInfo) {
 
-        long id = processor.getLargestId() + 1;
+        long id = ItemIndexer.generateId();
 
         try {
             URL url = new URL("http://10.0.2.2:3000/create-lost-item?"
