@@ -44,7 +44,7 @@ public class FoundItem2 extends AppCompatActivity {
         foundItemAround.setText(getIntent().getStringExtra("location"));
     }
 
-    public void onSendFoundClaimClick(View view) {
+    public void onSendMessageClick(View view) {
         ChatProcessor cp = ChatProcessor.getInstance();
         long chatId = cp.findNewId();
         long userId = MainActivity.userId;
