@@ -159,9 +159,9 @@ public class ChatProcessor {
         }
     }
 
-    public boolean existsItemId(long id) {
-        for (Chat c : reader.getAllChats().values()) {
-            if (c.getItemId() == id) {
+    public boolean existsItemId(long userId, long id) {
+        for (Chat c : getChatsForUser(userId)) {
+            if (c.getItemId() == id && c.getInitiatorId() == userId) {
                 return true;
             }
         }
