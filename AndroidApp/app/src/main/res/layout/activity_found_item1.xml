@@ -48,7 +48,7 @@
         android:id="@+id/yourItemMessageUserToClaim"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:backgroundTint="#853F6EB5"
+        android:backgroundTint="@color/colorGreen"
         android:onClick="onYourItemMessageUserToClaimClick"
         android:text="Your Item?\nMessage User to Claim"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
