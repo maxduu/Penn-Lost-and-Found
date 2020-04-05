@@ -22,9 +22,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -73,7 +77,14 @@ public class PlaceholderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         LinearLayout items_list = view.findViewById(R.id.items_list);
         if (index == 1) {
-            Collection<LostItem> lostItems = LostJSONReader.getInstance().getAllLostItems();
+            Collection<LostItem> lostItemsTemp = LostJSONReader.getInstance().getAllLostItems();
+            List <LostItem> lostItems = new ArrayList(lostItemsTemp);
+            Collections.sort(lostItems, new Comparator<LostItem>() {
+                public int compare(LostItem item, LostItem item1) {
+                    return Long.compare(item.getDate().getTime(), item1.getDate().getTime());
+                }
+            });
+            Collections.reverse(lostItems);
             if (lostItems.isEmpty()) {
                 TextView t = new TextView(items_list.getContext());
                 t.setGravity(Gravity.CENTER);
@@ -102,7 +113,14 @@ public class PlaceholderFragment extends Fragment {
                 }
             }
         } else if (index == 2) {
-            Collection<FoundItem> foundItems = FoundJSONReader.getInstance().getAllFoundItems();
+            Collection<FoundItem> foundItemsTemp = FoundJSONReader.getInstance().getAllFoundItems();
+            List<FoundItem> foundItems = new ArrayList(foundItemsTemp);
+            Collections.sort(foundItems, new Comparator<FoundItem>() {
+                public int compare(FoundItem item, FoundItem item1) {
+                    return Long.compare(item.getDate().getTime(), item1.getDate().getTime());
+                }
+            });
+            Collections.reverse(foundItems);
             if (foundItems.isEmpty()) {
                 TextView t = new TextView(items_list.getContext());
                 t.setGravity(Gravity.CENTER);
@@ -148,5 +166,6 @@ public class PlaceholderFragment extends Fragment {
             return diff / 86400000 + " day(s) ago";
         }
     }
+
 
 }

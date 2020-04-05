@@ -40,7 +40,7 @@ public class FoundItem1 extends AppCompatActivity {
         TextView foundItemTime = findViewById(R.id.foundItemTime);
         Format f = new SimpleDateFormat("MM/dd/yy");
         String date = f.format(item.getDate());
-        time = "found " + date + " (" + setTime(item.getDate()) + ")";
+        time = "Found " + date + " (" + setTime(item.getDate()) + ")";
         foundItemTime.setText(time);
         TextView foundItemAround = findViewById(R.id.foundItemAround);
         location = "Around: " + item.getLocation();
