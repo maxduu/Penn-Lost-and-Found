@@ -158,4 +158,13 @@ public class ChatProcessor {
             return 1;
         }
     }
+
+    public boolean existsItemId(long id) {
+        for (Chat c : reader.getAllChats().values()) {
+            if (c.getItemId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
