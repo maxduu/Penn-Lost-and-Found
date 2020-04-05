@@ -39,7 +39,7 @@ public class LostItem2 extends AppCompatActivity {
         lostItemAround.setText(getIntent().getStringExtra("location"));
     }
 
-    public void onLostSendClick (View v) {
+    public void onLostItemMessageClick (View v) {
         String input = findViewById(R.id.lostItemText).toString();
         long userId = MainActivity.userId;
         ChatProcessor cp = ChatProcessor.getInstance();
