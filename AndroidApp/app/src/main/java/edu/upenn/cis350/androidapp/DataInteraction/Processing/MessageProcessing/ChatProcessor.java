@@ -158,4 +158,13 @@ public class ChatProcessor {
             return 1;
         }
     }
+
+    public boolean existsItemId(long userId, long id) {
+        for (Chat c : getChatsForUser(userId)) {
+            if (c.getItemId() == id && c.getInitiatorId() == userId) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

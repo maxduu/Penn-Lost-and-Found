@@ -28,6 +28,7 @@ public class FoundItem2 extends AppCompatActivity {
     private String itemCat;
     private String postDate;
     private long posterId;
+    private long itemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class FoundItem2 extends AppCompatActivity {
         itemCat = getIntent().getStringExtra("item");
         postDate = getIntent().getStringExtra("postDate");
         posterId = getIntent().getLongExtra("posterId", -1);
+        itemId = getIntent().getLongExtra("itemId", -1);
         TextView foundItemCategory = findViewById(R.id.foundItemCategory);
         foundItemCategory.setText(getIntent().getStringExtra("category"));
         TextView foundItemTime = findViewById(R.id.foundItemTime);
@@ -53,7 +55,7 @@ public class FoundItem2 extends AppCompatActivity {
         List<Long> messages = new ArrayList<Long>();
         messages.add(messageId);
         Chat chat = new Chat(chatId, userId, posterId, itemCat, messages,
-                new Date());
+                new Date(), itemId);
         cp.registerChat(chat);
         EditText foundItemText = findViewById(R.id.foundItemText);
         String text = "Hello, I would like to claim the " + itemCat + " that you posted on " + postDate +

@@ -45,6 +45,7 @@ public class ChatJSONReader {
                 long initiatorId = (long)chatJSON.get("initiatorId");
                 long receiverId = (long)chatJSON.get("receiverId");
                 String item = (String)chatJSON.get("item");
+                long itemId = (long)chatJSON.get("itemId");
 
                 Log.d("ChatReader", "Got chat with id " + id +
                                                 " initiator id " + initiatorId +
@@ -76,7 +77,7 @@ public class ChatJSONReader {
                 Log.d("ChatReader", "Got date " + lastActive.toString());
 
                 //create Chat object and add to map
-                Chat newChat = new Chat(id, initiatorId, receiverId, item, messages, lastActive);
+                Chat newChat = new Chat(id, initiatorId, receiverId, item, messages, lastActive, itemId);
                 idToChat.put(id, newChat);
 
                 Log.d("ChatReader", "Added chat " + id + " to map");

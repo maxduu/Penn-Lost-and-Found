@@ -65,12 +65,12 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/foundItemText"
+            android:id="@+id/lostItemText"
             android:layout_width="393dp"
             android:layout_height="match_parent"
             android:background="@drawable/back"
             android:gravity="top"
-            android:hint="Description of where you left it or how they can meet you"
+            android:hint="Description of where you left the item or how they can meet you."
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#808080" />
 

@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 
 var chatSchema = new Schema({
     id:  {type: Number, required: true, unique: true},
+	itemId: {type: Number, required: true, unique: false},
     initiatorId: {type: Number, required: true, unique: false},
     receiverId:  {type: Number, required: true, unique: false},
     item: {type: String, required: true, unique: false},
