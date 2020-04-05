@@ -1,6 +1,7 @@
 package edu.upenn.cis350.androidapp.MessagingActivities;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,6 +32,7 @@ public class MessagesActivity extends AppCompatActivity {
     private List<Message> messages;
     private ArrayAdapter textAdapter;
     private MessageAdapter adapter;
+    private int lastCount;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +55,39 @@ public class MessagesActivity extends AppCompatActivity {
         String email = AccountJSONProcessor.getInstance().getAccount(otherUserId).getUsername();
         String user = email.substring(0, email.indexOf("@"));
         setTitle(user);
+
         List<Long> messageIds = chat.getMessages();
         messages = messageProcessor.getMessages(messageIds);
-
         adapter = new MessageAdapter(this, userId, otherUserId, messages);
         ListView textListView = (ListView) findViewById(R.id.textsListView);
         textListView.setAdapter(adapter);
+        textListView.setSelection(adapter.getCount() - 1);
+        lastCount = messageIds.size();
+
+        final Handler handler = new Handler();
+        final int delay = 1000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                update();
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
+
     }
 
+    public void update() {
+        Chat chat = ChatProcessor.getInstance().getChat(chatId);
+        List<Long> messageIds = chat.getMessages();
+        if (messageIds.size() != lastCount) {
+            messages = messageProcessor.getMessages(messageIds);
+            adapter = new MessageAdapter(this, userId, otherUserId, messages);
+            ListView textListView = (ListView) findViewById(R.id.textsListView);
+            textListView.setAdapter(adapter);
+            textListView.setSelection(adapter.getCount() - 1);
+            lastCount = messageIds.size();
+        }
+    }
 
     public void sendText(View view) {
 
