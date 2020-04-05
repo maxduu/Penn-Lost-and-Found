@@ -12,13 +12,13 @@
         android:id="@+id/filler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4CAF50" />
+        android:background="@color/colorGreen" />
 
     <TextView
         android:id="@+id/make_post_title"
         android:layout_width="match_parent"
         android:layout_height="93dp"
-        android:background="#4CAF50"
+        android:background="@color/colorGreen"
         android:fontFamily="@font/oswald_bold"
         android:text="Making New Post"
         android:textAlignment="center"
@@ -44,8 +44,8 @@
 
     <Button
         android:id="@+id/post_lose"
-        android:layout_width="245dp"
-        android:layout_height="87dp"
+        android:layout_width="277dp"
+        android:layout_height="114dp"
         android:background="#8BF44336"
         android:onClick="onLoseClick"
         android:text="Lose an item? \n(make sure you check found items first to see if someone found it!)"
@@ -57,8 +57,8 @@
 
     <Button
         android:id="@+id/post_find"
-        android:layout_width="245dp"
-        android:layout_height="87dp"
+        android:layout_width="281dp"
+        android:layout_height="102dp"
         android:background="#6B0347F4"
         android:onClick="onFindClick"
         android:text="Find an item? \n(make sure you check lost items first to see if it's already posted!)"
