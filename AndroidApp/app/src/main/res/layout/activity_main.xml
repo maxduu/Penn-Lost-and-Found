@@ -18,7 +18,9 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary" />
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabTextColor="#FFFFFF" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
@@ -45,16 +47,19 @@
             android:layout_gravity="right|bottom"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="onPlusClick"
+            app:backgroundTint="#068579"
+            app:rippleColor="@color/colorPrimaryDark"
             app:srcCompat="@drawable/ic_add_white_24dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/message_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
+            android:layout_gravity="bottom|right"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="onMessageClick"
-            app:rippleColor="#FFFFFF"
+            app:backgroundTint="@color/colorPrimary"
+            app:rippleColor="@color/colorPrimaryDark"
             app:srcCompat="@android:drawable/stat_notify_chat" />
 
     </LinearLayout>
