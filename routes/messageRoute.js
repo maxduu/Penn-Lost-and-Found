@@ -23,25 +23,6 @@ router.use('/post', async (req, res) => {
     } 
 }); 
 
-//Get back a specific message
-router.use('/get', async (req, res) => {
-    const tarMessgae = await Message.findOne( { id: req.params.id }, (err, message) => {
-        if (err) {
-            res.json({ 'status' : err }); 
-        } else if (!message) {
-            res.json({ 'status' : 'no chat' }); 
-        } else {
-            res.json({ 'status' : 'success', 
-                        'message' : message }); 
-        }
-    }); 
-    try {
-        res.json(tarMessage); 
-    } catch (err) {
-        res.json({ 'error': err}); 
-    }
-    
-}); 
 
 //Get back all messages 
 router.use('/get-all', (req, res) => {
