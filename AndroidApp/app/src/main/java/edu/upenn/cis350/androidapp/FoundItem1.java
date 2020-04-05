@@ -21,7 +21,6 @@ import java.util.Date;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.ItemProcessing.FoundJSONProcessor;
-import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
 
 public class FoundItem1 extends AppCompatActivity {
 
@@ -68,9 +67,6 @@ public class FoundItem1 extends AppCompatActivity {
         if (MainActivity.userId == item.getPosterId()) {
             Toast.makeText(getApplicationContext(),
                     "This is your item!", Toast.LENGTH_LONG).show();
-        } else if (ChatProcessor.getInstance().existsItemId(MainActivity.userId, item.getId())) {
-            Toast.makeText(getApplicationContext(),
-                    "You have already messaged this user!", Toast.LENGTH_LONG).show();
         } else {
             Intent i = new Intent(this, FoundItem2.class);
             i.putExtra("item", item.getCategory());

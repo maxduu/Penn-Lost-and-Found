@@ -21,7 +21,6 @@ router.use('/post', async (req, res) => {
         res.json({'status': 'success'});
     } catch (err) {
         res.json({ 'message': err }); 
-        console.log('failed to save message: ' + err); 
     } 
 }); 
 
