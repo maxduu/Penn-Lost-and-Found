@@ -12,7 +12,7 @@ router.use('/post', async (req, res) => {
         receiverId: parseInt(req.query.receiverId), 
         time: Date.parse(req.query.time), 
         text: req.query.text, 
-        chatId: parseInt(req.query.id)
+        chatId: parseInt(req.query.chatId)
     }); 
 
     try {
