@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,9 @@ public class FoundItem2 extends AppCompatActivity {
         Chat chat = new Chat(chatId, userId, posterId, itemCat, messages,
                 new Date());
         cp.registerChat(chat);
-        String text = "Hello, I would like to claim the " + itemCat + " that you posted on " + postDate;
+        EditText foundItemText = findViewById(R.id.foundItemText);
+        String text = "Hello, I would like to claim the " + itemCat + " that you posted on " + postDate +
+                "\n" + "Here's some details that I remember: " + foundItemText;
         Message message = new Message(messageId, userId, posterId, new Date(), text, chatId);
         mp.registerMessage(message);
         Toast.makeText(getApplicationContext(),
