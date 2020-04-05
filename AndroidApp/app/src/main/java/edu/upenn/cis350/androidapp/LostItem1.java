@@ -2,25 +2,18 @@ package edu.upenn.cis350.androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.Serializable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
-import edu.upenn.cis350.androidapp.DataInteraction.Processing.ItemProcessing.FoundJSONProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.ItemProcessing.LostJSONProcessor;
-import edu.upenn.cis350.androidapp.ui.main.PlaceholderFragment;
 
 public class LostItem1 extends AppCompatActivity {
 
@@ -67,12 +60,21 @@ public class LostItem1 extends AppCompatActivity {
         }
     }
 
-    public void onFoundItemMessageUserClick(View v){
-        Intent i = new Intent(this, LostItem2.class);
-        i.putExtra("category", category);
-        i.putExtra("time", time);
-        i.putExtra("location", location);
-        startActivity(i);
+    public void onLostItemMessageUserClick(View v){
+        if (MainActivity.userId == item.getPosterId()) {
+            Toast.makeText(getApplicationContext(),
+                    "This is your item!", Toast.LENGTH_LONG).show();
+        } else {
+            Intent i = new Intent(this, LostItem2.class);
+            i.putExtra("item", item.getCategory());
+            i.putExtra("posterId", item.getPosterId());
+            i.putExtra("postDate", item.getDate().toString());
+            i.putExtra("category", category);
+            i.putExtra("time", time);
+            i.putExtra("location", location);
+            i.putExtra("itemId", item.getId());
+            startActivity(i);
+        }
     }
 
 }
