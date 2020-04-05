@@ -148,13 +148,13 @@
     <Button
         android:id="@+id/foundItemMessageUser"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:backgroundTint="#853F6EB5"
+        android:layout_height="104dp"
+        android:backgroundTint="@color/colorGreen"
+        android:fontFamily="@font/oswald_bold"
         android:onClick="onLostItemMessageUserClick"
         android:text="Found Item?\nMessage User"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textSize="25sp" />
 
     <Space
         android:layout_width="match_parent"
