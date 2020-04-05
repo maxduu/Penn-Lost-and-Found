@@ -90,10 +90,6 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     public void sendText(View view) {
-
-        /*finish();
-        startActivity(getIntent());*/
-
         EditText edit = (EditText) findViewById(R.id.enterMessage);
         String text = edit.getText().toString();
         Log.d("MessagesActivity", "sentText called in chat " + chatId + " with " +
