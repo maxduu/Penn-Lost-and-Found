@@ -8,6 +8,7 @@ import java.util.List;
 public class Chat {
 
     protected long id;
+    protected long itemId;
     protected long initiatorId;
     protected long receiverId;
     protected Date lastActive;
@@ -15,13 +16,22 @@ public class Chat {
     protected List<Long> messages;
 
     public Chat(long id, long initiatorId, long receiverId, String item, List<Long> messages,
-                Date lastVisited) {
+                Date lastVisited, long itemId) {
         this.id = id;
         this.initiatorId = initiatorId;
         this.receiverId = receiverId;
         this.item = item;
+        this.itemId = itemId;
         this.messages = messages;
         this.lastActive= lastVisited;
+    }
+
+    public long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(long itemId) {
+        this.itemId = itemId;
     }
 
     public long getId() { return  id; }

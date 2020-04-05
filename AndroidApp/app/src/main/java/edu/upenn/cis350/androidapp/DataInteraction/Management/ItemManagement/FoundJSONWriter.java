@@ -22,7 +22,7 @@ public class FoundJSONWriter {
     public void createFoundItem(long posterId, String category, Date date,
                                double latitude, double longitude, String around) {
 
-        long id = processor.getLargestId() + 1;
+        long id = ItemIndexer.generateId();
 
         try {
             URL url = new URL("http://10.0.2.2:3000/create-found-item?"

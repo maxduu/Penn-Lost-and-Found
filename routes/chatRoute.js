@@ -8,16 +8,19 @@ router.use('/post', async (req, res) => {
     console.log("in chat/ path for posting");
     const newChat = new Chat({
         id: parseInt(req.query.id), 
+		itemId: parseInt(req.query.itemId),
         initiatorId: parseInt(req.query.initiatorId), 
         receiverId: parseInt(req.query.receiverId), 
         item: req.query.item, 
         lastActive: Date.parse(req.query.lastActive), 
-        messages: req.query.messages
+        messages: JSON.parse(req.query.messages)
     }); 
     try {
         const savedChat = await newChat.save()
+		res.json({'status': 'success'});
     } catch (err) {
-        res.json({ 'message': err }); 
+		console.log(err); 
+        res.json({ 'message': err });
     } 
 }); 
 

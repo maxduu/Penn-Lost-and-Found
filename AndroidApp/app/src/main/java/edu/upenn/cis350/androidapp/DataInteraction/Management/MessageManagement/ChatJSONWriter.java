@@ -28,7 +28,8 @@ public class ChatJSONWriter {
                     + "&lastActive=" + chat.getLastActive()
                     + "&initiatorId=" + chat.getInitiatorId()
                     + "&receiverId=" + chat.getReceiverId()
-                    + "&item=" + chat.getItem());
+                    + "&item=" + chat.getItem()
+                    + "&itemId=" + chat.getItemId());
             AccessWebTask task = new AccessWebTask();
             task.execute(url);
             Log.d("ChatWriter", "executed post for chat " + chat.getId());
