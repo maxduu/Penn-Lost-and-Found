@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -93,6 +94,7 @@ public class PlaceholderFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(v.getContext(), LostItem1.class);
+                            i.putExtra("itemId", (long) v.getId());
                             startActivity(i);
                         }
                     });

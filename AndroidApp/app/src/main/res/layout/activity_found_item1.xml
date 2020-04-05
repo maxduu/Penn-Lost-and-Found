@@ -1,87 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#E1FADE"
     android:orientation="vertical">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/foundMap"
         android:layout_width="match_parent"
-        android:layout_height="215dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_height="224dp"
+        android:backgroundTint="#E1FADE"
+        android:onClick="onFoundMapClick"
+        app:srcCompat="@drawable/map" />
 
     <TextView
-        android:id="@+id/found_item_category"
+        android:id="@+id/foundItemCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#8BF44336"
+        android:layout_height="50dp"
+        android:background="#6B0347F4"
+        android:gravity="center"
         android:text="[Found Item Category]"
-        android:textAlignment="center"
         android:textColor="#0A0202"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/found_item_time"
+        android:id="@+id/foundItemTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8BF44336"
+        android:background="#6B0347F4"
         android:text="[Found Date]"
         android:textAlignment="center"
         android:textColor="#0A0202" />
 
     <TextView
-        android:id="@+id/found_item_around"
+        android:id="@+id/foundItemAround"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#8BF44336"
+        android:layout_height="25dp"
+        android:background="#6B0347F4"
         android:text="[Found Around]"
         android:textAlignment="center"
         android:textColor="#0A0202" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/yourItemMessageUserToClaim"
         android:layout_width="match_parent"
-        android:layout_height="152dp"
-        android:orientation="horizontal">
+        android:layout_height="100dp"
+        android:backgroundTint="#853F6EB5"
+        android:onClick="onYourItemMessageUserToClaimClick"
+        android:text="Your Item?\nMessage User to Claim"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-        <Space
-            android:layout_width="50dp"
-            android:layout_height="140dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/lost_location_q"
-            android:layout_width="205dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:text="Around where do\nyou think it is?"
-            android:textColor="#030000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/lost_location"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Place"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/ad"
+        android:layout_width="match_parent"
+        android:layout_height="238dp"
+        app:srcCompat="@drawable/ad" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="75dp" />
 
-    <Button
-        android:id="@+id/your_item_message_user_to_claim"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="#853F6EB5"
-        android:fontFamily="@font/oswald_bold"
-        android:onClick="onYourItemMessageUserToClaimClick"
-        android:text="Your Item?\nMessage User to Claim"
-        android:textSize="36sp" />
 </LinearLayout>

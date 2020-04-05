@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +35,12 @@ public class FoundItem2 extends AppCompatActivity {
         itemCat = getIntent().getStringExtra("item");
         postDate = getIntent().getStringExtra("postDate");
         posterId = getIntent().getLongExtra("posterId", -1);
+        TextView foundItemCategory = findViewById(R.id.foundItemCategory);
+        foundItemCategory.setText(getIntent().getStringExtra("category"));
+        TextView foundItemTime = findViewById(R.id.foundItemTime);
+        foundItemTime.setText(getIntent().getStringExtra("time"));
+        TextView foundItemAround = findViewById(R.id.foundItemAround);
+        foundItemAround.setText(getIntent().getStringExtra("location"));
     }
 
     public void onSendFoundClaimClick(View view) {

@@ -5,13 +5,100 @@
     android:background="#E1FADE"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/send_claim"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="#853F6EB5"
-        android:fontFamily="@font/oswald_bold"
-        android:text="Send Claim"
-        android:onClick="onSendFoundClaimClick"
-        android:textSize="36sp" />
+        android:background="#E1FADE"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/found_item_around3"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#6B0347F4"
+            android:text="You are claiming:"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#0A0202"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/foundItemCategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#6B0347F4"
+            android:gravity="center"
+            android:text="[Found Item Category]"
+            android:textColor="#0A0202"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/foundItemTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6B0347F4"
+            android:text="[Found Date]"
+            android:textAlignment="center"
+            android:textColor="#0A0202" />
+
+        <TextView
+            android:id="@+id/foundItemAround"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#6B0347F4"
+            android:text="[Found Around]"
+            android:textAlignment="center"
+            android:textColor="#0A0202" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="To verify that it is yours, give as much\ndetail as you can about the item:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="399dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/foundItemText"
+                android:layout_width="393dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/back"
+                android:gravity="top"
+                android:hint="Color, size, recognizable features, etc."
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColorHint="#808080" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sendMessage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:backgroundTint="#853F6EB5"
+            android:onClick="onSendMessage"
+            android:text="Send Message"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="75dp" />
+    </LinearLayout>
+
 </LinearLayout>
