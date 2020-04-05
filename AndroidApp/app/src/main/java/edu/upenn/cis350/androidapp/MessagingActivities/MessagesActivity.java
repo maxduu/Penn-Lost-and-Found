@@ -65,7 +65,7 @@ public class MessagesActivity extends AppCompatActivity {
         lastCount = messageIds.size();
 
         final Handler handler = new Handler();
-        final int delay = 1000; //milliseconds
+        final int delay = 200; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
