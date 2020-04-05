@@ -44,10 +44,10 @@ public class FoundItem2 extends AppCompatActivity {
         foundItemAround.setText(getIntent().getStringExtra("location"));
     }
 
-    public void onSendMessageClick(View view) {
+    public void onSendMessage(View view) {
+        long userId = MainActivity.userId;
         ChatProcessor cp = ChatProcessor.getInstance();
         long chatId = cp.findNewId();
-        long userId = MainActivity.userId;
         MessageProcessor mp = MessageProcessor.getInstance();
         long messageId = mp.findNewId();
         List<Long> messages = new ArrayList<Long>();
@@ -57,12 +57,12 @@ public class FoundItem2 extends AppCompatActivity {
         cp.registerChat(chat);
         EditText foundItemText = findViewById(R.id.foundItemText);
         String text = "Hello, I would like to claim the " + itemCat + " that you posted on " + postDate +
-                "\n" + "Here's some details that I remember: " + foundItemText;
+                "\n" + " Here's some verification details that I remember: " + foundItemText.getText().toString();
         Message message = new Message(messageId, userId, posterId, new Date(), text, chatId);
         mp.registerMessage(message);
         Toast.makeText(getApplicationContext(),
                 "Successfully messaged user!", Toast.LENGTH_LONG).show();
         finish();
-    }
+        }
 
 }
