@@ -2,6 +2,7 @@ package edu.upenn.cis350.androidapp;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +41,8 @@ public class LostItem2 extends AppCompatActivity {
     }
 
     public void onLostItemMessageClick (View v) {
-        String input = findViewById(R.id.lostItemText).toString();
+        EditText et = findViewById(R.id.lostItemText);
+        String input = et.getText().toString();
         long userId = MainActivity.userId;
         ChatProcessor cp = ChatProcessor.getInstance();
         long chatId = cp.findNewId();
