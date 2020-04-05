@@ -16,6 +16,7 @@ router.use('/post', async (req, res) => {
     }); 
     try {
         const savedChat = await newChat.save()
+        res.json({'status': 'success'});
     } catch (err) {
         res.json({ 'message': err }); 
     } 
