@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
         userId = getIntent().getLongExtra("userId", -1);
-        Toast.makeText(getApplicationContext(),
-                "Login ID: " + userId + " Username: " +
-                        getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(),
+//                "Login ID: " + userId + " Username: " +
+//                        getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
     }
 
     public void onPlusClick(View v){
