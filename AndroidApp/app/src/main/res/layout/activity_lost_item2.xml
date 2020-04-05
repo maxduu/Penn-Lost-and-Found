@@ -49,34 +49,14 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="          I..."
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textStyle="bold" />
+        android:gravity="center"
+        android:text="Enter in a helpful message to \nhelp this user recover their item."
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/currentlyHaveIt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Currently have it"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-        <RadioButton
-            android:id="@+id/leftItAtALocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Left it at a location"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="166dp"
+        android:layout_height="399dp"
         android:orientation="horizontal">
 
         <Space
@@ -85,44 +65,14 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/lostItemText1"
+            android:id="@+id/lostItemText"
             android:layout_width="393dp"
             android:layout_height="match_parent"
             android:background="@drawable/back"
             android:gravity="top"
-            android:hint="Where should they come get it?"
+            android:hint="Description of where you left the item or how they can meet you."
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColorHint="#808080" />
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="177dp"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <EditText
-            android:id="@+id/lostItemText2"
-            android:layout_width="393dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/back"
-            android:gravity="top"
-            android:hint="Anything else?"
-            android:textColorHint="#808080"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <Space
             android:layout_width="10dp"
@@ -135,13 +85,10 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:backgroundTint="#853F6EB5"
-        android:onClick="onSendMessageClick"
+        android:onClick="onLostItemMessageClick"
         android:text="Send Message"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="75dp" />
 </LinearLayout>
