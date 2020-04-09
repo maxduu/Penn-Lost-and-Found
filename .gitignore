@@ -19,7 +19,7 @@ out/
 
 # Gradle files
 .gradle/
-build/
+AndroidApp/build
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -232,7 +232,7 @@ web_modules/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist
 
 # Gatsby files
 .cache/
