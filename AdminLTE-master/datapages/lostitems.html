@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | jsGrid</title>
+    <title>Admin | Lost Items</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -21,17 +21,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
-
-<div id = "data">
-    <div class = "title" style = "padding: 20px;">
-        <h1>Data</h1>  
-        <br>  
-        <div class = "container">
-            <h2>Lost Items</h2>
-            <p>{{lost_items}}</p>
-        </div>
-    </div>
-</div>
 
 <div class="wrapper">
     <!-- Navbar -->
@@ -723,12 +712,12 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>jsGrid</h1>
+              <h1>Lost Items</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">jsGrid</li>
+                <li class="breadcrumb-item active">Lost Items</li>
               </ol>
             </div>
           </div>
@@ -739,11 +728,97 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       <section class="content">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">jsGrid</h3>
+            <h3 class="card-title">Lost Items</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <div id="jsGrid1"></div>
+              <head>
+                  <style>
+                      table {
+                        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                      }
+
+                      table td, table th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                      }
+
+                      table tr:nth-child(even){background-color: #f2f2f2;}
+
+                      table tr:hover {background-color: #ddd;}
+
+                      table th {
+                        padding-top: 12px;
+                        padding-bottom: 12px;
+                        text-align: left;
+                        background-color: #B5E0F1;
+                        color: black;
+                      }
+                  </style>
+              </head>
+
+              <body>
+                  <div id = "data">
+                      <table class="table">
+                          <tr>
+                            <th>id</th>
+                            <th>posterId</th>
+                            <th>category</th>
+                            <th>date</th>
+                            <th>latitude</th>
+                            <th>longitude</th>
+                            <th>around</th>
+                            <th>description</th>
+                            <th>attachment</th>
+                            <th>additional info</th>
+                          </tr>
+                          <tr v-for="item in lost_items">
+                              <td>{{ item.id }}</td>
+                              <td>{{ item.posterId }}</td>
+                              <td>{{ item.category }}</td>    
+                              <td>{{ item.date }}</td>
+                              <td>{{ item.latitude }}</td>
+                              <td>{{ item.longitude }}</td>
+                              <td>{{ item.around }}</td>
+                              <td>{{ item.description }}</td>
+                              <td>{{ item.attachmentLoc }}</td>
+                              <td>{{ item.additionalInfo }}</td>                              
+                          </tr>
+                      </table>
+
+                  </div>
+              </body>
+
+
+              <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+              <script>
+
+                var vm = new Vue({
+                  el: '#data',
+                  data: {
+                       lost_items: 'Loading...'
+                  },
+                  methods: {
+                      loadLost: function() {
+                          const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/all-lost-items";
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              vm.lost_items = json.items;
+                          }
+                      }
+                  }
+              });
+
+              vm.loadLost()
+            </script>
           </div>
           <!-- /.card-body -->
         </div>
@@ -782,50 +857,3 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   <!-- page script -->
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-
-  <script>
-      var vm = new Vue({
-        el: '#data',
-        data: {
-             lost_items: 'Loading...'
-        },
-        methods: {
-            loadLost: function() {
-                const Http = new XMLHttpRequest();
-                const url = "http://localhost:3000/all-lost-items";
-                Http.open("GET", url, true);
-                Http.send();
-                Http.onreadystatechange = (e) => {
-                    var response = Http.responseText;
-                    var json = JSON.parse(response);
-                    vm.lost_items = json.items;
-                }
-            }
-        }
-    });
-
-    vm.loadLost()
-
-    $(function () {
-      $("#jsGrid1").jsGrid({
-          height: "100%",
-          width: "100%",
-   
-          sorting: true,
-          paging: true,
-   
-          data: vm.lost_items,
-   
-          fields: [
-              { name: "Name", type: "text", width: 150 },
-              { name: "Age", type: "number", width: 50 },
-              { name: "Address", type: "text", width: 200 },
-              { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
-              { name: "Married", type: "checkbox", title: "Is Married" }
-          ]
-      });
-    });
-  </script>
-
-
