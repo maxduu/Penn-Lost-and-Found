@@ -3,16 +3,68 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<div id = "data">
-    <div class = "title" style = "padding: 20px;">
-        <h1>Data</h1>  
-        <br>  
-        <div class = "container">
-            <h2>Found Items</h2>
-            <p>{{found_items}}</p>
+<head>
+    <style>
+        table {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          border-spacing: 3px;
+          width: 100%;
+          padding: 10px 50px 10px 50px;
+        }
+
+        table td, table th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        table tr:nth-child(even){background-color: #f2f2f2;}
+
+        table tr:hover {background-color: #ddd;}
+
+        table th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id = "data">
+        <div class = "title" style = "padding: 20px;">
+            <h1>Data</h1>  
+            <br>  
+            <div class = "container">
+                <h2>Found Items</h2>
+            </div>
         </div>
+
+        <table class="table">
+            <tr>
+              <th>id</th>
+              <th>posterId</th>
+              <th>category</th>
+              <th>date</th>
+              <th>latitude</th>
+              <th>longitude</th>
+              <th>around</th>
+            </tr>
+            <tr v-for="item in found_items">
+                <td>{{ item.id }}</td>
+                <td>{{ item.posterId }}</td>
+                <td>{{ item.category }}</td>    
+                <td>{{ item.date }}</td>
+                <td>{{ item.latitude }}</td>
+                <td>{{ item.longitude }}</td>
+                <td>{{ item.around }}</td>
+            </tr>
+        </table>
+
     </div>
-</div>
+</body>
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -31,8 +83,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                 Http.open("GET", url, true);
                 Http.send();
                 Http.onreadystatechange = (e) => {
-                    var response = JSON.stringify(Http.responseText);
-                    vm.found_items = JSON.parse(response);
+                    var response = Http.responseText;
+                    var json = JSON.parse(response);
+                    vm.found_items = json.items;
                 }
             }
         }
