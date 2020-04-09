@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div id = "data">
+    <div class = "title" style = "padding: 20px;">
+        <h1>Data</h1>  
+        <br>  
+        <div class = "container">
+            <h2>Lost Items</h2>
+            <p>{{lost_items}}</p>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+
+    var vm = new Vue({
+        el: '#data',
+        data: {
+             lost_items: 'hello'
+        },
+        methods: {
+
+        }
+    });
+</script>
