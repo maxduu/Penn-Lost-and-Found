@@ -10,6 +10,7 @@ app.use(cors());
 var lost_item = require('./Schemas/lost_item');
 var found_item = require('./Schemas/found_item');
 var user = require('./Schemas/user');
+var admin = require('./Schemas/admin');
 const Chat = require('./Schemas/chat'); 
 const Message = require('./Schemas/message'); 
 
@@ -348,6 +349,31 @@ app.use('/update-found-item', (req, res) => {
                     console.log('successfully updated found item');
                 }
             })
+        }
+    })
+});
+
+// GET specific admin user
+app.use('/get-admin', (req, res) => {
+    var searchUsername = req.query.username;
+    var reqPassword = req.query.password;
+    console.log(searchUsername);
+    admin.findOne({username: searchUsername}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no admin'});
+        }
+        else {
+        	console.log('successfully gotten admin');
+        	if (reqPassword.localeCompare(item.password) == 0) {
+        		console.log('admin pass correct');
+        		res.json({'status': 'success'});
+        	} else {
+        		console.log('admin pass incorrect');
+        		res.json({'status': 'incorrect password'})
+        	}
         }
     })
 });

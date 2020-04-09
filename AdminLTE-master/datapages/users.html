@@ -1,45 +1,344 @@
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin | Users</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- jsGrid -->
+    <link rel="stylesheet" href="../plugins/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="../plugins/jsgrid/jsgrid-theme.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
 
-<div id = "data">
-    <div class = "title" style = "padding: 20px;">
-        <h1>Data</h1>  
-        <br>  
-        <div class = "container">
-            <h2>Lost Items</h2>
-            <p>{{lost_items}}</p>
+<body onload="setAdmin(); setLinks()">
+<div class="wrapper">
+    <!-- Navbar -->
+
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  
+    <!-- Left navbar links -->
+      <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+<!--       <li class="nav-item d-none d-sm-inline-block">
+        <a href="index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li> -->
+    </ul>
+
+    <!-- SEARCH FORM -->
+
+<!--     <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
+      </div>
+    </form> -->
+
+    <!-- Right navbar links (deleted, see index1.html to get back) -->
+    
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a id="logolink" href="" class="brand-link">
+      <img src="../pics/p-logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Penn Lost & Found</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../pics/luke_dunking.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a id="homelink" href="" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>Home</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a id="userslink" href="" class="nav-link active">
+              <i class="nav-icon fas fa-users mr-2"></i>
+              <p>Users</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a id="lostlink" href="" class="nav-link">
+              <i class="nav-icon fas fa-tag mr-2"></i>
+              <p>Lost Postings</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a id="foundlink" href="" class="nav-link">
+              <i class="nav-icon fas fa-tag mr-2"></i>
+              <p>Found Postings</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a id="chatslink" href="" class="nav-link">
+              <i class="nav-icon far fa-comments mr-2"></i>
+              <p>Chats</p>
+            </a>
+          </li>
+                
+          <li class="nav-item">
+            <a id="reportslink" href="" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Reports
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a id="accountlink" href="" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                My Account
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../loginpage.html" class="nav-link">
+              <p>
+                Log Off
+              </p>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
     </div>
-</div>
+    <!-- /.sidebar -->
+  </aside>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Users</h1>
+            </div>
+            <div class="col-sm-6">
+<!--               <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                <li class="breadcrumb-item active">Lost Items</li>
+              </ol> -->
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Lost Items</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div id="jsGrid1"></div>
+              <head>
+                  <style>
+                      table {
+                        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                      }
+
+                      table td, table th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                      }
+
+                      table tr:nth-child(even){background-color: #f2f2f2;}
+
+                      table tr:hover {background-color: #ddd;}
+
+                      table th {
+                        padding-top: 12px;
+                        padding-bottom: 12px;
+                        text-align: left;
+                        background-color: #B5E0F1;
+                        color: black;
+                      }
+                  </style>
+              </head>
+
+              <body>
+                  <div id = "data">
+                      <table class="table">
+                          <tr>
+                            <th>id</th>
+                            <th>posterId</th>
+                            <th>category</th>
+                            <th>date</th>
+                            <th>latitude</th>
+                            <th>longitude</th>
+                            <th>around</th>
+                            <th>description</th>
+                            <th>attachment</th>
+                            <th>additional info</th>
+                          </tr>
+                          <tr v-for="item in lost_items">
+                              <td>{{ item.id }}</td>
+                              <td>{{ item.posterId }}</td>
+                              <td>{{ item.category }}</td>    
+                              <td>{{ item.date }}</td>
+                              <td>{{ item.latitude }}</td>
+                              <td>{{ item.longitude }}</td>
+                              <td>{{ item.around }}</td>
+                              <td>{{ item.description }}</td>
+                              <td>{{ item.attachmentLoc }}</td>
+                              <td>{{ item.additionalInfo }}</td>                              
+                          </tr>
+                      </table>
+
+                  </div>
+              </body>
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<script>
+              <script>
 
-    var vm = new Vue({
-        el: '#data',
-        data: {
-             lost_items: 'Loading...'
-        },
-        methods: {
+                var vm = new Vue({
+                  el: '#data',
+                  data: {
+                       lost_items: 'Loading...'
+                  },
+                  methods: {
+                      loadLost: function() {
+                          const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/all-lost-items";
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              vm.lost_items = json.items;
+                          }
+                      }
+                  }
+              });
 
-        }
-    });
-
-    function getLost() {
-        const Http = new XMLHttpRequest();
-        const url = "http://localhost:3000/all-lost-items";
-        Http.open("GET", url, true);
-        Http.send();
-        Http.onreadystatechange = (e) => {
-            var response = JSON.stringify(Http.responseText);
-            vm.lost_items = JSON.parse(response);
-        }
+              vm.loadLost()
+            </script>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.0.4
+      </div>
+      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+      reserved.
+    </footer>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  <script>
+    function getAdmin() {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var admin = url.searchParams.get("admin");
+      return admin;
     }
+  </script>
+      
+  <script>
+    function setAdmin() {
+      var a = getAdmin();
+      document.querySelector('.info').innerHTML = "<span style='color: lightgray;'>" + a + "</span>";
+    }
+  </script>
 
-    getLost()
+  <script>
+    function setLinks() {
+      var admin = getAdmin();
+      var homelink = "../index.html?admin=" + admin;
+      document.getElementById("homelink").setAttribute("href",homelink);
+      document.getElementById("logolink").setAttribute("href",homelink);
+      var userslink = "users.html?admin=" + admin;
+      document.getElementById("userslink").setAttribute("href",userslink);
+      var lostlink = "lostitems.html?admin=" + admin;
+      document.getElementById("lostlink").setAttribute("href",lostlink);
+      var foundlink = "founditems.html?admin=" + admin;
+      document.getElementById("foundlink").setAttribute("href",foundlink);
+      var chatlink = "chats.html?admin=" + admin;
+      document.getElementById("chatslink").setAttribute("href",chatlink);
+      var reportslink = "reports.html?admin=" + admin;
+      document.getElementById("reportslink").setAttribute("href",reportslink);
+      var accountlink = "myaccount.html?admin=" + admin;
+      document.getElementById("accountlink").setAttribute("href",accountlink);
+    }
+  </script>
+  
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- jsGrid -->
+  <script src="../plugins/jsgrid/demos/db.js"></script>
+  <script src="../plugins/jsgrid/jsgrid.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../dist/js/demo.js"></script>
+  <!-- page script -->
 
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

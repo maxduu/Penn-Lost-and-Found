@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin | Found</title>
+    <title>Admin | Found Postings</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
-
+<body onload="setAdmin(); setLinks()">
 <div class="wrapper">
 
       <!-- Navbar -->
@@ -63,7 +63,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../index.html" class="brand-link">
+    <a id="logolink" href="" class="brand-link">
       <img src="../pics/p-logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Penn Lost & Found</span>
@@ -77,7 +77,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           <img src="../pics/luke_dunking.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block">maxdu@seas.upenn.edu</a>
         </div>
       </div>
 
@@ -87,42 +86,42 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="../index.html" class="nav-link">
+            <a id="homelink" href="" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>Home</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="users.html" class="nav-link">
+            <a id="userslink" href="" class="nav-link">
               <i class="nav-icon fas fa-users mr-2"></i>
               <p>Users</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="lostitems.html" class="nav-link">
+            <a id="lostlink" href="" class="nav-link">
               <i class="nav-icon fas fa-tag mr-2"></i>
               <p>Lost Postings</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="founditems.html" class="nav-link active">
+            <a id="foundlink" href="" class="nav-link active">
               <i class="nav-icon fas fa-tag mr-2"></i>
               <p>Found Postings</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="chats.html" class="nav-link">
+            <a id="chatslink" href="" class="nav-link">
               <i class="nav-icon far fa-comments mr-2"></i>
               <p>Chats</p>
             </a>
           </li>
                 
           <li class="nav-item">
-            <a href="reports.html" class="nav-link">
+            <a id="reportslink" href="" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Reports
@@ -131,7 +130,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           </li>
 
           <li class="nav-item">
-            <a href="myaccount.html" class="nav-link">
+            <a id="accountlink" href="" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 My Account
@@ -161,7 +160,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Found Items</h1>
+              <h1>Found Postings</h1>
             </div>
             <div class="col-sm-6">
               <!-- <ol class="breadcrumb float-sm-right">
@@ -177,7 +176,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       <section class="content">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Found Items</h3>
+            <h3 class="card-title">Found Postings</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -288,6 +287,44 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   </div>
   <!-- ./wrapper -->
   
+  <script>
+    function getAdmin() {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var admin = url.searchParams.get("admin");
+      return admin;
+    }
+  </script>
+      
+  <script>
+    function setAdmin() {
+      var a = getAdmin();
+      document.querySelector('.info').innerHTML = "<span style='color: lightgray;'>" + a + "</span>";
+    }
+  </script>
+
+  <script>
+    function setLinks() {
+      var admin = getAdmin();
+      var homelink = "../index.html?admin=" + admin;
+      document.getElementById("homelink").setAttribute("href",homelink);
+      document.getElementById("logolink").setAttribute("href",homelink);
+      var userslink = "users.html?admin=" + admin;
+      document.getElementById("userslink").setAttribute("href",userslink);
+      var lostlink = "lostitems.html?admin=" + admin;
+      document.getElementById("lostlink").setAttribute("href",lostlink);
+      var foundlink = "founditems.html?admin=" + admin;
+      document.getElementById("foundlink").setAttribute("href",foundlink);
+      var chatlink = "chats.html?admin=" + admin;
+      document.getElementById("chatslink").setAttribute("href",chatlink);
+      var reportslink = "reports.html?admin=" + admin;
+      document.getElementById("reportslink").setAttribute("href",reportslink);
+      var accountlink = "myaccount.html?admin=" + admin;
+      document.getElementById("accountlink").setAttribute("href",accountlink);
+    }
+  </script>
+
+
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
@@ -302,3 +339,4 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   <!-- page script -->
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </body>
