@@ -11,6 +11,11 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
             <h2>Lost Items</h2>
             <p>{{lost_items}}</p>
         </div>
+        <br>
+        <div class = "container">
+            <h2>Found Items</h2>
+            <p>{{found_items}}</p>
+        </div>
     </div>
 </div>
 
@@ -22,24 +27,22 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     var vm = new Vue({
         el: '#data',
         data: {
-             lost_items: 'Loading...'
+            lost_items: 'Loading...',
         },
         methods: {
-
-        }
+            loadLost: function() {
+                const Http = new XMLHttpRequest();
+                const url = "http://localhost:3000/all-lost-items";
+                Http.open("GET", url, true);
+                Http.send();
+                Http.onreadystatechange = (e) => {
+                    var response = JSON.stringify(Http.responseText);
+                    vm.lost_items = JSON.parse(response);
+                }
+            }
+        }   
     });
 
-    function getLost() {
-        const Http = new XMLHttpRequest();
-        const url = "http://localhost:3000/all-lost-items";
-        Http.open("GET", url, true);
-        Http.send();
-        Http.onreadystatechange = (e) => {
-            var response = JSON.stringify(Http.responseText);
-            vm.lost_items = JSON.parse(response);
-        }
-    }
-
-    getLost()
+    vm.loadLost()
 
 </script>
