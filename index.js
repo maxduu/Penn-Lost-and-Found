@@ -11,6 +11,8 @@ var lost_item = require('./Schemas/lost_item');
 var found_item = require('./Schemas/found_item');
 var user = require('./Schemas/user');
 var admin = require('./Schemas/admin');
+var ban = require('./Schemas/ban');
+var warning = require('./Schemas/warning');
 const Chat = require('./Schemas/chat'); 
 const Message = require('./Schemas/message'); 
 
@@ -380,3 +382,92 @@ app.use('/get-admin', (req, res) => {
 
 
 
+// GET to create a warning 
+// ex: 'http://localhost:3000/warn?userId=2&message=hey' 
+app.use('/warn', (req, res) => {
+    var newWarning = new warning ({
+        userId: parseInt(req.query.userId),
+        seen: false,
+        message: req.query.message,
+    });
+
+    newWarning.save( (err) => {
+        if (err) {
+            res.json({'status' : err});
+            console.log(err)
+        } 
+        else {
+            res.json({'status' : 'success'});
+            console.log('successfully created warning');
+        }
+    })
+});
+
+// GET specific warnings for the user
+app.use('/get-warnings', (req, res) => {
+    var id = parseInt(req.query.userId);
+    warning.find({userId: id}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+            console.log(err);
+        }
+        else if (item.length == 0) {
+            res.json({'status': 'no warnings'});
+            console.log('no warnings found');
+        }
+        else {
+            res.json({'status': 'success', 'warnings': item});
+            console.log('successfully gotten warnings');
+        }
+    })
+});
+
+// GET to create a ban
+// ex: 'http://localhost:3000/ban' 
+app.use('/ban', (req, res) => {
+    var newBan = new ban ({
+        userId: parseInt(req.query.userId),
+        until: Date.parse(req.query.until),
+        message: req.query.message,
+    });
+
+    newBan.save( (err) => {
+        if (err) {
+            res.json({'status' : err});
+            console.log(err)
+        } 
+        else {
+            res.json({'status' : 'success'});
+            console.log('successfully created ban');
+        }
+    })
+});
+
+// GET to unban a user
+app.use('/unban', async (req, res) => {
+	id = parseInt(req.query.userId);
+	const result = await ban.deleteOne({"userId" : id}).exec()
+	if (result.deletedCount == 0) {
+		console.log('user is not currently banned');
+	} else {
+		console.log('successfully unbanned user with id ' + id);
+	}
+	res.json({'status' : 'success'});
+});
+
+// GET a specific ban
+app.use('/get-ban', (req, res) => {
+    var id = parseInt(req.query.userId);
+    ban.findOne({userId: id}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!item) {
+            res.json({'status': 'no ban'});
+        }
+        else {
+            res.json({'status': 'success', 'ban': item});
+            console.log('successfully gotten ban');
+        }
+    })
+});
