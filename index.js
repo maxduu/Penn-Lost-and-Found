@@ -422,6 +422,33 @@ app.use('/get-warnings', (req, res) => {
     })
 });
 
+// GET to update warnings for a user to be seen
+app.use('/see-warnings', (req, res) => {
+    var id = parseInt(req.query.userId);
+    warning.find({userId : id}, (err, allItems) => {
+        if (err) {
+            res.json({'status' : err});
+        }
+        else if (allItems.length == 0) {
+            res.json({'status' : 'no warnings'});
+        }
+        else {
+        	allItems.forEach(function (w) {
+        		w.seen = true;
+        		w.save((err) => {
+	                if (err) {
+	                    console.log(err);
+	                } else {
+	                    console.log('successfully updated warning');
+	                }
+	            });
+        	});
+            res.json({'status' : 'success', 'warnings' : allItems});
+            console.log('successfully seen warnings');
+        }
+    });
+});
+
 // GET to create a ban
 // ex: 'http://localhost:3000/ban' 
 app.use('/ban', (req, res) => {

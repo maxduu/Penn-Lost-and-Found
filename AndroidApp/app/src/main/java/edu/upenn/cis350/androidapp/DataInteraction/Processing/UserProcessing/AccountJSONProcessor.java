@@ -148,13 +148,14 @@ public class AccountJSONProcessor {
         writer.changePassword(id, newPassword);
     }
 
-    public void banAccount(long id) {
-        writer.changeStatus(id, 2);
-    }
-
-    public void unbanAccount(long id) {
-        writer.changeStatus(id, 1);
-    }
+    // No longer used
+//    public void banAccount(long id) {
+//        writer.changeStatus(id, 2);
+//    }
+//
+//    public void unbanAccount(long id) {
+//        writer.changeStatus(id, 1);
+//    }
 
     public void updateLastLogin(long id) {
         writer.updateLastLogin(id);
