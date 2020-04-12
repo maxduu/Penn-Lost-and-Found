@@ -13,6 +13,7 @@ var user = require('./Schemas/user');
 var admin = require('./Schemas/admin');
 var ban = require('./Schemas/ban');
 var warning = require('./Schemas/warning');
+var report = require('./Schemas/report');
 const Chat = require('./Schemas/chat'); 
 const Message = require('./Schemas/message'); 
 
@@ -495,6 +496,66 @@ app.use('/get-ban', (req, res) => {
         else {
             res.json({'status': 'success', 'ban': item});
             console.log('successfully gotten ban');
+        }
+    })
+});
+
+// GET to create a report 
+// ex: 'http://localhost:3000/report' and get request
+// with query params being report object json attributes 
+app.use('/report', (req, res) => {
+    var newReport = new report ({
+        reporterId: parseInt(req.query.reporterId),
+        violatorId: parseInt(req.query.violatorId),
+        category: req.query.category,
+        message: req.query.message,
+    });
+
+    newReport.save( (err) => {
+        if (err) {
+            res.json({'status' : err});
+            console.log(err)
+        } 
+        else {
+            res.json({'status' : 'success'});
+            console.log('successfully created report');
+        }
+    })
+});
+
+// GET reports for a specific user
+app.use('/get-reports', (req, res) => {
+    var id = parseInt(req.query.userId);
+    report.find({userId: id}, (err, item) => {
+        if (err) {
+            res.json({'status': err});
+            console.log(err);
+        }
+        else if (item.length == 0) {
+            res.json({'status': 'no reports'});
+            console.log('no reports found');
+        }
+        else {
+            res.json({'status': 'success', 'reports': item});
+            console.log('successfully gotten reports');
+        }
+    })
+});
+
+// GET all reports
+app.use('/all-reports', (req, res) => {
+    report.find((err, allItems) => {
+        if (err) {
+            res.json({'status': err});
+            console.log(err);
+        }
+        else if (allItems.length == 0) {
+            res.json({'status': 'no reports'});
+            console.log('no reports found');
+        }
+        else {
+            res.json({'status': 'success', 'reports': allItems});
+            console.log('successfully gotten all reports');
         }
     })
 });
