@@ -34,6 +34,11 @@ public class ChatAdapter extends BaseAdapter {
         notifyDataSetChanged();;
     }
 
+    public void setChats(List<Chat> chats) {
+        this.chats = chats;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() { return chats.size(); }
 

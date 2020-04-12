@@ -23,6 +23,8 @@ public class ChatsActivity extends AppCompatActivity {
     private ChatProcessor chatProcessor;
     private ChatAdapter adapter;
     private int lastCount;
+    private ListView chatListView;
+
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class ChatsActivity extends AppCompatActivity {
 
         userId = getIntent().getLongExtra("userId", -1);
         chats = chatProcessor.getChatsForUser(userId);
-        ListView chatListView = (ListView) findViewById(R.id.chatsListView);
+        chatListView = (ListView) findViewById(R.id.chatsListView);
 
         adapter = new ChatAdapter(this, userId, chats);
         chatListView.setAdapter(adapter);
@@ -66,23 +68,7 @@ public class ChatsActivity extends AppCompatActivity {
 
     public void update() {
         chats = chatProcessor.getChatsForUser(userId);
-        adapter = new ChatAdapter(this, userId, chats);
-        ListView chatListView = (ListView) findViewById(R.id.chatsListView);
-        chatListView.setAdapter(adapter);
-        lastCount = adapter.getCount();
-        chatListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        long chatId = adapter.getItem(position).getId();
-                        Intent i = new Intent(ChatsActivity.this,
-                                MessagesActivity.class);
-                        i.putExtra("userId", userId);
-                        i.putExtra("chatId", chatId);
-                        startActivity(i);
-                    }
-                }
-            );
+        adapter.setChats(chats);
         chatListView.setSelection(0);
     }
 }
