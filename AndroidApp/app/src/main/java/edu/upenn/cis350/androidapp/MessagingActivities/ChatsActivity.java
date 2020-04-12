@@ -2,6 +2,7 @@ package edu.upenn.cis350.androidapp.MessagingActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ public class ChatsActivity extends AppCompatActivity {
     private List<Chat> chats;
     private ChatProcessor chatProcessor;
     private ChatAdapter adapter;
+    private int lastCount;
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class ChatsActivity extends AppCompatActivity {
 
         adapter = new ChatAdapter(this, userId, chats);
         chatListView.setAdapter(adapter);
-
+        lastCount = adapter.getCount();
         chatListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -51,7 +53,40 @@ public class ChatsActivity extends AppCompatActivity {
                     }
                 }
         );
+        final Handler handler = new Handler();
+        final int delay = 700; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                update();
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
-
+    public void update() {
+        chats = chatProcessor.getChatsForUser(userId);
+        adapter = new ChatAdapter(this, userId, chats);
+        ListView chatListView = (ListView) findViewById(R.id.chatsListView);
+        chatListView.setAdapter(adapter);
+        lastCount = adapter.getCount();
+        chatListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        long chatId = adapter.getItem(position).getId();
+                        Intent i = new Intent(ChatsActivity.this,
+                                MessagesActivity.class);
+                        i.putExtra("userId", userId);
+                        i.putExtra("chatId", chatId);
+                        startActivity(i);
+                    }
+                }
+            );
+        chatListView.setSelection(0);
+    }
 }
+
+
+
+
