@@ -20,6 +20,11 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Menu Button -->
+    <link rel="stylesheet" type="text/css" href="../styles/button.css" />
+    <!-- Table-->
+    <link rel="stylesheet" type="text/css" href="../styles/table.css" />
+
   </head>
 
 <body onload="setAdmin(); setLinks()">
@@ -182,16 +187,19 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           <div class="card-body">
             <div id="jsGrid1"></div>
               <head>
-                  <style>
+                  <!-- <style>
                       table {
                         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                         border-collapse: collapse;
                         width: 100%;
                       }
 
-                      table td, table th {
+                      table td {
                         border: 1px solid #ddd;
                         padding: 8px;
+                        display: table-cell;
+                        text-align: left;
+                        vertical-align: middle;
                       }
 
                       table tr:nth-child(even){background-color: #f2f2f2;}
@@ -199,47 +207,46 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                       table tr:hover {background-color: #ddd;}
 
                       table th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
                         padding-top: 12px;
                         padding-bottom: 12px;
-                        text-align: left;
+                        text-align: center;
                         background-color: #B5E0F1;
                         color: black;
                       }
-                  </style>
+                  </style> -->
               </head>
 
               <body>
                   <div id = "data">
                       <table class="table">
                           <tr>
-                            <th>id</th>
-                            <th>posterId</th>
-                            <th>category</th>
-                            <th>date</th>
-                            <th>latitude</th>
-                            <th>longitude</th>
-                            <th>around</th>
-                            <th>description</th>
-                            <th>attachment</th>
-                            <th>additional info</th>
+                            <th>User Id</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Last Login</th>
                           </tr>
-                          <tr v-for="item in lost_items">
-                              <td>{{ item.id }}</td>
-                              <td>{{ item.posterId }}</td>
-                              <td>{{ item.category }}</td>    
-                              <td>{{ item.date }}</td>
-                              <td>{{ item.latitude }}</td>
-                              <td>{{ item.longitude }}</td>
-                              <td>{{ item.around }}</td>
-                              <td>{{ item.description }}</td>
-                              <td>{{ item.attachmentLoc }}</td>
-                              <td>{{ item.additionalInfo }}</td>                              
+                          <tr v-for="user in users">
+                              <td><div v-on:click="toggle(user)" class="kebab">
+                                <figure></figure>
+                                <figure class="middle"></figure>
+                                <p class="cross">x</p>
+                                <figure></figure>
+                                <ul class="dropdown">
+                                  <li><a href="https://www.youtube.com/watch?v=wL8yvZDF6RA">Warn</a></li>
+                                  <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0">Ban</a></li>                             
+                                </ul>
+                              </div>
+                                {{ user.id }}</td>
+                              <td>{{ user.username }}</td>
+                              <td>{{ user.password }}</td>
+                              <td>{{ getLastLoginString(user) }}</td>
                           </tr>
                       </table>
 
                   </div>
               </body>
-
 
               <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -248,24 +255,40 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                 var vm = new Vue({
                   el: '#data',
                   data: {
-                       lost_items: 'Loading...'
+                       users: 'Loading...'
                   },
                   methods: {
-                      loadLost: function() {
+                      loadUsers: function() {
                           const Http = new XMLHttpRequest();
-                          const url = "http://localhost:3000/all-lost-items";
+                          const url = "http://localhost:3000/all-users";
                           Http.open("GET", url, true);
                           Http.send();
                           Http.onreadystatechange = (e) => {
                               var response = Http.responseText;
                               var json = JSON.parse(response);
-                              vm.lost_items = json.items;
+                              vm.users = json.items;
                           }
+                      }, 
+                      getLastLoginString: function(user) {
+                        var date = new Date(user.last_login)
+                        return date.toString(); 
+                      },
+                      toggle: function(user) {
+                        var index = this.users.indexOf(user);
+                        var table = document.querySelector(".table");
+                        var cell = table.rows[index+1].cells[0];
+                        var kebab = cell.querySelector('.kebab'),
+                        middle = cell.querySelector('.middle'),
+                        cross = cell.querySelector('.cross'),
+                        dropdown = cell.querySelector('.dropdown');
+                        middle.classList.toggle('active');
+                        cross.classList.toggle('active');
+                        dropdown.classList.toggle('active');
                       }
                   }
               });
-
-              vm.loadLost()
+              vm.loadUsers()
+              vm.addListeners
             </script>
           </div>
           <!-- /.card-body -->

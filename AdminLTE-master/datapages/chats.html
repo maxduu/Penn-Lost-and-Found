@@ -20,6 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Table-->
+    <link rel="stylesheet" type="text/css" href="../styles/table.css" />
   </head>
 
 <body onload="setAdmin(); setLinks()">
@@ -182,7 +184,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           <div class="card-body">
             <div id="jsGrid1"></div>
               <head>
-                  <style>
+                  <!-- <style>
                       table {
                         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                         border-collapse: collapse;
@@ -205,35 +207,29 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         background-color: #B5E0F1;
                         color: black;
                       }
-                  </style>
+                  </style> -->
               </head>
 
               <body>
                   <div id = "data">
                       <table class="table">
                           <tr>
-                            <th>id</th>
-                            <th>posterId</th>
-                            <th>category</th>
-                            <th>date</th>
-                            <th>latitude</th>
-                            <th>longitude</th>
-                            <th>around</th>
-                            <th>description</th>
-                            <th>attachment</th>
-                            <th>additional info</th>
+                            <th>Chat Id</th>
+                            <th>Initiator</th>
+                            <th>Initiator Id</th>
+                            <th>Receiver</th>
+                            <th>Receiver Id</th>
+                            <th>Item</th>
+                            <th>Last Active</th>
                           </tr>
-                          <tr v-for="item in lost_items">
-                              <td>{{ item.id }}</td>
-                              <td>{{ item.posterId }}</td>
-                              <td>{{ item.category }}</td>    
-                              <td>{{ item.date }}</td>
-                              <td>{{ item.latitude }}</td>
-                              <td>{{ item.longitude }}</td>
-                              <td>{{ item.around }}</td>
-                              <td>{{ item.description }}</td>
-                              <td>{{ item.attachmentLoc }}</td>
-                              <td>{{ item.additionalInfo }}</td>                              
+                          <tr v-for="chat in chats">
+                              <td>{{ chat.id }}</td>
+                              <td>{{ getUserName(chat.initiatorId)}}</td>
+                              <td>{{ chat.initiatorId }}</td>
+                              <td>{{ getUserName(chat.receiverId)}}</td>
+                              <td>{{ chat.receiverId }}</td>
+                              <td>{{ chat.item }}</td>    
+                              <td>{{ getLastActiveString(chat) }}</td>                  
                           </tr>
                       </table>
 
@@ -248,24 +244,44 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                 var vm = new Vue({
                   el: '#data',
                   data: {
-                       lost_items: 'Loading...'
+                       chats: 'Loading...', 
+                       users: 'Loading...'
                   },
                   methods: {
-                      loadLost: function() {
+                      loadChats: function() {
                           const Http = new XMLHttpRequest();
-                          const url = "http://localhost:3000/all-lost-items";
+                          const url = "http://localhost:3000/chat/get-all";
                           Http.open("GET", url, true);
                           Http.send();
                           Http.onreadystatechange = (e) => {
                               var response = Http.responseText;
                               var json = JSON.parse(response);
-                              vm.lost_items = json.items;
+                              this.chats = json.chats;
+                          } 
+                      },
+                      getLastActiveString: function(chat) {
+                        var date = new Date(chat.lastActive)
+                        return date.toString(); 
+                      }, 
+                      loadUsers: function() {
+                          const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/all-users";
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              vm.users = json.items;
                           }
+                      }, 
+                      getUserName: function(id) {
+                        var user = this.users.find(user => user.id == id);
+                        return user.username; 
                       }
                   }
-              });
-
-              vm.loadLost()
+                });
+                vm.loadChats()
+                vm.loadUsers()
             </script>
           </div>
           <!-- /.card-body -->
