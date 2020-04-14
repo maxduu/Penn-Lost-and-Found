@@ -46,6 +46,7 @@ public class BanReader {
                 } catch (ParseException e) {
                     System.out.println("date parse error");
                 }
+                // Remove ban if expired
                 if (date.getTime() < new Date().getTime()) {
                     URL url2 = new URL("http://10.0.2.2:3000/unban?userId=" + id);
                     AccessWebTask task2 = new AccessWebTask();
