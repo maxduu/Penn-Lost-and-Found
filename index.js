@@ -477,10 +477,11 @@ app.use('/unban', async (req, res) => {
 	const result = await ban.deleteOne({"userId" : id}).exec()
 	if (result.deletedCount == 0) {
 		console.log('user is not currently banned');
+		res.json({'status': 'not currently banned'});
 	} else {
 		console.log('successfully unbanned user with id ' + id);
+		res.json({'status' : 'success'});
 	}
-	res.json({'status' : 'success'});
 });
 
 // GET a specific ban

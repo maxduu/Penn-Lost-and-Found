@@ -23,7 +23,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     <!-- Menu Button -->
     <link rel="stylesheet" type="text/css" href="../styles/button.css" />
     <!-- Table-->
+    <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" type="text/css" href="../styles/table.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/modal.css" />
 
   </head>
 
@@ -179,12 +181,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   
       <!-- Main content -->
       <section class="content">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Lost Items</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
             <div id="jsGrid1"></div>
               <head>
                   <!-- <style>
@@ -220,6 +216,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
               <body>
                   <div id = "data">
+
+                  <new-ban-modal :show="showNewBanModal" @close="showNewBanModal = false"></new-ban-modal>
+                  <new-warning-modal :show="showNewWarningModal" @close="showNewWarningModal = false"></new-warning-modal>
                       <table class="table">
                           <tr>
                             <th>User Id</th>
@@ -228,15 +227,15 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <th>Last Login</th>
                           </tr>
                           <tr v-for="user in users">
-                              <td><div v-on:click="toggle(user)" class="kebab">
+                              <td><div v-on:click="toggle(user); setCurrentId(user)" class="kebab">
                                 <figure></figure>
                                 <figure class="middle"></figure>
                                 <p class="cross">x</p>
                                 <figure></figure>
                                 <ul class="dropdown">
-                                  <li><a href="https://www.youtube.com/watch?v=wL8yvZDF6RA">Warn</a></li>
-                                  <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0">Ban</a></li>   
-                                  <li><a href="https://google.com">Unban</a></li>                          
+                                  <li><a v-on:click="showNewWarningModal = true">Warn</a></li>
+                                  <li><a v-on:click="showNewBanModal = true;">Ban</a></li>   
+                                  <li><a v-on:click="unban();">Unban</a></li>                          
                                 </ul>
                               </div>
                                 {{ user.id }}</td>
@@ -246,17 +245,170 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           </tr>
                       </table>
 
+
+                      
+                      
+                      <!-- template for the modal component -->
+                      <script type="x/template" id="modal-template">
+                          <transition name="modal">
+                              <div class="modal-mask" @click="close" v-show="show">
+                                  <div class="modal-container" @click.stop>
+                                    <slot></slot>
+                                  </div>
+                              </div>
+                          </transition>
+                      </script>
+
+                      <!-- template for the NewBanModal component -->
+                      <script type="x/template" id="new-ban-modal-template">
+                          <modal :show="show" @close="close">
+                              <div class="modal-header">
+                                  <h3>New Ban</h3>
+                              </div>
+                              <div class="modal-body">
+                                  <label class="form-label">
+                                      Until
+                                      <input type="date" v-model="until" class="form-control">
+                                  </label>
+                                  <label class="form-label">
+                                      Reason
+                                      <textarea v-model="message" rows="4" class="form-control">
+                                      </textarea>
+                                  </label>
+                              </div>
+                              <div class="modal-footer text-right">
+                                  <button class="modal-default-button" @click="postBan()">
+                                      Ban
+                                  </button>
+                              </div>
+                          </modal>
+                      </script>
+
+                      <!-- template for the NewWarningModal component -->
+                      <script type="x/template" id="new-warning-modal-template">
+                          <modal :show="show" @close="close">
+                              <div class="modal-header">
+                                  <h3>New Warning</h3>
+                              </div>
+                              <div class="modal-body">
+                                  <label class="form-label">
+                                      Message
+                                      <textarea v-model="warning" rows="5" class="form-control">
+                                      </textarea>
+                                  </label>
+                              </div>
+                              <div class="modal-footer text-right">
+                                  <button class="modal-default-button" @click="postWarning()">
+                                      Send Warning
+                                  </button>
+                              </div>
+                          </modal>
+                      </script>
+
                   </div>
               </body>
 
               <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
               <script>
+               var currentId = -1;
+
+                Vue.component('Modal', {
+                  template: '#modal-template',
+                  props: ['show'],
+                  methods: {
+                    close: function () {
+                      this.$emit('close');
+                    }
+                  },
+                  mounted: function () {
+                    document.addEventListener("keydown", (e) => {
+                      if (this.show && e.keyCode == 27) {
+                        this.close();
+                      }
+                    });
+                  }
+                });
+
+                Vue.component('NewBanModal', {
+                  template: '#new-ban-modal-template',
+                  props: {
+                    show: Boolean,
+                  },
+                  data: function () {
+                    return {
+                      until: '',
+                      message: '',
+                    };
+                  },
+                  methods: {
+                    close: function () {
+                      this.$emit('close');
+                      this.until = '';
+                      this.message = '';
+                    },
+                    postBan: function () {
+                      const Http = new XMLHttpRequest();
+                      const url = "http://localhost:3000/ban?userId=" + currentId + "&until=" + this.until + "&message=" + this.message;
+                      Http.open("GET", url, true);
+                      Http.send();
+                      Http.onreadystatechange = (e) => {
+                          var response = Http.responseText;
+                          var json = JSON.parse(response);
+                          if (Http.readyState === 4) {
+                            if (json.status === "success") {
+                              alert("Successfully banned user with id " + currentId);
+                            } else {
+                              alert("Ban unsuccessful: user already banned");
+                            }                    
+                          }
+                      }
+                      this.close();
+                    }
+                  }
+                });
+
+                Vue.component('NewWarningModal', {
+                  template: '#new-warning-modal-template',
+                  props: {
+                    show: Boolean,
+                  },
+                  data: function () {
+                    return {
+                      warning: '',
+                    };
+                  },
+                  methods: {
+                    close: function () {
+                      this.$emit('close');
+                      this.warning = '';
+                    },
+                    postWarning: function () {
+                      const Http = new XMLHttpRequest();
+                      const url = "http://localhost:3000/warn?userId=" + currentId + "&message=" + this.warning;
+                      Http.open("GET", url, true);
+                      Http.send();
+                      Http.onreadystatechange = (e) => {
+                          var response = Http.responseText;
+                          var json = JSON.parse(response);
+                          if (Http.readyState === 4) {
+                            if (json.status === "success") {
+                              alert("Successfully warned user with id " + currentId);
+                            }
+                          }
+                      }
+                      this.close();
+                    }
+                  }
+                });
+
 
                 var vm = new Vue({
                   el: '#data',
                   data: {
-                       users: 'Loading...'
+                       users: 'Loading...',
+                       showNewBanModal: false,
+                       showNewWarningModal: false
                   },
                   methods: {
                       loadUsers: function() {
@@ -285,6 +437,26 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         middle.classList.toggle('active');
                         cross.classList.toggle('active');
                         dropdown.classList.toggle('active');
+                      },
+                      setCurrentId: function(user) {
+                        currentId = user.id;
+                      },
+                      unban: function() {
+                        const Http = new XMLHttpRequest();
+                        const url = "http://localhost:3000/unban?userId=" + currentId;
+                        Http.open("GET", url, true);
+                        Http.send();
+                        Http.onreadystatechange = (e) => {
+                            var response = Http.responseText;
+                            var json = JSON.parse(response);
+                            if (Http.readyState === 4) {
+                              if (json.status === "success") {
+                                alert("Unbanned user with id " + currentId);
+                              } else {
+                                alert("Cannot unban: user not currently banned");
+                              }
+                            }
+                         }
                       }
                   }
               });
