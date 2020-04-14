@@ -233,9 +233,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                 <p class="cross">x</p>
                                 <figure></figure>
                                 <ul class="dropdown">
-                                  <li><a v-on:click="showNewWarningModal = true">Warn</a></li>
-                                  <li><a v-on:click="showNewBanModal = true;">Ban</a></li>   
-                                  <li><a v-on:click="unban();">Unban</a></li>                          
+                                  <li v-on:click="showNewWarningModal = true;"><a>Warn</a></li>
+                                  <li v-on:click="showNewBanModal = true;"><a>Ban</a></li>   
+                                  <li v-on:click="unban();"><a>Unban</a></li>                          
                                 </ul>
                               </div>
                                 {{ user.id }}</td>
@@ -244,8 +244,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               <td>{{ getLastLoginString(user) }}</td>
                           </tr>
                       </table>
-
-
                       
                       
                       <!-- template for the modal component -->
@@ -272,7 +270,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                   </label>
                                   <label class="form-label">
                                       Reason
-                                      <textarea v-model="message" rows="4" class="form-control">
+                                      <textarea v-model="message" rows="5" class="form-control">
                                       </textarea>
                                   </label>
                               </div>
@@ -304,7 +302,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               </div>
                           </modal>
                       </script>
-
                   </div>
               </body>
 
@@ -315,7 +312,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
                 Vue.component('Modal', {
                   template: '#modal-template',
-                  props: ['show'],
+                  props: {
+                    show: Boolean,
+                  },
                   methods: {
                     close: function () {
                       this.$emit('close');
