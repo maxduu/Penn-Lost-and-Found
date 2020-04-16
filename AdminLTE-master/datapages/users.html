@@ -357,6 +357,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           if (Http.readyState === 4) {
                             if (json.status === "success") {
                               alert("Successfully banned user with id " + currentId);
+                              location.reload();
                             } else {
                               alert("Ban unsuccessful: user already banned");
                             }                    
@@ -393,6 +394,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           if (Http.readyState === 4) {
                             if (json.status === "success") {
                               alert("Successfully warned user with id " + currentId);
+                              location.reload();
                             }
                           }
                       }
@@ -441,6 +443,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         currentId = user.id;
                       },
                       unban: function() {
+                        if (confirm("Are you sure you want to unban user with id " + currentId + "?")) {
                         const Http = new XMLHttpRequest();
                         const url = "http://localhost:3000/unban?userId=" + currentId;
                         Http.open("GET", url, true);
@@ -451,11 +454,14 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             if (Http.readyState === 4) {
                               if (json.status === "success") {
                                 alert("Unbanned user with id " + currentId);
+                                location.reload();
                               } else {
                                 alert("Cannot unban: user not currently banned");
                               }
                             }
+                          
                          }
+                        }
                       }
                   }
               });

@@ -252,7 +252,18 @@ app.use('/update-lost-item', (req, res) => {
     })
 });
 
-
+// GET to remove a lost item
+app.use('/remove-lost-item', async (req, res) => {
+	id = parseInt(req.query.id);
+	const result = await lost_item.deleteOne({"id" : id}).exec();
+	if (result.deletedCount == 0) {
+		console.log('no lost item with id exists');
+		res.json({'status': 'not an item'});
+	} else {
+		console.log('successfully removed lost item with id ' + id);
+		res.json({'status' : 'success'});
+	}
+});
 
 // GET to create a found item, ex: 'http://localhost:3000/create-found-item' and get request
 // with query params being found-item object json attributes
@@ -354,6 +365,20 @@ app.use('/update-found-item', (req, res) => {
             })
         }
     })
+});
+
+// GET to remove a found item
+app.use('/remove-found-item', async (req, res) => {
+	id = parseInt(req.query.id);
+	const result = await found_item.deleteOne({"id" : id}).exec()
+	if (result.deletedCount == 0) {
+		console.log(id);
+		console.log('no found item with id exists');
+		res.json({'status': 'not an item'});
+	} else {
+		console.log('successfully removed found item with id ' + id);
+		res.json({'status' : 'success'});
+	}
 });
 
 // GET specific admin user

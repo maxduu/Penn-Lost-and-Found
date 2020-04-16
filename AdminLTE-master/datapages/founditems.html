@@ -223,7 +223,13 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <th>around</th>
                           </tr>
                           <tr v-for="item in found_items">
-                              <td>{{ item.id }}</td>
+                              <td>{{ item.id }}
+                              <div>
+                              <span role="button" v-on:click="removeItem(item)" style="cursor: pointer">
+                                <ion-icon name="trash"></ion-icon>
+                                </span>
+                              </div>
+                              </td>
                               <td>{{ item.posterId }}</td>
                               <td>{{ item.category }}</td>    
                               <td>{{ item.date }}</td>
@@ -257,7 +263,27 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                   var json = JSON.parse(response);
                                   vm.found_items = json.items;
                               }
+                          },
+                          removeItem: function(item) {
+                          var id = item.id;
+                          if (confirm('Are you sure you want to remove "' + item.category + '" with id ' + id + "?")) {
+                            const Http = new XMLHttpRequest();
+                            const url = "http://localhost:3000/remove-found-item?id=" + id;
+                            Http.open("GET", url, true);
+                            Http.send();
+                            Http.onreadystatechange = (e) => {
+                                var response = Http.responseText;
+                                var json = JSON.parse(response);
+                                if (Http.readyState === 4) {
+                                  if (json.status === "success") {
+                                    alert("Successfully removed found item with id " + id);
+                                    location.reload();
+                                  }
+                                }
+                            }
                           }
+                          
+                        }
                       }
                   });
 
@@ -336,6 +362,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   <script src="../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../dist/js/demo.js"></script>
+  
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
   <!-- page script -->
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
