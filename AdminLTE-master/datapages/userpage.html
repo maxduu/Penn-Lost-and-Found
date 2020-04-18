@@ -211,75 +211,76 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
               </head>
 
               <body>
-                  <div>
-                      <h2>Lost Postings</h1>
-                      <table class="table">
-                          <tr>
-                            <th>id</th>
-                            <th>posterId</th>
-                            <th>category</th>
-                            <th>date</th>
-                            <th>latitude</th>
-                            <th>longitude</th>
-                            <th>around</th>
-                            <th>description</th>
-                            <th>attachment</th>
-                            <th>additional info</th>
-                          </tr>
-                          <tr v-for="item in lost_items">
-                              <td>
-                              {{ item.id }}
-                              <div>
-                              <span role="button" v-on:click="removeLostItem(item)" style="cursor: pointer">
-                                <ion-icon name="trash"></ion-icon>
-                              </span>
-                              </div>
-                                
-                              </td>
-                              <td>{{ item.posterId }}</td>
-                              <td>{{ item.category }}</td>    
-                              <td>{{ item.date }}</td>
-                              <td>{{ item.latitude }}</td>
-                              <td>{{ item.longitude }}</td>
-                              <td>{{ item.around }}</td>
-                              <td>{{ item.description }}</td>
-                              <td>{{ item.attachmentLoc }}</td>
-                              <td>{{ item.additionalInfo }}</td>                              
-                          </tr>
-                      </table>
+                <div>
+                  <h2>Lost Postings</h1>
+                  <table class="table">
+                      <tr>
+                        <th>id</th>
+                        <th>posterId</th>
+                        <th>category</th>
+                        <th>date</th>
+                        <th>latitude</th>
+                        <th>longitude</th>
+                        <th>around</th>
+                        <th>description</th>
+                        <th>attachment</th>
+                        <th>additional info</th>
+                      </tr>
+                      <tr v-for="item in lost_items">
+                          <td>
+                          {{ item.id }}
+                          <div>
+                          <span role="button" v-on:click="removeLostItem(item)" style="cursor: pointer">
+                            <ion-icon name="trash"></ion-icon>
+                          </span>
+                          </div>
+                            
+                          </td>
+                          <td>{{ item.posterId }}</td>
+                          <td>{{ item.category }}</td>    
+                          <td>{{ item.date }}</td>
+                          <td>{{ item.latitude }}</td>
+                          <td>{{ item.longitude }}</td>
+                          <td>{{ item.around }}</td>
+                          <td>{{ item.description }}</td>
+                          <td>{{ item.attachmentLoc }}</td>
+                          <td>{{ item.additionalInfo }}</td>                              
+                      </tr>
+                  </table>
+                </div>
 
+                <div>
+                  <br>
+                    <h2>Found Items</h2>
+                    <table class="table">
+                        <tr>
+                          <th>id</th>
+                          <th>posterId</th>
+                          <th>category</th>
+                          <th>date</th>
+                          <th>latitude</th>
+                          <th>longitude</th>
+                          <th>around</th>
+                        </tr>
+                        <tr v-for="item in found_items">
+                            <td>{{ item.id }}
+                            <div>
+                            <span role="button" v-on:click="removeFoundItem(item)" style="cursor: pointer">
+                              <ion-icon name="trash"></ion-icon>
+                              </span>
+                            </div>
+                            </td>
+                            <td>{{ item.posterId }}</td>
+                            <td>{{ item.category }}</td>    
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.latitude }}</td>
+                            <td>{{ item.longitude }}</td>
+                            <td>{{ item.around }}</td>
+                        </tr>
+                    </table>
                   </div>
 
-                  <body>
-                      <br>
-                        <h2>Found Items</h2>
-                        <table class="table">
-                            <tr>
-                              <th>id</th>
-                              <th>posterId</th>
-                              <th>category</th>
-                              <th>date</th>
-                              <th>latitude</th>
-                              <th>longitude</th>
-                              <th>around</th>
-                            </tr>
-                            <tr v-for="item in found_items">
-                                <td>{{ item.id }}
-                                <div>
-                                <span role="button" v-on:click="removeFoundItem(item)" style="cursor: pointer">
-                                  <ion-icon name="trash"></ion-icon>
-                                  </span>
-                                </div>
-                                </td>
-                                <td>{{ item.posterId }}</td>
-                                <td>{{ item.category }}</td>    
-                                <td>{{ item.date }}</td>
-                                <td>{{ item.latitude }}</td>
-                                <td>{{ item.longitude }}</td>
-                                <td>{{ item.around }}</td>
-                            </tr>
-                        </table>
-  
+                  <div>
                     <br>
                       <h2>Chats</h2>
                       <table class="table">
@@ -302,9 +303,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <td>{{ getLastActiveString(chat) }}</td>                  
                         </tr>
                     </table>
-
                   </div>
-              </body>
               </body>
 
               <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
