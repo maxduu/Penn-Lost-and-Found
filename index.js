@@ -200,6 +200,22 @@ app.use('/get-lost-item', (req, res) => {
     })
 });
 
+app.use('/get-poster-lost-items', (req, res) => {
+    var searchId = parseInt(req.query.id);
+    lost_item.find({posterId: searchId}, (err, items) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!items) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            res.json({'status': 'success', 'lost_items': items});
+            console.log('successfully gotten lost items');
+        }
+    })
+});
+
 // GET route to update the db, ex: address is 'http://localhost:3000/update-lost-item' and 
 // query params contains new object's json attributes
 app.use('/update-lost-item', (req, res) => {
@@ -320,6 +336,22 @@ app.use('/get-found-item', (req, res) => {
         else {
             res.json({'status': 'success', 'found-item': item});
             console.log('successfully gotten found item');
+        }
+    })
+});
+
+app.use('/get-poster-found-items', (req, res) => {
+    var searchId = parseInt(req.query.id);
+    found_item.find({posterId: searchId}, (err, items) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!items) {
+            res.json({'status': 'no item'});
+        }
+        else {
+            res.json({'status': 'success', 'found_items': items});
+            console.log('successfully gotten found items');
         }
     })
 });
@@ -597,4 +629,21 @@ app.use('/remove-report', async (req, res) => {
 		console.log('successfully removed report with violatorId ' + id);
 		res.json({'status' : 'success'});
 	}
+});
+
+//Get back chats for a user
+app.use('/get-user-chats', (req, res) => {
+    console.log("in chat/ path to get all chats")
+    userId = parseInt(req.query.id);
+    Chat.find({$or:[{'initiatorId':userId}, {'receiverId':userId}]}, (err, allChats) => {
+        if (err) {
+            res.json({ 'status': err });
+        } else if (allChats.length == 0) {
+            res.json({ 'status': 'no chats' });
+        } else {
+            res.json({ 'status' : 'success',
+                        'chats': allChats });
+            console.log('successfully got all chats: ');
+        }
+    })
 });
