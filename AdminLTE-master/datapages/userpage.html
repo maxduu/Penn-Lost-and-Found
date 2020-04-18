@@ -160,7 +160,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <h1>Users</h1>
+                  <h1 id = 'title-top'>Users</h1>
                 </div>
                 <div class="col-sm-6">
     <!--               <ol class="breadcrumb float-sm-right">
@@ -176,10 +176,10 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       <section class="content">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Lost Postings</h3>
+            <h3 class="card-title">User Actvity</h3>
           </div>
           <!-- /.card-header -->
-          <div class="card-body">
+          <div class="card-body" id = "data">
             <div id="jsGrid1"></div>
               <head>
                   <style>
@@ -209,7 +209,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
               </head>
 
               <body>
-                  <div id = "data">
+                  <div>
+                      <h2>Lost Postings</h1>
                       <table class="table">
                           <tr>
                             <th>id</th>
@@ -227,7 +228,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               <td>
                               {{ item.id }}
                               <div>
-                              <span role="button" v-on:click="removeItem(item)" style="cursor: pointer">
+                              <span role="button" v-on:click="removeLostItem(item)" style="cursor: pointer">
                                 <ion-icon name="trash"></ion-icon>
                               </span>
                               </div>
@@ -246,31 +247,80 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                       </table>
 
                   </div>
-              </body>
 
+                  <body>
+                      <br>
+                        <h2> Found Postings </h2>
+                        <table class="table">
+                            <tr>
+                              <th>id</th>
+                              <th>posterId</th>
+                              <th>category</th>
+                              <th>date</th>
+                              <th>latitude</th>
+                              <th>longitude</th>
+                              <th>around</th>
+                            </tr>
+                            <tr v-for="item in found_items">
+                                <td>{{ item.id }}
+                                <div>
+                                <span role="button" v-on:click="removeFoundItem(item)" style="cursor: pointer">
+                                  <ion-icon name="trash"></ion-icon>
+                                  </span>
+                                </div>
+                                </td>
+                                <td>{{ item.posterId }}</td>
+                                <td>{{ item.category }}</td>    
+                                <td>{{ item.date }}</td>
+                                <td>{{ item.latitude }}</td>
+                                <td>{{ item.longitude }}</td>
+                                <td>{{ item.around }}</td>
+                            </tr>
+                        </table>
+  
+                    </div>
+                </body>
+              </body>
 
               <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
               <script>
+                var url_string = window.location.href;
+                var url2 = new URL(url_string);
+                var id = url2.searchParams.get("id");
 
                 var vm = new Vue({
                   el: '#data',
                   data: {
-                       lost_items: 'Loading...'
+                       lost_items: 'Loading...',
+                       found_items: 'Loading...',
+                       chats: 'Loading...'
                   },
                   methods: {
                       loadLost: function() {
                           const Http = new XMLHttpRequest();
-                          const url = "http://localhost:3000/all-lost-items";
+                          const url = "http://localhost:3000/get-poster-lost-items?id=" + id;
                           Http.open("GET", url, true);
                           Http.send();
                           Http.onreadystatechange = (e) => {
                               var response = Http.responseText;
                               var json = JSON.parse(response);
-                              vm.lost_items = json.items;
+                              vm.lost_items = json.lost_items;
                           }
                       },
-                      removeItem: function(item) {
+                      loadFound: function() {
+                        const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/get-poster-found-items?id=" + id;
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              console.log(json.found_items);
+                              vm.found_items = json.found_items;
+                          }
+                      },
+                      removeLostItem: function(item) {
                           var id = item.id;
                           if (confirm('Are you sure you want to remove "' + item.category + '" with id ' + id + "?")) {
                             const Http = new XMLHttpRequest();
@@ -289,17 +339,75 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             }
                           }
                           
-                      }
+                      },
+                      removeFoundItem: function(item) {
+                          var id = item.id;
+                          if (confirm('Are you sure you want to remove "' + item.category + '" with id ' + id + "?")) {
+                            const Http = new XMLHttpRequest();
+                            const url = "http://localhost:3000/remove-found-item?id=" + id;
+                            Http.open("GET", url, true);
+                            Http.send();
+                            Http.onreadystatechange = (e) => {
+                                var response = Http.responseText;
+                                var json = JSON.parse(response);
+                                if (Http.readyState === 4) {
+                                  if (json.status === "success") {
+                                    alert("Successfully removed found item with id " + id);
+                                    location.reload();
+                                  }
+                                }
+                            }
+                          }
+                          
+                        }
                   }
               });
 
               vm.loadLost()
+              vm.loadFound()
             </script>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
-      </section>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Found Postings</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="jsGrid1"></div>
+                <head>
+                    <style>
+                        table {
+                          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                          border-collapse: collapse;
+                          border-spacing: 3px;
+                          width: 100%;
+                          padding: 10px 50px 10px 50px;
+                        }
+  
+                        table td, table th {
+                          border: 1px solid #ddd;
+                          padding: 8px;
+                        }
+  
+                        table tr:nth-child(even){background-color: #f2f2f2;}
+  
+                        table tr:hover {background-color: #ddd;}
+  
+                        table th {
+                          padding-top: 12px;
+                          padding-bottom: 12px;
+                          text-align: left;
+                          background-color: #B5E0F1;
+                          color: black;
+                        }
+                    </style>
+                </head>
+  
+            </div>
+        </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -355,6 +463,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       document.getElementById("accountlink").setAttribute("href",accountlink);
     }
   </script>
+
   
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
@@ -372,3 +481,21 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
   <!-- page script -->
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script type="text/javascript">
+    var url_string = window.location.href;
+    var url2 = new URL(url_string);
+    var id = url2.searchParams.get("id");
+
+    var user;
+    const Http = new XMLHttpRequest();
+    const url = "http://localhost:3000/get-user?id=" + id;
+    Http.open("GET", url, true);
+    Http.send();
+    Http.onreadystatechange = (e) => {
+        var response = Http.responseText;
+        var json = JSON.parse(response);
+        user = json.user;
+        $("#title-top").text(user.username);
+    }
+  </script>
