@@ -1,20 +1,17 @@
 # 350S20-36
-We boutta POP OFF
+Adi Bhati, Kevin Chen, Max Du, Jeffrey Qu
 
 ## Android App
-All of the components for the android app
+All of the components for the android app, used by normal users. Note: uses Android API level 28.
 
-## DataInteraction
-Folder for all of the code (data classes, readers, writers, processors) used to deal with reading and writing from our json files, and eventually the database
+## AdminLTE-master
+All of the components for our admin webapp. The webapp tracks user activity. Initially, admin account must be manually inserted into mongo to prevent anyone from being an admin.
 
-## data
-Stores the data for the app (json files and eventually database files)
-
-## lib
-Libraries used, like .jar files. Currently has the JSON file reading jar file used in hw1 and hw2. Eventually we are planning to make the code in our DataInteraction folder into a jar file so we can use it in both our android app and web app.
+## Running Instructions
+First install all node dependencies with `npm install`. Then, start node server using `node index.js`. Android app can be found in AndroidApp folder and run using an emulator. The admin webapp is found in AdminLTE-master folder and can be run by first opening index.html.
 
 ## mongoDB notes
-I created a mongoDb Atlas account for us with the login
+MongoDb Atlas account for us with the login
 
 email: pennlostfound@gmail.com
 password: ilovelukeyeagley
