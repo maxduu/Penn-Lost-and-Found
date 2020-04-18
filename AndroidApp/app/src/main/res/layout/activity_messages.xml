@@ -17,7 +17,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginTop="16dp"
         android:onClick="onReportClick"
-        app:backgroundTint="#068579"
+        app:backgroundTint="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="@color/colorPrimaryDark"
