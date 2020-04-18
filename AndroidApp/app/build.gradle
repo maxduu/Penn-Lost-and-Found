@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: 'secrets.gradle'
 
 android {
     compileSdkVersion 29
@@ -17,6 +18,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        buildTypes.each {
+            it.buildConfigField "String", "CREDENTIALS_KEY", "\"$credentialsKey\""
+        }
     }
 }
 
@@ -34,8 +38,9 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/json-simple-1.1.1.jar')
     implementation 'com.google.android.libraries.places:places:2.2.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
     //added
     implementation("com.squareup.okhttp3:okhttp:4.4.0")
-
+    implementation 'com.microsoft.maps:maps-sdk:1.0.0'
 }

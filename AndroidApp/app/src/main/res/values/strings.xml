@@ -25,5 +25,7 @@
     <string name="title_activity_lost_item1">LostItem1</string>
     <string name="title_activity_lost_item2">LostItem2</string>
     <string name="title_activity_found_item2">FoundItem2</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_report">ReportActivity</string>
 
 </resources>

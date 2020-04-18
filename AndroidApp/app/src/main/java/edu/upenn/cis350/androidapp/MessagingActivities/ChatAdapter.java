@@ -2,11 +2,13 @@ package edu.upenn.cis350.androidapp.MessagingActivities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -15,7 +17,10 @@ import java.util.List;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.MessageProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.ReportProcessor;
+import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.R;
+import edu.upenn.cis350.androidapp.ReportActivity;
 
 public class ChatAdapter extends BaseAdapter {
 
@@ -89,6 +94,8 @@ public class ChatAdapter extends BaseAdapter {
         }
         return otherUserId;
     }
+
+
 }
 
 class ChatViewHolder {

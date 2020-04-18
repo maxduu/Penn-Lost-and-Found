@@ -54,7 +54,7 @@
             android:ems="10"
             android:hint="Penn Email"
             android:inputType="textPersonName"
-            android:text="" />
+            android:text="maxdu@seas.upenn.edu" />
 
         <Space
             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:text="" />
+            android:text="111111" />
 
         <Space
             android:layout_width="match_parent"

@@ -5,42 +5,32 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Item;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONReader;
-import edu.upenn.cis350.androidapp.FoundItem1;
-import edu.upenn.cis350.androidapp.LostItem1;
-import edu.upenn.cis350.androidapp.NewPostActivity;
+import edu.upenn.cis350.androidapp.FoundItem1Activity;
+import edu.upenn.cis350.androidapp.LostItem1Activity;
 import edu.upenn.cis350.androidapp.R;
 
 /**
@@ -75,7 +65,21 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        final View view = inflater.inflate(R.layout.fragment_main, container, false);
+        final SwipeRefreshLayout pullToRefresh = view.findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                LinearLayout items_list = view.findViewById(R.id.items_list);
+                items_list.removeAllViews();
+                createItems(view);
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+        return createItems(view);
+    }
+
+    private View createItems (View view) {
         LinearLayout items_list = view.findViewById(R.id.items_list);
         if (index == 1) {
             Collection<LostItem> lostItemsTemp = LostJSONReader.getInstance().getAllLostItems();
@@ -105,7 +109,7 @@ public class PlaceholderFragment extends Fragment {
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(v.getContext(), LostItem1.class);
+                            Intent i = new Intent(v.getContext(), LostItem1Activity.class);
                             i.putExtra("itemId", (long) v.getId());
                             startActivity(i);
                         }
@@ -141,7 +145,7 @@ public class PlaceholderFragment extends Fragment {
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(v.getContext(), FoundItem1.class);
+                            Intent i = new Intent(v.getContext(), FoundItem1Activity.class);
                             i.putExtra("itemId", (long) v.getId());
                             startActivity(i);
                         }
@@ -153,7 +157,7 @@ public class PlaceholderFragment extends Fragment {
         return view;
     }
 
-    public String setTime (Date old) {
+    private String setTime (Date old) {
         long diff = new Date().getTime() - old.getTime();
         if (diff < 1000) {
             return "now";

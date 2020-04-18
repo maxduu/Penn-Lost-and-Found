@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +15,10 @@ import java.util.List;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.ReportProcessor;
+import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.R;
+import edu.upenn.cis350.androidapp.ReportActivity;
 
 public class ChatsActivity extends AppCompatActivity {
 

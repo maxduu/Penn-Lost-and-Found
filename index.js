@@ -552,7 +552,7 @@ app.use('/report', (req, res) => {
 // GET reports for a specific user
 app.use('/get-reports', (req, res) => {
     var id = parseInt(req.query.userId);
-    report.find({userId: id}, (err, item) => {
+    report.find({violatorId : id}, (err, item) => {
         if (err) {
             res.json({'status': err});
             console.log(err);
@@ -584,4 +584,17 @@ app.use('/all-reports', (req, res) => {
             console.log('successfully gotten all reports');
         }
     })
+});
+
+// GET to remove a report
+app.use('/remove-report', async (req, res) => {
+	id = parseInt(req.query.userId);
+	const result = await lost_item.deleteOne({"violatorId" : id}).exec();
+	if (result.deletedCount == 0) {
+		console.log('no report with id exists');
+		res.json({'status': 'not a report'});
+	} else {
+		console.log('successfully removed report with violatorId ' + id);
+		res.json({'status' : 'success'});
+	}
 });

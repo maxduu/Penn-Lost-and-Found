@@ -1,5 +1,6 @@
 package edu.upenn.cis350.androidapp.MessagingActivities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +21,10 @@ import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.MessageProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.ReportProcessor;
+import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.R;
+import edu.upenn.cis350.androidapp.ReportActivity;
 
 
 public class MessagesActivity extends AppCompatActivity {
@@ -110,6 +115,19 @@ public class MessagesActivity extends AppCompatActivity {
             texts.add(text);
             textAdapter.notifyDataSetChanged();*/
             edit.getText().clear();
+        }
+    }
+
+    public void onReportClick(View v) {
+        if (ReportProcessor.getInstance().existsDuplicateReport(userId, otherUserId, "Chat")) {
+            Toast.makeText(this,
+                    "You have already reported this user!", Toast.LENGTH_LONG).show();
+        } else {
+            Intent i = new Intent(this, ReportActivity.class);
+            i.putExtra("reporterId", userId);
+            i.putExtra("violatorId", otherUserId);
+            i.putExtra("category", "Chat");
+            startActivity(i);
         }
     }
 

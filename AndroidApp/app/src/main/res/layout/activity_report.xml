@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1FADE"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E1FADE"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/found_item_around3"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#068579"
+            android:text="You are reporting:"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#0A0202"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/violatorId"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#068579"
+            android:text="[User]"
+            android:textAlignment="center"
+            android:textColor="#0A0202"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/foundItemAround"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#068579"
+            android:text="for..."
+            android:textAlignment="center"
+            android:textColor="#0A0202" />
+
+        <TextView
+            android:id="@+id/reportCategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#068579"
+            android:gravity="center|top"
+            android:text="[Report Category]"
+            android:textColor="#0A0202"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please explain briefly why\nyou are reporting the user:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="395dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/reportText"
+                android:layout_width="393dp"
+                android:layout_height="match_parent"
+                android:hint="Inappropriate posts, message spam, etc."
+                android:background="@drawable/back"
+                android:gravity="top"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColorHint="#808080" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sendReport"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:backgroundTint="#068579"
+            android:onClick="onSendReportClick"
+            android:text="Report"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="75dp" />
+    </LinearLayout>
+
+</LinearLayout>

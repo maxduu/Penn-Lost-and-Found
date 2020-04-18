@@ -14,19 +14,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".FoundItem2"
-            android:label="@string/title_activity_found_item2"
+            android:name=".ReportActivity"
+            android:label="@string/title_activity_report"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".LostItem2"
+            android:name=".FoundItem2Activity"
+            android:label="@string/title_activity_found_item2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LostItem2Activity"
             android:label="@string/title_activity_lost_item2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LostItem1"
+            android:name=".LostItem1Activity"
             android:label="@string/title_activity_lost_item1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FoundItem1"
+            android:name=".FoundItem1Activity"
             android:label="@string/title_activity_found_item1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
