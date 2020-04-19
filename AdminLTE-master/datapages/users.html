@@ -226,7 +226,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <th>Password</th>
                             <th>Last Login</th>
                           </tr>
-                          <tr v-for="user in users" class = 'clickable-row' v-bind:id="user.id" data-href = 'userpage.html'>
+                          <tr v-for="user in users">
                               <td>
                                 <div v-on:click="toggle(user)" class="kebab">
                                 <figure></figure>
@@ -238,12 +238,13 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                   <li v-on:click="setCurrentId(user); showNewBanModal = true;"><a>Ban</a></li>
                                   <li v-on:click="setCurrentId(user); unban();"><a>Unban</a></li>
                                 </ul>
-                                </div> {{ user.id }}</td>
-                              <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ user.username }}</td>
-                              <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ user.password }}</td>
-                              <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ getLastLoginString(user) }}</td>
+                              </div>
+                                {{ user.id }}</td>
+                              <td v-on:click="redirect(user.id)" style="cursor: pointer">{{ user.username }}</td>
+                              <td v-on:click="redirect(user.id)" style="cursor: pointer">{{ user.password }}</td>
+                              <td v-on:click="redirect(user.id)" style="cursor: pointer">{{ getLastLoginString(user) }}</td>
                           </tr>
-                        </table>
+                      </table>
                       </div>
 
                       <br>
@@ -535,6 +536,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                       getUserName: function(id) {
                         var user = this.users.find(user => user.id == id);
                         return user.username;
+                      },
+                      redirect: function(id) {
+                        window.location = 'userpage.html?id='+id;
                       }
                   }
               });
