@@ -225,7 +225,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <th>Password</th>
                             <th>Last Login</th>
                           </tr>
-                          <tr v-for="user in users" class = 'clickable-row' v-bind:id="user.id" data-href = 'userpage.html'>
+                          <tr v-for="user in users">
                               <td><div v-on:click="toggle(user)" class="kebab">
                                 <figure></figure>
                                 <figure class="middle"></figure>
@@ -547,7 +547,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
   <script>
     jQuery(document).ready(function($) {
-                    $(".clickable-row").click(function() {
+                    $(".clickable").click(function() {
                         window.location = $(this).data("href")+'?id='+$(this).attr('id');
                     });
                 });
