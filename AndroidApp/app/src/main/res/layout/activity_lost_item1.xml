@@ -180,7 +180,7 @@
             android:layout_gravity="left|top"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="onReportClick"
-            app:backgroundTint="#068579"
+            app:backgroundTint="#FF0000"
             app:rippleColor="@color/colorPrimaryDark"
             app:srcCompat="@drawable/flag" />
     </LinearLayout>

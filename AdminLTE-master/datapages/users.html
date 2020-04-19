@@ -6,7 +6,7 @@
     <title>Admin | Users</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Menu Button -->
     <link rel="stylesheet" type="text/css" href="../styles/button.css" />
@@ -34,7 +34,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     <!-- Navbar -->
 
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  
+
     <!-- Left navbar links -->
       <ul class="navbar-nav">
 
@@ -63,7 +63,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     </form> -->
 
     <!-- Right navbar links (deleted, see index1.html to get back) -->
-    
+
   </nav>
   <!-- /.navbar -->
 
@@ -126,7 +126,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
               <p>Chats</p>
             </a>
           </li>
-                
+
           <li class="nav-item">
             <a id="reportslink" href="" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -159,7 +159,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     </div>
     <!-- /.sidebar -->
   </aside>
-  
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -178,7 +178,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           </div>
         </div><!-- /.container-fluid -->
       </section>
-  
+
       <!-- Main content -->
       <section class="content">
             <div id="jsGrid1"></div>
@@ -233,18 +233,18 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                 <figure></figure>
                                 <ul class="dropdown">
                                   <li v-on:click="setCurrentId(user); showNewWarningModal = true;"><a>Warn</a></li>
-                                  <li v-on:click="setCurrentId(user); showNewBanModal = true;"><a>Ban</a></li>   
-                                  <li v-on:click="setCurrentId(user); unban();"><a>Unban</a></li>                          
+                                  <li v-on:click="setCurrentId(user); showNewBanModal = true;"><a>Ban</a></li>
+                                  <li v-on:click="setCurrentId(user); unban();"><a>Unban</a></li>
                                 </ul>
                               </div>
                                 {{ user.id }}</td>
-                              <td>{{ user.username }}</td>
-                              <td>{{ user.password }}</td>
-                              <td>{{ getLastLoginString(user) }}</td>
+                              <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ user.username }}</td>
+                              <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ user.password }}</td>
+                              <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ getLastLoginString(user) }}</td>
                           </tr>
                       </table>
-                      
-                      
+
+
                       <!-- template for the modal component -->
                       <script type="x/template" id="modal-template">
                           <transition name="modal">
@@ -304,7 +304,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                   </div>
               </body>
 
-              
+
 
               <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -361,7 +361,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               location.reload();
                             } else {
                               alert("Ban unsuccessful: user already banned");
-                            }                    
+                            }
                           }
                       }
                       this.close();
@@ -423,10 +423,10 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               var json = JSON.parse(response);
                               vm.users = json.items;
                           }
-                      }, 
+                      },
                       getLastLoginString: function(user) {
                         var date = new Date(user.last_login)
-                        return date.toString(); 
+                        return date.toString();
                       },
                       toggle: function(user) {
                         var index = this.users.indexOf(user);
@@ -460,7 +460,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                 alert("Cannot unban: user not currently banned");
                               }
                             }
-                          
+
                          }
                         }
                       }
@@ -484,7 +484,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
       reserved.
     </footer>
-  
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -492,7 +492,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
-  
+
   <script>
     function getAdmin() {
       var url_string = window.location.href;
@@ -501,7 +501,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       return admin;
     }
   </script>
-      
+
   <script>
     function setAdmin() {
       var a = getAdmin();
@@ -529,7 +529,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       document.getElementById("accountlink").setAttribute("href",accountlink);
     }
   </script>
-  
+
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
