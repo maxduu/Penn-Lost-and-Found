@@ -181,11 +181,11 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
             <h3 class="card-title">Lost Items</h3>
           </div>
           <!-- /.card-header -->
-          <div class="card-body">
+          <div class="card-body" id = "data">
             <div id="jsGrid1"></div>
               <head>
-                  <!-- <style>
-                      table {
+                  <style>
+                      /* table {
                         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                         border-collapse: collapse;
                         width: 100%;
@@ -206,46 +206,93 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         text-align: left;
                         background-color: #B5E0F1;
                         color: black;
-                      }
-                  </style> -->
+                      } */
+                  </style> 
               </head>
 
               <body>
-                  <div id = "data">
+                <div id = "data"> 
+                  <h2>Chats</h2>
+                  <div style="overflow: auto;height: 300px;">
                       <table class="table">
-                          <tr>
-                            <th>Chat Id</th>
-                            <th>Initiator</th>
-                            <th>Initiator Id</th>
-                            <th>Receiver</th>
-                            <th>Receiver Id</th>
-                            <th>Item</th>
-                            <th>Last Active</th>
-                          </tr>
-                          <tr v-for="chat in chats">
-                              <td>{{ chat.id }}</td>
-                              <td>{{ getUserName(chat.initiatorId)}}</td>
-                              <td>{{ chat.initiatorId }}</td>
-                              <td>{{ getUserName(chat.receiverId)}}</td>
-                              <td>{{ chat.receiverId }}</td>
-                              <td>{{ chat.item }}</td>    
-                              <td>{{ getLastActiveString(chat) }}</td>                  
-                          </tr>
-                      </table>
-
+                        <tr>
+                          <th>Chat Id</th>
+                          <th>Initiator</th>
+                          <th>Initiator Id</th>
+                          <th>Receiver</th>
+                          <th>Receiver Id</th>
+                          <th>Item</th>
+                          <th>Last Active</th>
+                        </tr>
+                        <tr v-for="chat in chats" v-on:click="selectRow(chat)">
+                          <td >{{ chat.id }}</td>
+                          <td >{{ getUserName(chat.initiatorId)}}</td>
+                          <td >{{ chat.initiatorId }}</td>
+                          <td >{{ getUserName(chat.receiverId)}}</td>
+                          <td >{{ chat.receiverId }}</td>
+                          <td >{{ chat.item }}</td>    
+                          <td >{{ getLastActiveString(chat) }}</td>                  
+                        </tr>
+                      </table>  
                   </div>
+                  </br>
+                  <h2>Messages</h2>
+                  <div style="overflow: auto;height: 300px;">
+                      <table class="table">
+                        <tr>
+                          <th>Id</th>
+                          <th>Sender</th>
+                          <th>Receiver</th>
+                          <th>Text</th>
+                          <th>Date Sent</th>
+                        </tr>
+                        <tr v-for="message in messages">
+                          <td>{{ message.id }}</td>
+                          <td>{{ getUserName(message.senderId) }}</td>
+                          <td>{{ getUserName(message.receiverId)}}</td>       
+                          <td>{{ message.text }}</td>  
+                          <td>{{ getTimeString(message) }}</td>      
+                        </tr>
+                      </table>   
+                    </div>                    
+                  </div>
+                </div>
               </body>
+
+              <!-- <body>
+                <div id = "dataForChat">
+                    <table class="table">
+                        <tr>
+                          <th>Message Id</th>
+                          <th>Sender</th>
+                          <th>Receiver</th>
+                          <th>Text</th>
+                          <th>Date Sent</th>
+                        </tr>
+                        <tr v-for="message in messages">
+                            <td>{{ message.id }}</td>
+                            <td>{{ getUserName(message.senderId) }}</td>
+                            <td>{{ getUserName(message.receiverId)}}</td>       
+                            <td>{{ message.text }}</td>  
+                            <td>{{ message.time }}</td>      
+                        </tr>
+                    </table>
+
+                </div>
+            </body> -->
 
 
               <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
               <script>
 
-                var vm = new Vue({
-                  el: '#data',
+                var vc = new Vue({
+                  el: '#data', 
                   data: {
                        chats: 'Loading...', 
-                       users: 'Loading...'
+                       users: 'Loading...', 
+                       messages: 'Loading..', 
+                       currSelectedChat: 0
                   },
                   methods: {
                       loadChats: function() {
@@ -260,8 +307,12 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           } 
                       },
                       getLastActiveString: function(chat) {
-                        var date = new Date(chat.lastActive)
+                        var date = new Date(chat.lastActive);
                         return date.toString(); 
+                      }, 
+                      getTimeString: function(message) {
+                        var time = new Date(message.time);
+                        return time.toString(); 
                       }, 
                       loadUsers: function() {
                           const Http = new XMLHttpRequest();
@@ -271,17 +322,48 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           Http.onreadystatechange = (e) => {
                               var response = Http.responseText;
                               var json = JSON.parse(response);
-                              vm.users = json.items;
+                              this.users = json.items;
                           }
                       }, 
                       getUserName: function(id) {
                         var user = this.users.find(user => user.id == id);
                         return user.username; 
+                      }, 
+                      loadMessages: function(chatId) {
+                          const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/message/get-all";
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              var allMesssages = json.messages;
+                              var filterMessages = allMesssages.filter( m => m.chatId == chatId); 
+                              this.messages = filterMessages; 
+                          } 
+                      }, 
+                      selectRow: function(chat) {
+                        var index = this.chats.indexOf(chat); 
+                        this.loadMessages(chat.id); 
+                        var table = document.querySelector(".table"); 
+                        var row = table.rows[index + 1]; 
+                        row.style.backgroundColor = "#D0F3D5"; 
+                        var oldRow = table.rows[this.currSelectedChat+1]; 
+                        if (index != this.currSelectedChat) {
+                          if (this.currSelectedChat % 2 == 0) {
+                            this.currSelectedChat = index; 
+                            oldRow.style.backgroundColor = "#f2f2f2"; 
+                          } else {
+                            this.currSelectedChat = index; 
+                            oldRow.style.backgroundColor = "#ddd"; 
+                          }
+                        }
                       }
                   }
                 });
-                vm.loadChats()
-                vm.loadUsers()
+                vc.loadChats()
+                vc.loadUsers()
+                vc.loadMessages(1)
             </script>
           </div>
           <!-- /.card-body -->

@@ -28,12 +28,14 @@ router.use('/post', async (req, res) => {
 
 //Get back all messages 
 router.use('/get-all', (req, res) => {
+    console.log("in message/get-all"); 
     Message.find( (err, allMessages) => {
         if (err) {
             res.json({ status: err }); 
         } else if (allMessages.length == 0) {
             res.json({ status: 'no messages' }); 
         } else {
+            console.log("successfully got all messages");
             res.json({ 'status' : 'success', 
                         'messages': allMessages }); 
         }
