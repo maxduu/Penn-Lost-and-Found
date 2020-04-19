@@ -167,7 +167,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Users</h1>
             </div>
             <div class="col-sm-6">
 <!--               <ol class="breadcrumb float-sm-right">
@@ -215,10 +214,12 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
               </head>
 
               <body>
-                  <div id = "data">
+                <div id = "data">
                   <new-ban-modal :show="showNewBanModal" @close="showNewBanModal = false"></new-ban-modal>
                   <new-warning-modal :show="showNewWarningModal" @close="showNewWarningModal = false"></new-warning-modal>
-                      <table class="table">
+                      <h2>Users</h2>
+                      <div style="overflow: auto; height: 300px;">
+                        <table class="table">
                           <tr>
                             <th>User Id</th>
                             <th>Email</th>
@@ -226,7 +227,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <th>Last Login</th>
                           </tr>
                           <tr v-for="user in users" class = 'clickable-row' v-bind:id="user.id" data-href = 'userpage.html'>
-                              <td><div v-on:click="toggle(user)" class="kebab">
+                              <td>
+                                <div v-on:click="toggle(user)" class="kebab">
                                 <figure></figure>
                                 <figure class="middle"></figure>
                                 <p class="cross">x</p>
@@ -236,14 +238,53 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                   <li v-on:click="setCurrentId(user); showNewBanModal = true;"><a>Ban</a></li>
                                   <li v-on:click="setCurrentId(user); unban();"><a>Unban</a></li>
                                 </ul>
-                              </div>
-                                {{ user.id }}</td>
+                                </div> {{ user.id }}</td>
                               <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ user.username }}</td>
                               <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ user.password }}</td>
                               <td class = 'clickable' v-bind:id="user.id" data-href = 'userpage.html' style="cursor: pointer">{{ getLastLoginString(user) }}</td>
                           </tr>
-                      </table>
+                        </table>
+                      </div>
+                      
+                      <br>
+                      <h2>Warnings</h2>
+                      <div style="overflow: auto;height: 300px;">
+                        <table class="table">
+                          <tr>
+                            <th>User Id</th>
+                            <th>User</th>
+                            <th>Seen</th>
+                            <th>Message<e/th>
+                          </tr>
+                          <tr v-for="warning in warnings">
+                            <td >{{ warning.userId }}</td>
+                            <td >{{ getUserName(warning.userId )}}</td>
+                            <td >{{ warning.seen }}</td>
+                            <td >{{ warning.message}}</td>            
+                          </tr>
+                        </table>  
+                      </div>
 
+                      <br>
+                      <h2>Bans</h2>
+                      <div style="overflow: auto;height: 300px;">
+                        <table class="table">
+                          <tr>
+                            <th>User Id</th>
+                            <th>User</th>
+                            <th>Banned Until</th>
+                            <th>Message</th>
+                          </tr>
+                          <tr v-for="ban in bans">
+                            <td >{{ ban.userId }}</td>
+                            <td >{{ getUserName(ban.userId)}}</td>
+                            <td >{{ getBanUntilString(ban.until) }}</td>
+                            <td >{{ ban.message}}</td>                      
+                          </tr>
+                        </table>  
+                      </div>
+                    </div>
+                  </body>
 
                       <!-- template for the modal component -->
                       <script type="x/template" id="modal-template">
@@ -301,8 +342,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               </div>
                           </modal>
                       </script>
-                  </div>
-              </body>
+               
 
 
 
@@ -409,6 +449,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                   el: '#data',
                   data: {
                        users: 'Loading...',
+                       bans: 'Loading...',
+                       warnings: 'Loading...', 
                        showNewBanModal: false,
                        showNewWarningModal: false
                   },
@@ -463,10 +505,42 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
                          }
                         }
+                      }, 
+                      getBanUntilString: function(ban) {
+                        var date = new Date(ban.until)
+                        return date.toString();
+                      }, 
+                      loadBans: function() {
+                          const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/get-all-bans";
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              vm.bans = json.bans;
+                          }
+                      }, 
+                      loadWarnings: function() {
+                        const Http = new XMLHttpRequest();
+                          const url = "http://localhost:3000/get-all-warnings";
+                          Http.open("GET", url, true);
+                          Http.send();
+                          Http.onreadystatechange = (e) => {
+                              var response = Http.responseText;
+                              var json = JSON.parse(response);
+                              vm.warnings = json.warns;
+                          }
+                      }, 
+                      getUserName: function(id) {
+                        var user = this.users.find(user => user.id == id);
+                        return user.username; 
                       }
                   }
               });
               vm.loadUsers()
+              vm.loadBans()
+              vm.loadWarnings()
               vm.addListeners
             </script>
           </div>

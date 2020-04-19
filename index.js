@@ -507,6 +507,22 @@ app.use('/see-warnings', (req, res) => {
     });
 });
 
+// GET all warnings 
+app.use('/get-all-warnings', (req, res) => {
+    console.log("in /get-all-warnings");
+    warning.find( (err, allWarns) => {
+        if (err) {
+            res.json({ status: err });
+        } else if (allWarns.length == 0) {
+            res.json({ status: 'no warnings' });
+        } else {
+            res.json({ 'status' : 'success',
+                        'warns': allWarns });
+            console.log('successfully got all warnings ');
+        }
+    })
+});
+
 // GET to create a ban
 // ex: 'http://localhost:3000/ban' 
 app.use('/ban', (req, res) => {
@@ -554,6 +570,22 @@ app.use('/get-ban', (req, res) => {
         else {
             res.json({'status': 'success', 'ban': item});
             console.log('successfully gotten ban');
+        }
+    })
+});
+
+//GET all bans 
+app.use('/get-all-bans', (req, res) => {
+    console.log("in /get-all-bans");
+    ban.find( (err, allBans) => {
+        if (err) {
+            res.json({ status: err });
+        } else if (allBans.length == 0) {
+            res.json({ status: 'no bans' });
+        } else {
+            res.json({ 'status' : 'success',
+                        'bans': allBans });
+            console.log('successfully got all bans ');
         }
     })
 });
