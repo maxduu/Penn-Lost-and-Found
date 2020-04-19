@@ -245,7 +245,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           </tr>
                         </table>
                       </div>
-                      
+
                       <br>
                       <h2>Warnings</h2>
                       <div style="overflow: auto;height: 300px;">
@@ -260,9 +260,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <td >{{ warning.userId }}</td>
                             <td >{{ getUserName(warning.userId )}}</td>
                             <td >{{ warning.seen }}</td>
-                            <td >{{ warning.message}}</td>            
+                            <td >{{ warning.message}}</td>
                           </tr>
-                        </table>  
+                        </table>
                       </div>
 
                       <br>
@@ -279,9 +279,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                             <td >{{ ban.userId }}</td>
                             <td >{{ getUserName(ban.userId)}}</td>
                             <td >{{ getBanUntilString(ban.until) }}</td>
-                            <td >{{ ban.message}}</td>                      
+                            <td >{{ ban.message}}</td>
                           </tr>
-                        </table>  
+                        </table>
                       </div>
                     </div>
                   </body>
@@ -342,7 +342,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               </div>
                           </modal>
                       </script>
-               
+
 
 
 
@@ -450,7 +450,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                   data: {
                        users: 'Loading...',
                        bans: 'Loading...',
-                       warnings: 'Loading...', 
+                       warnings: 'Loading...',
                        showNewBanModal: false,
                        showNewWarningModal: false
                   },
@@ -505,11 +505,11 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
                          }
                         }
-                      }, 
+                      },
                       getBanUntilString: function(ban) {
                         var date = new Date(ban.until)
                         return date.toString();
-                      }, 
+                      },
                       loadBans: function() {
                           const Http = new XMLHttpRequest();
                           const url = "http://localhost:3000/get-all-bans";
@@ -520,7 +520,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               var json = JSON.parse(response);
                               vm.bans = json.bans;
                           }
-                      }, 
+                      },
                       loadWarnings: function() {
                         const Http = new XMLHttpRequest();
                           const url = "http://localhost:3000/get-all-warnings";
@@ -531,10 +531,10 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               var json = JSON.parse(response);
                               vm.warnings = json.warns;
                           }
-                      }, 
+                      },
                       getUserName: function(id) {
                         var user = this.users.find(user => user.id == id);
-                        return user.username; 
+                        return user.username;
                       }
                   }
               });
@@ -621,7 +621,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
   <script>
     jQuery(document).ready(function($) {
-                    $(".clickable-row").click(function() {
+                    $(".clickable").click(function() {
                         window.location = $(this).data("href")+'?id='+$(this).attr('id');
                     });
                 });

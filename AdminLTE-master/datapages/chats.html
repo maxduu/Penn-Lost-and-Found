@@ -6,7 +6,7 @@
     <title>Admin | Chats</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Table-->
     <link rel="stylesheet" type="text/css" href="../styles/table.css" />
@@ -29,7 +29,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     <!-- Navbar -->
 
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  
+
     <!-- Left navbar links -->
       <ul class="navbar-nav">
 
@@ -58,7 +58,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     </form> -->
 
     <!-- Right navbar links (deleted, see index1.html to get back) -->
-    
+
   </nav>
   <!-- /.navbar -->
 
@@ -121,7 +121,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
               <p>Chats</p>
             </a>
           </li>
-                
+
           <li class="nav-item">
             <a id="reportslink" href="" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -154,7 +154,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     </div>
     <!-- /.sidebar -->
   </aside>
-  
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -173,7 +173,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
           </div>
         </div><!-- /.container-fluid -->
       </section>
-  
+
       <!-- Main content -->
       <section class="content">
         <div class="card">
@@ -206,11 +206,11 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         background-color: #B5E0F1;
                         color: black;
                       } */
-                  </style> 
+                  </style>
               </head>
 
               <body>
-                <div id = "data"> 
+                <div id = "data">
                   <h2>Chats</h2>
                   <div style="overflow: auto;height: 300px;">
                       <table class="table">
@@ -229,10 +229,10 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                           <td >{{ chat.initiatorId }}</td>
                           <td >{{ getUserName(chat.receiverId)}}</td>
                           <td >{{ chat.receiverId }}</td>
-                          <td >{{ chat.item }}</td>    
-                          <td >{{ getLastActiveString(chat) }}</td>                  
+                          <td >{{ chat.item }}</td>
+                          <td >{{ getLastActiveString(chat) }}</td>
                         </tr>
-                      </table>  
+                      </table>
                   </div>
                   </br>
                   <h2>Messages</h2>
@@ -248,12 +248,12 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         <tr v-for="message in messages">
                           <td>{{ message.id }}</td>
                           <td>{{ getUserName(message.senderId) }}</td>
-                          <td>{{ getUserName(message.receiverId)}}</td>       
-                          <td>{{ message.text }}</td>  
-                          <td>{{ getTimeString(message) }}</td>      
+                          <td>{{ getUserName(message.receiverId)}}</td>
+                          <td>{{ message.text }}</td>
+                          <td>{{ getTimeString(message) }}</td>
                         </tr>
-                      </table>   
-                    </div>                    
+                      </table>
+                    </div>
                   </div>
                 </div>
               </body>
@@ -271,9 +271,9 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                         <tr v-for="message in messages">
                             <td>{{ message.id }}</td>
                             <td>{{ getUserName(message.senderId) }}</td>
-                            <td>{{ getUserName(message.receiverId)}}</td>       
-                            <td>{{ message.text }}</td>  
-                            <td>{{ message.time }}</td>      
+                            <td>{{ getUserName(message.receiverId)}}</td>
+                            <td>{{ message.text }}</td>
+                            <td>{{ message.time }}</td>
                         </tr>
                     </table>
 
@@ -286,11 +286,11 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
               <script>
 
                 var vc = new Vue({
-                  el: '#data', 
+                  el: '#data',
                   data: {
-                       chats: 'Loading...', 
-                       users: 'Loading...', 
-                       messages: 'Loading..', 
+                       chats: 'Loading...',
+                       users: 'Loading...',
+                       messages: 'Loading..',
                        currSelectedChat: 0
                   },
                   methods: {
@@ -303,16 +303,16 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               var response = Http.responseText;
                               var json = JSON.parse(response);
                               this.chats = json.chats;
-                          } 
+                          }
                       },
                       getLastActiveString: function(chat) {
                         var date = new Date(chat.lastActive);
-                        return date.toString(); 
-                      }, 
+                        return date.toString();
+                      },
                       getTimeString: function(message) {
                         var time = new Date(message.time);
-                        return time.toString(); 
-                      }, 
+                        return time.toString();
+                      },
                       loadUsers: function() {
                           const Http = new XMLHttpRequest();
                           const url = "http://localhost:3000/all-users";
@@ -323,11 +323,11 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               var json = JSON.parse(response);
                               this.users = json.items;
                           }
-                      }, 
+                      },
                       getUserName: function(id) {
                         var user = this.users.find(user => user.id == id);
-                        return user.username; 
-                      }, 
+                        return user.username;
+                      },
                       loadMessages: function(chatId) {
                           const Http = new XMLHttpRequest();
                           const url = "http://localhost:3000/message/get-all";
@@ -337,24 +337,24 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                               var response = Http.responseText;
                               var json = JSON.parse(response);
                               var allMesssages = json.messages;
-                              var filterMessages = allMesssages.filter( m => m.chatId == chatId); 
-                              this.messages = filterMessages; 
-                          } 
-                      }, 
+                              var filterMessages = allMesssages.filter( m => m.chatId == chatId);
+                              this.messages = filterMessages;
+                          }
+                      },
                       selectRow: function(chat) {
-                        var index = this.chats.indexOf(chat); 
-                        this.loadMessages(chat.id); 
-                        var table = document.querySelector(".table"); 
-                        var row = table.rows[index + 1]; 
-                        row.style.backgroundColor = "#D0F3D5"; 
-                        var oldRow = table.rows[this.currSelectedChat+1]; 
+                        var index = this.chats.indexOf(chat);
+                        this.loadMessages(chat.id);
+                        var table = document.querySelector(".table");
+                        var row = table.rows[index + 1];
+                        row.style.backgroundColor = "#D0F3D5";
+                        var oldRow = table.rows[this.currSelectedChat+1];
                         if (index != this.currSelectedChat) {
                           if (this.currSelectedChat % 2 == 0) {
-                            this.currSelectedChat = index; 
-                            oldRow.style.backgroundColor = "#f2f2f2"; 
+                            this.currSelectedChat = index;
+                            oldRow.style.backgroundColor = "#f2f2f2";
                           } else {
-                            this.currSelectedChat = index; 
-                            oldRow.style.backgroundColor = "#ddd"; 
+                            this.currSelectedChat = index;
+                            oldRow.style.backgroundColor = "#ddd";
                           }
                         }
                       }
@@ -379,7 +379,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
       reserved.
     </footer>
-  
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -387,7 +387,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
-  
+
   <script>
     function getAdmin() {
       var url_string = window.location.href;
@@ -396,7 +396,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       return admin;
     }
   </script>
-      
+
   <script>
     function setAdmin() {
       var a = getAdmin();
@@ -424,7 +424,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
       document.getElementById("accountlink").setAttribute("href",accountlink);
     }
   </script>
-  
+
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
