@@ -46,7 +46,7 @@
         android:id="@+id/post_lose"
         android:layout_width="277dp"
         android:layout_height="114dp"
-        android:background="#8BF44336"
+        android:background="@color/colorLost"
         android:onClick="onLoseClick"
         android:text="Lose an item? \n(make sure you check found items first to see if someone found it!)"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -59,7 +59,7 @@
         android:id="@+id/post_find"
         android:layout_width="281dp"
         android:layout_height="102dp"
-        android:background="#6B0347F4"
+        android:background="@color/colorFound"
         android:onClick="onFindClick"
         android:text="Find an item? \n(make sure you check lost items first to see if it's already posted!)"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

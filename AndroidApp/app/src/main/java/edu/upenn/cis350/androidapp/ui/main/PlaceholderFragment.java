@@ -4,7 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,9 +107,19 @@ public class PlaceholderFragment extends Fragment {
                     b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
                     int color = Color.parseColor("#8BF44336");
+                    //#FFFF9800
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
-                    String output = i.getCategory() + "\n" + i.getLocation() + "\nLost " + setTime(i.getDate());
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    params.setMargins(0, -12, 0, -12);
+                    b.setLayoutParams(params);
+                    Spannable output = new SpannableString(i.getCategory() + "\n" + i.getLocation() + "\nLost " + setTime(i.getDate()));
+                    output.setSpan(new RelativeSizeSpan(1.7f), 0, i.getCategory().length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    output.setSpan(new StyleSpan(Typeface.ITALIC), i.getCategory().length(), output.length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    //String output = i.getCategory() + "\n" + i.getLocation() + "\nLost " + setTime(i.getDate());
                     b.setText(output);
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -140,7 +155,16 @@ public class PlaceholderFragment extends Fragment {
                     int color = Color.parseColor("#6B0347F4");
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
-                    String output = i.getCategory() + "\n" + i.getLocation() + "\nFound " + setTime(i.getDate());
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    params.setMargins(0, -12, 0, -12);
+                    b.setLayoutParams(params);
+                    //String output = i.getCategory() + "\n" + i.getLocation() + "\nFound " + setTime(i.getDate());
+                    Spannable output = new SpannableString(i.getCategory() + "\n" + i.getLocation() + "\nFound " + setTime(i.getDate()));
+                    output.setSpan(new RelativeSizeSpan(1.7f), 0, i.getCategory().length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    output.setSpan(new StyleSpan(Typeface.ITALIC), i.getCategory().length(), output.length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                     b.setText(output);
                     b.setOnClickListener(new View.OnClickListener() {
                         @Override

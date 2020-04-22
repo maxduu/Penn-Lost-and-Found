@@ -6,10 +6,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import android.view.ContextThemeWrapper;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import android.content.*;
@@ -18,14 +20,14 @@ import java.util.*;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.WarningProcessor;
 import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
-import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.*;
 import edu.upenn.cis350.androidapp.MessagingActivities.ChatsActivity;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     public static long userId;
     ViewPager viewPager;
+    String toAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +44,72 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(),
 //                "Login ID: " + userId + " Username: " +
 //                        getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
+
     }
 
+
     public void onPlusClick(View v){
-        Intent i = new Intent(this, NewPostActivity.class);
+        Context wrapper = new ContextThemeWrapper(this, R.style.PopupMenu);
+        PopupMenu popup = new PopupMenu(wrapper, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.popup_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.lost:
+                new AlertDialog.Builder(this)
+                        .setTitle("Before posting a lost item...")
+                        .setMessage("Remember to check found items first to see if someone has already found your item!")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startLost();
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return true;
+            case R.id.found:
+                new AlertDialog.Builder(this)
+                        .setTitle("Before posting a found item...")
+                        .setMessage("Remember to check lost items first to see if someone is already looking for it!")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startFound();
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    protected void startLost() {
+        Intent i = new Intent(this, PostLost1Activity.class);
         i.putExtra("userId", userId);
         startActivity(i);
+    }
+
+    protected void startFound() {
+        Intent i2 = new Intent(this, PostFoundActivity.class);
+        i2.putExtra("userId", userId);
+        startActivity(i2);
     }
 
    public void onMessageClick(View v) {
