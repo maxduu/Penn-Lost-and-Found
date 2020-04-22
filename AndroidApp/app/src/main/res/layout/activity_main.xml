@@ -44,11 +44,11 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="46dp" />
+            android:layout_height="53dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="549dp"
+            android:layout_height="542dp"
             android:orientation="horizontal">
 
             <TextView
@@ -108,5 +108,17 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="18dp"
+        android:clickable="false"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="auto"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/upenn_shield" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
