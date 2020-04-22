@@ -28,6 +28,7 @@ public class ChatsActivity extends AppCompatActivity {
     private ChatAdapter adapter;
     private int lastCount;
     private ListView chatListView;
+    private Handler handler;
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -59,7 +60,7 @@ public class ChatsActivity extends AppCompatActivity {
                     }
                 }
         );
-        final Handler handler = new Handler();
+        handler = new Handler();
         final int delay = 700; //milliseconds
 
         handler.postDelayed(new Runnable(){

@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1FADE"
+    android:background="@drawable/customborder"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/post_found_title"
+        android:id="@+id/textView8"
         android:layout_width="match_parent"
-        android:layout_height="74dp"
-        android:background="#6B0347F4"
-        android:fontFamily="@font/oswald_bold"
-        android:text="Posting a Found Item"
+        android:layout_height="15dp"
+        android:background="@color/colorPrimary"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/lost_item_category"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/libre_franklin_thin"
+        android:text="You found an item"
         android:textAlignment="center"
-        android:textColor="#0A0202"
-        android:textSize="36sp" />
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -22,124 +32,106 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="398dp"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="309dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/found_category_question"
-            android:layout_width="205dp"
-            android:layout_height="64dp"
-            android:layout_weight="1"
-            android:text="What is it?"
-            android:textColor="#070000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/lost_category_question"
+                android:layout_width="223dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/libre_franklin_thin"
+                android:text="What is it?"
+                android:textAlignment="center"
+                android:textColor="#070000"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/found_category_spinner"
-            android:layout_width="240dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:entries="@array/lost_categories" />
+            <Spinner
+                android:id="@+id/found_category_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="6dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:entries="@array/lost_categories" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/found_other_category"
+                android:layout_width="198dp"
+                android:layout_height="7dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/libre_franklin_light"
+                android:hint="Type category name"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:visibility="invisible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-        <Space
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            <TextView
+                android:id="@+id/lost_location_q"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_marginTop="-30dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/libre_franklin_thin"
+                android:text="Where did you find it?"
+                android:textAlignment="center"
+                android:textColor="#030000"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/found_not_category"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Not a category?"
-            android:visibility="invisible"
-            android:textColor="#0C0101"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="230dp"
-            android:layout_height="30dp"
-            android:layout_weight="1" />
-
-        <EditText
-            android:id="@+id/found_other_category"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Type category name"
-            android:visibility="invisible"
-            android:inputType="textPersonName"
-            android:textColor="#000000" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="92dp"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="50dp"
-            android:layout_height="140dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/found_location_q"
-            android:layout_width="205dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:text="Where did\nyou find it?"
-            android:textColor="#030000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/found_location"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Place"
-            android:inputType="textPersonName" />
+            <AutoCompleteTextView
+                android:id="@+id/found_location"
+                android:layout_width="226dp"
+                android:layout_height="14dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Place"
+                android:inputType="textPersonName" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:id="@+id/textView10"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
         android:text="Someone claiming this item will send you a description of the item. If their description matches, message back with where they should go to get it." />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="22dp" />
 
-    <Button
-        android:id="@+id/found_next"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/colorGreen"
-        android:fontFamily="@font/oswald_bold"
-        android:onClick="onMakeFoundClick"
-        android:text="Make Post"
-        android:textSize="36sp" />
+        android:background="#016C61"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/libre_franklin_medium"
+            android:onClick="onMakeFoundClick"
+            android:text="Create Post"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
 </LinearLayout>

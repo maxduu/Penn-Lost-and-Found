@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1FADE"
+    android:background="@drawable/customborder"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,15 +15,27 @@
         <FrameLayout
             android:id="@+id/map_view"
             android:layout_width="match_parent"
-            android:layout_height="224dp" >
+            android:layout_height="226dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="4dp">
 
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/colorPrimary"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/foundItemCategory"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginHorizontal="4dp"
             android:background="#6B0347F4"
+            android:fontFamily="@font/libre_franklin_light"
             android:gravity="center"
             android:text="[Found Item Category]"
             android:textColor="#0A0202"
@@ -34,40 +46,73 @@
             android:id="@+id/foundItemTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
             android:background="#6B0347F4"
+            android:fontFamily="@font/libre_franklin_light"
             android:text="[Found Date]"
             android:textAlignment="center"
-            android:textColor="#0A0202" />
+            android:textColor="#0A0202"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/foundItemAround"
             android:layout_width="match_parent"
             android:layout_height="25dp"
+            android:layout_marginHorizontal="4dp"
             android:background="#6B0347F4"
+            android:fontFamily="@font/libre_franklin_light"
             android:text="[Found Around]"
             android:textAlignment="center"
-            android:textColor="#0A0202" />
+            android:textColor="#0A0202"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimary"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/yourItemMessageUserToClaim"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="-6dp"
             android:backgroundTint="@color/colorGreen"
+            android:fontFamily="@font/libre_franklin_light"
             android:onClick="onYourItemMessageUserToClaimClick"
             android:text="Your Item?\nMessage User to Claim"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="30sp"
+            android:textSize="26sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="-6dp"
+            android:background="@color/colorPrimary"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/ad"
             android:layout_width="match_parent"
-            android:layout_height="238dp"
+            android:layout_height="237dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="-6dp"
             app:srcCompat="@drawable/ad" />
 
-        <Space
+        <TextView
+            android:id="@+id/textView14"
             android:layout_width="match_parent"
-            android:layout_height="75dp" />
+            android:layout_height="4dp"
+            android:layout_marginTop="-6dp"
+            android:background="@color/colorPrimary"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -83,8 +128,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|top"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="273dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="284dp"
             android:onClick="onReportClick"
             app:backgroundTint="#FF0000"
             app:fabSize="mini"

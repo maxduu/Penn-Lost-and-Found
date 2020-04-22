@@ -105,7 +105,7 @@ public class FoundItem1Activity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mMapView.onDestroy();
+        //mMapView.onDestroy();
     }
 
     @Override

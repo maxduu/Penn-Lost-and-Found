@@ -59,7 +59,7 @@ public class FoundItem2Activity extends AppCompatActivity {
         cp.registerChat(chat);
         EditText foundItemText = findViewById(R.id.foundItemText);
         String text = "Hello, I would like to claim the " + itemCat + " that you posted on " + postDate +
-                "\n" + " Here's some verification details that I remember: " + foundItemText.getText().toString();
+                "\n" + ". Here's some verification details that I remember: " + foundItemText.getText().toString();
         Message message = new Message(messageId, userId, posterId, new Date(), text, chatId);
         mp.registerMessage(message);
         Toast.makeText(getApplicationContext(),

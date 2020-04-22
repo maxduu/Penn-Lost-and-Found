@@ -37,7 +37,7 @@
             android:id="@+id/pennTitle2"
             android:layout_width="match_parent"
             android:layout_height="96dp"
-            android:fontFamily="@font/oswald_bold"
+            android:fontFamily="@font/libre_franklin_light"
             android:gravity="center|top"
             android:text="Create An Account"
             android:textAlignment="center"
@@ -72,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="sans-serif"
             android:text="At least 6 characters"
             android:textSize="14sp" />
 
@@ -102,6 +103,7 @@
                 android:id="@+id/createAccountButton"
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
+                android:fontFamily="@font/libre_franklin_medium"
                 android:onClick="onCreateAccountButtonClick"
                 android:text="Create Account" />
         </LinearLayout>

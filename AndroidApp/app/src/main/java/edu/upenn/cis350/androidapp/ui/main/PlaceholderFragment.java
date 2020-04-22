@@ -114,7 +114,7 @@ public class PlaceholderFragment extends Fragment {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                     );
-                    params.setMargins(0, -12, 0, -12);
+                    params.setMargins(0, -15, 0, -12);
                     b.setLayoutParams(params);
                     Spannable output = new SpannableString(i.getCategory() + "\n" + i.getLocation() + "\nLost " + setTime(i.getDate()));
                     output.setSpan(new RelativeSizeSpan(1.7f), 0, i.getCategory().length(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -159,7 +159,7 @@ public class PlaceholderFragment extends Fragment {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                     );
-                    params.setMargins(0, -12, 0, -12);
+                    params.setMargins(0, -15, 0, -12);
                     b.setLayoutParams(params);
                     //String output = i.getCategory() + "\n" + i.getLocation() + "\nFound " + setTime(i.getDate());
                     Spannable output = new SpannableString(i.getCategory() + "\n" + i.getLocation() + "\nFound " + setTime(i.getDate()));

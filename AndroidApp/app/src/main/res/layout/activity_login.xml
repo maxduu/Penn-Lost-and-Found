@@ -34,13 +34,12 @@
             android:id="@+id/pennTitle"
             android:layout_width="match_parent"
             android:layout_height="172dp"
-            android:fontFamily="@font/oswald_bold"
+            android:fontFamily="@font/libre_franklin_light"
             android:gravity="center|top"
             android:text="Penn\nLost &amp; Found"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="54dp"
-            android:textStyle="bold" />
+            android:textSize="54dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -85,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="83dp"
                 android:background="#49CE4D"
+                android:fontFamily="@font/libre_franklin_medium"
                 android:onClick="onLoginButtonClick"
                 android:text="Log In"
                 android:textSize="20sp"
@@ -94,6 +94,7 @@
                 android:id="@+id/createAccountButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/libre_franklin_medium"
                 android:onClick="onCreateNewAccountButtonClick"
                 android:text="Create An Account" />
         </LinearLayout>
@@ -120,9 +121,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:fontFamily="@font/libre_franklin_medium"
                 android:onClick="onForgotPasswordButtonClick"
                 android:text="Forgot Password?"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
         </LinearLayout>
 
 

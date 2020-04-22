@@ -1,5 +1,6 @@
 package edu.upenn.cis350.androidapp;
 
+import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -75,7 +76,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         // A null listener allows the button to dismiss the dialog and take no further action.
                         .setNegativeButton(android.R.string.no, null)
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+                        .show()
+                        .getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, 0xFF019787));
                 return true;
             case R.id.found:
                 new AlertDialog.Builder(this)
@@ -93,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         // A null listener allows the button to dismiss the dialog and take no further action.
                         .setNegativeButton(android.R.string.no, null)
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+                        .show()
+                        .getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, 0xFF019787));
                 return true;
             default:
                 return false;

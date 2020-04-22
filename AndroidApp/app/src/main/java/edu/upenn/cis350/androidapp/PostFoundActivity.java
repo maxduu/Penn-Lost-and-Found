@@ -43,10 +43,8 @@ public class PostFoundActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position,
                                        long id) {
                 if (parentView.getItemAtPosition(position).toString().equals("Other")) {
-                    ((TextView) findViewById(R.id.found_not_category)).setVisibility(View.VISIBLE);
                     ((EditText) findViewById(R.id.found_other_category)).setVisibility(View.VISIBLE);
                 } else {
-                    ((TextView) findViewById(R.id.found_not_category)).setVisibility(View.INVISIBLE);
                     ((EditText) findViewById(R.id.found_other_category)).setVisibility(View.INVISIBLE);
                 }
             }

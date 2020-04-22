@@ -38,6 +38,7 @@ public class MessagesActivity extends AppCompatActivity {
     private ArrayAdapter textAdapter;
     private MessageAdapter adapter;
     private int lastCount;
+    private Handler handler;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +70,8 @@ public class MessagesActivity extends AppCompatActivity {
         textListView.setSelection(adapter.getCount() - 1);
         lastCount = messageIds.size();
 
-        final Handler handler = new Handler();
+        handler = new Handler();
+        handler.removeCallbacksAndMessages(null);
         final int delay = 700; //milliseconds
 
         handler.postDelayed(new Runnable(){
