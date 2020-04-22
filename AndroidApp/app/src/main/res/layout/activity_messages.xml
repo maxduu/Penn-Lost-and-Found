@@ -9,43 +9,47 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">]
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="36dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="top"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="570dp"
-        android:onClick="onReportClick"
-        app:backgroundTint="#FF0000"
-        app:fabSize="mini"
-        app:layout_dodgeInsetEdges="all"
-        app:rippleColor="@color/colorPrimaryDark"
-        app:srcCompat="@drawable/flag" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/customborder"
         android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_weight="2" />
 
         <ListView
             android:id="@+id/textsListView"
             android:layout_width="match_parent"
-            android:layout_height="613dp"
+            android:layout_height="562dp"
+            android:layout_marginTop="15dp"
             android:divider="#fff">
 
         </ListView>
 
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_weight="2"
+            android:background="@color/colorPrimary"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:layout_marginHorizontal="4dp"
+            android:background="#FFFFFF"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/enterMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:layout_weight="2"
                 android:ems="10"
                 android:hint="Write a message"
@@ -66,11 +70,55 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_weight="2"
+            android:background="@color/colorPrimary"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_weight="2" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/lost_item_category4"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/libre_franklin_thin"
+        android:text="[User]"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="36dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_marginLeft="370dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onReportClick"
+
+        app:backgroundTint="#FF0000"
+        app:fabSize="mini"
+        app:layout_dodgeInsetEdges="all"
+        app:rippleColor="@color/colorPrimaryDark"
+        app:srcCompat="@drawable/flag" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
