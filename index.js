@@ -5,7 +5,7 @@ var cors = require('cors');
 var path = require('path');
 var crypto = require('crypto');
 var multer = require('multer');
-var GridFSStorage = require('multer-gridfs-storage');
+var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var mongoose = require('mongoose');
 
@@ -39,14 +39,41 @@ const messageRoute = require('./routes/messageRoute')
 app.use('/chat', chatRoute); 
 app.use('/message', messageRoute); 
 
-const connection = mongoose.connect('mongodb+srv://Access:ilovelukeyeagley@cluster0-elsk0.mongodb.net/test?retryWrites=true&w=majority');
-const storage = new GridFSStorage({db: connection});
-const upload = multer({storage});
+const mongoURI = 'mongodb+srv://Access:ilovelukeyeagley@cluster0-elsk0.mongodb.net/test?retryWrites=true&w=majority';
+
+const conn = mongoose.createConnection(mongoURI);
+
+let gfs;
+
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('uploads');
+})
+
+const storage = new GridFsStorage({
+    url: mongoURI,
+    file: (req, file) => {
+      return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+          if (err) {
+            return reject(err);
+          }
+          const filename = buf.toString('hex') + path.extname(file.originalname);
+          const fileInfo = {
+            filename: filename,
+            bucketName: 'uploads'
+          };
+          resolve(fileInfo);
+        });
+      });
+    }
+  });
+  const upload = multer({ storage });
 
 // filename important to link to item!
-app.post('/upload', upload.single('image'), (req, res) => {
-    res.json({'filename': req.file.filename});
-})
+app.post('/upload', upload.single('file'), (req, res) => {
+    res.json({'id': req.file.id});
+});
 
 // GET route to create a new user, ex: 'http://localhost:3000/create-user...' and get request
 // query has parameters that are the user object json attributes
