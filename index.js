@@ -70,9 +70,28 @@ const storage = new GridFsStorage({
   });
   const upload = multer({ storage });
 
-// filename important to link to item!
+// filename important to link to item! POST image
 app.post('/upload', upload.single('file'), (req, res) => {
-    res.json({'id': req.file.id});
+    res.json({'filename': req.file.filename});
+});
+
+// GET image: /image/d21d6cc9dd815da8b84742d06a1e4b23.jpg
+app.use('/image/:filename', (req, res) => {
+    var search = req.params.filename;
+    console.log(search)
+    gfs.files.findOne({filename: search}, (err, image) => {
+        if (err) {
+            res.json({'status': err});
+        }
+        else if (!image) {
+            res.json({'status': 'no image'});
+        }
+        else {
+            const readstream = gfs.createReadStream(image.filename);
+            console.log('successfully gotten image');
+            readstream.pipe(res);
+        }
+    })
 });
 
 // GET route to create a new user, ex: 'http://localhost:3000/create-user...' and get request

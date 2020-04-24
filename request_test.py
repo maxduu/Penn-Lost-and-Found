@@ -12,13 +12,13 @@ import json
 # res = requests.post('http://localhost:3000/upload', files = {'file': pic})
 # print(str(res.file))
 
-url = 'http://localhost:3000/upload'
-path_img = 'TestImages/big.jpg'
-with open(path_img, 'rb') as img:
-  name_img= os.path.basename(path_img)
-  files= {'file': (name_img,img,'image/jpeg') }
-  r = requests.post(url,files=files)
-  print(r.json())
+# url = 'http://localhost:3000/upload'
+# path_img = 'TestImages/waterbottle.jpg'
+# with open(path_img, 'rb') as img:
+#   name_img= os.path.basename(path_img)
+#   files= {'file': (name_img,img,'image/jpeg') }
+#   r = requests.post(url,files=files)
+#   print(r.json())
 
-# res = requests.get('http://localhost:3000/get-picture?filename=b91c99ec8d16adb78de88a2e73652e41')
-# print(res)
+res = requests.get('http://localhost:3000/image/d21d6cc9dd815da8b84742d06a1e4b23.jpg')
+# print(res.json())
