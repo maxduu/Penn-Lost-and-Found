@@ -71,11 +71,15 @@ const storage = new GridFsStorage({
   const upload = multer({ storage });
 
 // filename important to link to item! POST image
+// post {'file': img}
+// RESPONDS W/ THE FILENAME which will be saved as attachmentLoc in android
 app.post('/upload', upload.single('file'), (req, res) => {
     res.json({'filename': req.file.filename});
 });
 
 // GET image: /image/d21d6cc9dd815da8b84742d06a1e4b23.jpg
+// GET as a stream, android needs to read as input stream and maybe
+// convert to bitmap
 app.use('/image/:filename', (req, res) => {
     var search = req.params.filename;
     console.log(search)
