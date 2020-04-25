@@ -8,36 +8,6 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="596dp"
-        android:orientation="vertical"><![CDATA[
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    ]]>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="67dp"
-            android:background="@color/colorPrimary"
-            app:tabIndicatorColor="@color/colorAccent"
-            app:tabTextColor="#FFFFFF" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="false"
-            android:background="@color/colorLightGreen"
-            android:visibility="visible"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:visibility="visible">
-
-        </androidx.viewpager.widget.ViewPager>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -121,5 +91,35 @@
         app:fabSize="auto"
         app:maxImageSize="40dp"
         app:srcCompat="@drawable/upenn_shield" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="596dp"
+        android:orientation="vertical"><![CDATA[
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    ]]>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabTextColor="#FFFFFF" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="false"
+            android:background="@color/colorPrimary"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:visibility="visible">
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

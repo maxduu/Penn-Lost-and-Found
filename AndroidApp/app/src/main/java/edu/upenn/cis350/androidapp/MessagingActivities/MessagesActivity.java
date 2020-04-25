@@ -120,6 +120,12 @@ public class MessagesActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
     public void onReportClick(View v) {
         if (ReportProcessor.getInstance().existsDuplicateReport(userId, otherUserId, "Chat")) {
             Toast.makeText(this,

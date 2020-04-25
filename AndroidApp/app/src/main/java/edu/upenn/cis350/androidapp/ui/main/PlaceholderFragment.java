@@ -106,7 +106,7 @@ public class PlaceholderFragment extends Fragment {
                     Button b = new Button(items_list.getContext());
                     b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
-                    int color = Color.parseColor("#8BF44336");
+                    int color = Color.parseColor("#FFE1FADE");
                     //#FFFF9800
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
@@ -152,7 +152,7 @@ public class PlaceholderFragment extends Fragment {
                     Button b = new Button(items_list.getContext());
                     b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
-                    int color = Color.parseColor("#6B0347F4");
+                    int color = Color.parseColor("#FFE1FADE");
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
