@@ -1,28 +1,32 @@
 package edu.upenn.cis350.androidapp;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.LightingColorFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.ContextThemeWrapper;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.Collection;
 
-import android.view.ContextThemeWrapper;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.*;
-import android.content.*;
-
-import java.util.*;
-
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Warning;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.UpdateProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.WarningProcessor;
-import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 import edu.upenn.cis350.androidapp.MessagingActivities.ChatsActivity;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.*;
+import edu.upenn.cis350.androidapp.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -42,6 +46,16 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         FloatingActionButton fab = findViewById(R.id.fab);
         userId = getIntent().getLongExtra("userId", -1);
         showWarnings();
+
+        //Configure handlers
+        Handler UIHandler = UpdateProcessor.getUIHandler();
+        UIHandler.removeCallbacksAndMessages(null);
+
+        UpdateProcessor updateProcessor = UpdateProcessor.getInstance();
+        updateProcessor.setUserId(userId);
+        updateProcessor.setContext(this);
+        updateProcessor.startChecking();
+
 //        Toast.makeText(getApplicationContext(),
 //                "Login ID: " + userId + " Username: " +
 //                        getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();

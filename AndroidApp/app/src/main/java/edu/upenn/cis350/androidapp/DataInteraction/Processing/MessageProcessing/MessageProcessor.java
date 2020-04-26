@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.MessageComparator;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.MessageJSONReader;
@@ -53,6 +54,21 @@ public class MessageProcessor {
             messages.add(this.getMessage(id));
         }
         messages.sort(MessageComparator.getInstance());
+        return messages;
+    }
+
+    /**
+     *
+     * @param userId The id of the user of interest
+     * @return A List of Message Objects that user is involved in
+     */
+    public List<Message> getAllMessagesForUser(long userId) {
+        List<Message> messages = new LinkedList<Message>();
+        List<Chat> userChats = ChatProcessor.getInstance().getChatsForUser(userId);
+        for (Chat chat : userChats) {
+            List<Message> newMessages = getMessages(chat.getMessages());
+            messages.addAll(newMessages);
+        }
         return messages;
     }
 

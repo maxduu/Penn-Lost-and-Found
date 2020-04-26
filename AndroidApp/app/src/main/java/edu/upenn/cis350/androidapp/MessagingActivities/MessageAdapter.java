@@ -53,12 +53,14 @@ public class MessageAdapter extends BaseAdapter {
                 (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         Message message = messages.get(i);
 
-        if ((int)message.getSenderId() == (int)userId) { // this message was sent by us so let's create a basic chat bubble on the right
+        if ((int)message.getSenderId() == (int)userId) {
+            // this message was sent by user so create a basic chat bubble on the right
             convertView = messageInflater.inflate(R.layout.my_message, null);
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
             convertView.setTag(holder);
             holder.messageBody.setText(message.getText());
-        } else { // this message was sent by someone else so let's create an advanced chat bubble on the left
+        } else {
+            // this message was sent by someone else so create an advanced chat bubble on the left
             convertView = messageInflater.inflate(R.layout.their_message, null);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);

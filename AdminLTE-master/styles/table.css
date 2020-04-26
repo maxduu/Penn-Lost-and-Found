@@ -16,9 +16,6 @@
 
 .table tr:hover {background-color: #ddd;}
 
-.table tr {
-  width: 100%
-}
 
 .table th {
     border: 1px solid #ddd;

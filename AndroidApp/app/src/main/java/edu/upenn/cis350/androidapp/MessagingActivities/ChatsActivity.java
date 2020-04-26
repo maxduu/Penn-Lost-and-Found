@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,10 +14,8 @@ import java.util.List;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
-import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.ReportProcessor;
-import edu.upenn.cis350.androidapp.MainActivity;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.UpdateProcessor;
 import edu.upenn.cis350.androidapp.R;
-import edu.upenn.cis350.androidapp.ReportActivity;
 
 public class ChatsActivity extends AppCompatActivity {
 
@@ -47,6 +44,19 @@ public class ChatsActivity extends AppCompatActivity {
         adapter = new ChatAdapter(this, userId, chats);
         chatListView.setAdapter(adapter);
         lastCount = adapter.getCount();
+
+        //start looking for chats
+        UpdateProcessor.getInstance().setContext(this);
+        handler = UpdateProcessor.getUIHandler();
+        handler.removeCallbacksAndMessages(null);
+        final int DELAY = 700; //milliseconds
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                update();
+                handler.postDelayed(this, DELAY);
+            }
+        }, DELAY);
+
         chatListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -56,19 +66,11 @@ public class ChatsActivity extends AppCompatActivity {
                                 MessagesActivity.class);
                         i.putExtra("userId", userId);
                         i.putExtra("chatId", chatId);
+                        handler.removeCallbacksAndMessages(null);
                         startActivity(i);
                     }
                 }
         );
-        handler = new Handler();
-        final int delay = 700; //milliseconds
-
-        handler.postDelayed(new Runnable(){
-            public void run(){
-                update();
-                handler.postDelayed(this, delay);
-            }
-        }, delay);
     }
 
     public void update() {

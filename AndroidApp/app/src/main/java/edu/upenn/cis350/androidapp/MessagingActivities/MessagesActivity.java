@@ -20,9 +20,9 @@ import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.ChatProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.MessageProcessor;
+import edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing.UpdateProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.AccountJSONProcessor;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.ReportProcessor;
-import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.R;
 import edu.upenn.cis350.androidapp.ReportActivity;
 
@@ -58,6 +58,7 @@ public class MessagesActivity extends AppCompatActivity {
         } else {
             otherUserId = (long)initiatorId;
         }
+
         String email = AccountJSONProcessor.getInstance().getAccount(otherUserId).getUsername();
         String user = email.substring(0, email.indexOf("@"));
         setTitle(user);
@@ -70,16 +71,16 @@ public class MessagesActivity extends AppCompatActivity {
         textListView.setSelection(adapter.getCount() - 1);
         lastCount = messageIds.size();
 
-        handler = new Handler();
+        handler = UpdateProcessor.getUIHandler();
         handler.removeCallbacksAndMessages(null);
-        final int delay = 700; //milliseconds
+        final int DELAY = 700; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
                 update();
-                handler.postDelayed(this, delay);
+                handler.postDelayed(this, DELAY);
             }
-        }, delay);
+        }, DELAY);
 
     }
 
@@ -103,7 +104,6 @@ public class MessagesActivity extends AppCompatActivity {
                 "message: " + text);
         if (text.length() > 0) {
             MessageProcessor mp = MessageProcessor.getInstance();
-
             //create new message
             long senderId = userId;
             long receiverId = otherUserId;
