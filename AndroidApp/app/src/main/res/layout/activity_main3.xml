@@ -35,7 +35,7 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F3EC8F69"
+            android:background="@color/colorLightGreen"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </androidx.viewpager.widget.ViewPager>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -118,6 +119,12 @@ public class MessagesActivity extends AppCompatActivity {
             textAdapter.notifyDataSetChanged();*/
             edit.getText().clear();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
     public void onReportClick(View v) {

@@ -1,16 +1,25 @@
 package edu.upenn.cis350.androidapp;
 
+import android.app.Activity;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.AdapterView.*;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URL;
+
 import edu.upenn.cis350.androidapp.LocationAdapter.PlaceAutoSuggestAdapter;
 
 public class PostLost1Activity extends AppCompatActivity {
-
     private long userId;
     private String category = "";
     private String place = "";
@@ -41,8 +50,10 @@ public class PostLost1Activity extends AppCompatActivity {
                     ((EditText) findViewById(R.id.lost_other_category)).setVisibility(View.INVISIBLE);
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView){}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
     }
 

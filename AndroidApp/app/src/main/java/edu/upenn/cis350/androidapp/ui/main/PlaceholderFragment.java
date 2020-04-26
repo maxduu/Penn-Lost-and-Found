@@ -1,10 +1,15 @@
 package edu.upenn.cis350.androidapp.ui.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,11 +22,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,9 +43,13 @@ import java.util.List;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.FoundItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.LostItem;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONReader;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.FoundJSONWriter;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONReader;
+import edu.upenn.cis350.androidapp.DataInteraction.Management.ItemManagement.LostJSONWriter;
 import edu.upenn.cis350.androidapp.FoundItem1Activity;
+import edu.upenn.cis350.androidapp.LoginActivity;
 import edu.upenn.cis350.androidapp.LostItem1Activity;
+import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.R;
 
 /**
@@ -84,8 +98,8 @@ public class PlaceholderFragment extends Fragment {
         return createItems(view);
     }
 
-    private View createItems (View view) {
-        LinearLayout items_list = view.findViewById(R.id.items_list);
+    private View createItems (final View view) {
+        final LinearLayout items_list = view.findViewById(R.id.items_list);
         if (index == 1) {
             Collection<LostItem> lostItemsTemp = LostJSONReader.getInstance().getAllLostItems();
             List <LostItem> lostItems = new ArrayList(lostItemsTemp);
@@ -102,11 +116,12 @@ public class PlaceholderFragment extends Fragment {
                 t.setText("Looks like no one has lost anything recently :)");
                 items_list.addView(t);
             } else {
-                for (LostItem i : lostItems) {
+                for (final LostItem i : lostItems) {
+                    final CoordinatorLayout l = new CoordinatorLayout(items_list.getContext());
                     Button b = new Button(items_list.getContext());
                     b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
-                    int color = Color.parseColor("#8BF44336");
+                    int color = Color.parseColor("#FFE1FADE");
                     //#FFFF9800
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
@@ -129,7 +144,36 @@ public class PlaceholderFragment extends Fragment {
                             startActivity(i);
                         }
                     });
-                    items_list.addView(b);
+                    l.addView(b);
+                    if (MainActivity.userId == i.getPosterId()) {
+                        final FloatingActionButton fab = new FloatingActionButton(items_list.getContext());
+                        params.setMargins(900, 22, 0, 0);
+                        fab.setLayoutParams(params);
+                        fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.delete));
+                        fab.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                        fab.setOnClickListener (new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View v) {
+                                new AlertDialog.Builder(v.getContext())
+                                        .setTitle("Delete Lost Item Post")
+                                        .setMessage("Are you sure you want to permanently remove this post?")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                LostJSONWriter.getInstance().removeLostItemById(i.getId());
+                                                LinearLayout items_list = view.findViewById(R.id.items_list);
+                                                items_list.removeAllViews();
+                                                createItems(view);
+                                            }
+                                        })
+                                        .setNegativeButton(android.R.string.no, null)
+                                        .show()
+                                        .getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, 0xFF019787));
+                            }
+                        });
+                        l.addView(fab);
+                    }
+                    items_list.addView(l);
                 }
             }
         } else if (index == 2) {
@@ -148,11 +192,12 @@ public class PlaceholderFragment extends Fragment {
                 t.setText("Sorry, no items found yet :(");
                 items_list.addView(t);
             } else {
-                for (FoundItem i : foundItems) {
+                for (final FoundItem i : foundItems) {
+                    final CoordinatorLayout l = new CoordinatorLayout(items_list.getContext());
                     Button b = new Button(items_list.getContext());
                     b.setId((int)i.getId());
                     b.setGravity(Gravity.LEFT);
-                    int color = Color.parseColor("#6B0347F4");
+                    int color = Color.parseColor("#FFE1FADE");
                     b.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC));
                     b.setTransformationMethod(null);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -174,7 +219,36 @@ public class PlaceholderFragment extends Fragment {
                             startActivity(i);
                         }
                     });
-                    items_list.addView(b);
+                    l.addView(b);
+                    if (MainActivity.userId == i.getPosterId()) {
+                        final FloatingActionButton fab = new FloatingActionButton(items_list.getContext());
+                        params.setMargins(900, 22, 0, 0);
+                        fab.setLayoutParams(params);
+                        fab.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.delete));
+                        fab.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                        fab.setOnClickListener (new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View v) {
+                                new AlertDialog.Builder(v.getContext())
+                                        .setTitle("Delete Found Item Post")
+                                        .setMessage("Are you sure you want to permanently remove this post?")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                FoundJSONWriter.getInstance().removeFoundItemById(i.getId());
+                                                LinearLayout items_list = view.findViewById(R.id.items_list);
+                                                items_list.removeAllViews();
+                                                createItems(view);
+                                            }
+                                        })
+                                        .setNegativeButton(android.R.string.no, null)
+                                        .show()
+                                        .getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, 0xFF019787));
+                            }
+                        });
+                        l.addView(fab);
+                    }
+                    items_list.addView(l);
                 }
             }
         }

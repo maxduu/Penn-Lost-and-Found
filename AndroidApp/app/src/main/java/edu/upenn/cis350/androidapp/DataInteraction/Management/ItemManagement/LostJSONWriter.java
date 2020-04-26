@@ -38,7 +38,17 @@ public class LostJSONWriter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void removeLostItemById (long id) {
+        try {
+            URL url = new URL("http://10.0.2.2:3000/remove-lost-item?"
+                    + "id=" + id);
+            AccessWebTask task = new AccessWebTask();
+            task.execute(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
