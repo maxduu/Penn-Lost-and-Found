@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/customborder"
@@ -26,7 +27,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="54dp" />
+        android:layout_height="15dp" />
 
     <TextView
         android:id="@+id/lost_description_q"
@@ -41,7 +42,7 @@
     <EditText
         android:id="@+id/lost_description"
         android:layout_width="match_parent"
-        android:layout_height="94dp"
+        android:layout_height="58dp"
         android:layout_marginHorizontal="40dp"
         android:ems="10"
         android:hint="Color, size, recognizable features, etc."
@@ -49,7 +50,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="85dp" />
+        android:layout_height="15dp" />
 
     <TextView
         android:id="@+id/lost_addinfo_q"
@@ -64,7 +65,7 @@
     <EditText
         android:id="@+id/lost_addinfo"
         android:layout_width="match_parent"
-        android:layout_height="94dp"
+        android:layout_height="58dp"
         android:layout_marginHorizontal="50dp"
         android:ems="10"
         android:hint="Anything else?"
@@ -72,7 +73,40 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="109dp" />
+        android:layout_height="15dp" />
+
+    <TextView
+        android:id="@+id/lost_upload_image"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/libre_franklin_thin"
+        android:onClick="onUploadImageClick"
+        android:text="Please upload an image:"
+        android:textAlignment="center"
+        android:textColor="#130202"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/uploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#80008577"
+        android:layout_gravity="center"
+        android:onClick="onUploadImageClick"
+        android:text="Upload" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+    <ImageView
+        android:id="@+id/lostImageView"
+        android:layout_width="match_parent"
+        android:layout_height="141dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

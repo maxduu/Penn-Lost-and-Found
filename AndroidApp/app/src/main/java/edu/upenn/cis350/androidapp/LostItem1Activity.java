@@ -1,14 +1,26 @@
 package edu.upenn.cis350.androidapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,6 +37,8 @@ import com.microsoft.maps.MapAnimationKind;
 import com.microsoft.maps.MapScene;
 import com.microsoft.maps.MapElementLayer;
 import com.microsoft.maps.MapIcon;
+import com.squareup.picasso.Picasso;
+
 
 public class LostItem1Activity extends AppCompatActivity {
 
@@ -58,6 +72,7 @@ public class LostItem1Activity extends AppCompatActivity {
         TextView lostItemAdditionalInfo = findViewById(R.id.lostItemAdditionalInfo);
         lostItemAdditionalInfo.setText(item.getAdditionalInfo());
 
+
         double x = item.getLatitude();
         double y = item.getLongitude();
         coords = new Geopoint(x, y);
@@ -71,6 +86,14 @@ public class LostItem1Activity extends AppCompatActivity {
         MapIcon pushpin = new MapIcon();
         pushpin.setLocation(coords);
         mPinLayer.getElements().add(pushpin);
+
+        try {
+            URL url = new URL("http://10.0.2.2:3000/image/d21d6cc9dd815da8b84742d06a1e4b23.jpg");
+            ImageView image = findViewById(R.id.lostItemImage);
+            Picasso.get().load(String.valueOf(url)).into(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -108,7 +131,7 @@ public class LostItem1Activity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //mMapView.onDestroy();
+//        mMapView.onDestroy();
     }
 
     @Override

@@ -95,7 +95,7 @@
         android:textColor="@color/colorPrimary" />
 
     <TextView
-        android:id="@+id/lost_item_category4"
+        android:id="@+id/message_header"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_marginTop="10dp"

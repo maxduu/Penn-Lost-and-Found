@@ -127,7 +127,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/lostItemImage"
                 android:layout_width="211dp"
                 android:layout_height="122dp"

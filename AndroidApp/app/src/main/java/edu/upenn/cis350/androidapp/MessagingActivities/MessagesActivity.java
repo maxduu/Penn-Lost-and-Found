@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,6 +70,9 @@ public class MessagesActivity extends AppCompatActivity {
         textListView.setAdapter(adapter);
         textListView.setSelection(adapter.getCount() - 1);
         lastCount = messageIds.size();
+
+        TextView header = (TextView) findViewById(R.id.message_header);
+        header.setText(user);
 
         handler = new Handler();
         handler.removeCallbacksAndMessages(null);
