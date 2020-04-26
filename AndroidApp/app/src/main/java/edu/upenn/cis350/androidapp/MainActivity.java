@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         UIHandler.removeCallbacksAndMessages(null);
 
         UpdateProcessor updateProcessor = UpdateProcessor.getInstance();
-        updateProcessor.setUserId(userId);
         updateProcessor.setContext(this);
         updateProcessor.startChecking();
 

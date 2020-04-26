@@ -10,13 +10,13 @@ import android.os.Handler;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Account;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.MessageComparator;
 import edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing.AccountJSONProcessor;
+import edu.upenn.cis350.androidapp.MainActivity;
 import edu.upenn.cis350.androidapp.MessagingActivities.ChatsActivity;
 import edu.upenn.cis350.androidapp.MessagingActivities.MessagesActivity;
 import edu.upenn.cis350.androidapp.R;
@@ -29,7 +29,6 @@ public class UpdateProcessor {
     private static Handler updateHandler;
     private ChatProcessor chatProcessor;
     private MessageProcessor messageProcessor;
-    private long userId;
     private final int DELAY;
     private Context context;
     List<Message> userMessages;
@@ -41,15 +40,13 @@ public class UpdateProcessor {
         updateHandler = new Handler();
         chatProcessor = ChatProcessor.getInstance();
         messageProcessor = MessageProcessor.getInstance();
-        userMessages = new LinkedList<>();
+        userMessages = messageProcessor.getAllMessagesForUser(MainActivity.userId);
         DELAY = 3000;
     }
 
     private static UpdateProcessor instance = new UpdateProcessor();
 
     public static UpdateProcessor getInstance() { return instance; }
-
-    public void setUserId(long id) { userId = id; }
 
     public void setContext(Context ctx) {
         if (context == null) {
@@ -68,20 +65,24 @@ public class UpdateProcessor {
     }
 
     private void update() {
-        List<Message> newMessages = messageProcessor.getAllMessagesForUser(userId);
+        List<Message> newMessages = messageProcessor.getAllMessagesForUser(MainActivity.userId);
+        System.out.println("incoming size " + newMessages.size());
+        System.out.println("User id " + MainActivity.userId);
         if (userMessages.size() != 0 && newMessages.size() > userMessages.size()) {
+            System.out.println("Inside loop " + (newMessages.size()));
             userMessages = newMessages;
             userMessages.sort(MessageComparator.getInstance());
             Message lastMessage = userMessages.get(userMessages.size() - 1);
-            if (lastMessage.getSenderId() != userId) {
+            if (lastMessage.getSenderId() != MainActivity.userId) {
                 createNotification(lastMessage);
             }
         }
+
     }
 
     private void testNotification() {
         Intent i = new Intent(context, ChatsActivity.class);
-        i.putExtra("userId", userId);
+        i.putExtra("userId", MainActivity.userId);
         PendingIntent contenIntent = PendingIntent.getActivity(context, 0,
                 i, 0);
         final int colorPrimary = R.color.colorPrimary;
@@ -101,13 +102,13 @@ public class UpdateProcessor {
 
     private void createNotification(Message message) {
         Intent messageIntent = new Intent(context, MessagesActivity.class);
-        messageIntent.putExtra("userId", userId);
+        messageIntent.putExtra("userId", MainActivity.userId);
         messageIntent.putExtra("chatId", message.getChatId());
         PendingIntent contenIntent = PendingIntent.getActivity(context, 0,
                 messageIntent, 0);
 
         AccountJSONProcessor accountJSONProcessor = AccountJSONProcessor.getInstance();
-        Account sender = accountJSONProcessor.getAccount(message.getId());
+        Account sender = accountJSONProcessor.getAccount(MainActivity.userId);
         String username = sender.getUsername();
         String text = message.getText();
         final int colorPrimary = R.color.colorPrimary;

@@ -1,10 +1,6 @@
 package edu.upenn.cis350.androidapp.DataInteraction.Processing.UserProcessing;
 
-import android.util.Log;
-
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import edu.upenn.cis350.androidapp.DataInteraction.Data.Account;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.UserManagement.AccountJSONReader;
@@ -180,6 +176,7 @@ public class AccountJSONProcessor {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Account processing " + id);
         throw new IllegalArgumentException("No account with id found");
     }
 

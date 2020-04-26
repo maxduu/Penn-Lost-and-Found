@@ -1,12 +1,18 @@
 package edu.upenn.cis350.androidapp.DataInteraction.Processing.MessageProcessing;
 
+import android.util.Log;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
 import edu.upenn.cis350.androidapp.DataInteraction.Data.ChatComparator;
+import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.ChatJSONReader;
 import edu.upenn.cis350.androidapp.DataInteraction.Management.MessageManagement.ChatJSONWriter;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Chat;
-import edu.upenn.cis350.androidapp.DataInteraction.Data.Message;
-import java.util.*;
-import android.util.Log;
 
 public class ChatProcessor {
 
@@ -93,6 +99,7 @@ public class ChatProcessor {
      * decreasing order of last active
      */
     public List<Chat> getChatsForUser(long userId) {
+        update();
         if (!userToChats.keySet().contains(userId)) {
             return new LinkedList<Chat>();
         }
