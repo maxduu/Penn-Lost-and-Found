@@ -41,7 +41,7 @@ public class UpdateProcessor {
         chatProcessor = ChatProcessor.getInstance();
         messageProcessor = MessageProcessor.getInstance();
         userMessages = messageProcessor.getAllMessagesForUser(MainActivity.userId);
-        DELAY = 3000;
+        DELAY = 1500;
     }
 
     private static UpdateProcessor instance = new UpdateProcessor();

@@ -55,10 +55,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         updateProcessor.setContext(this);
         updateProcessor.startChecking();
 
-//        Toast.makeText(getApplicationContext(),
-//                "Login ID: " + userId + " Username: " +
-//                        getIntent().getStringExtra("username"), Toast.LENGTH_LONG).show();
-
     }
 
 
