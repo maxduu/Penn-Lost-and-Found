@@ -81,11 +81,11 @@
             <TextView
                 android:id="@+id/lost_location_q"
                 android:layout_width="wrap_content"
-                android:layout_height="5dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="-30dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/libre_franklin_thin"
-                android:text="Where did you find it?"
+                android:text="Where did\nyou find it?"
                 android:textAlignment="center"
                 android:textColor="#030000"
                 android:textSize="36sp"

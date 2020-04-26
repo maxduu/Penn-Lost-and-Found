@@ -71,6 +71,12 @@ public class ChatsActivity extends AppCompatActivity {
         }, delay);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+    
     public void update() {
         chats = chatProcessor.getChatsForUser(userId);
         adapter.setChats(chats);
