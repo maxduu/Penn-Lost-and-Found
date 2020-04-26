@@ -72,6 +72,11 @@ public class MessagesActivity extends AppCompatActivity {
         textListView.setSelection(adapter.getCount() - 1);
         lastCount = messageIds.size();
 
+        TextView head = (TextView) this.findViewById(R.id.user_messaged);
+        String otherEmail = AccountJSONProcessor.getInstance().getAccount(otherUserId).getUsername();
+        String otherUser = otherEmail.substring(0, email.indexOf("@"));
+        head.setText(otherUser);
+
         handler = UpdateProcessor.getUIHandler();
         handler.removeCallbacksAndMessages(null);
         final int DELAY = 700; //milliseconds
