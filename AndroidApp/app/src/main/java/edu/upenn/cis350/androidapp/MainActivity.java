@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public static long userId;
     ViewPager viewPager;
     String toAdd;
+    Handler UIHandler;
+    UpdateProcessor updateProcessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         showWarnings();
 
         //Configure handlers
-        Handler UIHandler = UpdateProcessor.getUIHandler();
+        UIHandler = UpdateProcessor.getUIHandler();
         UIHandler.removeCallbacksAndMessages(null);
 
-        UpdateProcessor updateProcessor = UpdateProcessor.getInstance();
+        updateProcessor = UpdateProcessor.getInstance();
         updateProcessor.setContext(this);
         updateProcessor.startChecking();
 

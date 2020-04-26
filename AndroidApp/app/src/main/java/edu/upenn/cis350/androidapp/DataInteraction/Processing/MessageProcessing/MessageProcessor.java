@@ -51,7 +51,7 @@ public class MessageProcessor {
         idToMessage = reader.getAllMessages();
         List<Message> messages = new LinkedList<Message>();
         for (long id : messageIds) {
-            messages.add(this.getMessage(id));
+            messages.add(idToMessage.get(id));
         }
         messages.sort(MessageComparator.getInstance());
         return messages;
@@ -64,6 +64,7 @@ public class MessageProcessor {
      */
     public List<Message> getAllMessagesForUser(long userId) {
         List<Message> messages = new LinkedList<Message>();
+        idToMessage = reader.getAllMessages();
         List<Chat> userChats = ChatProcessor.getInstance().getChatsForUser(userId);
         for (Chat chat : userChats) {
             List<Message> newMessages = getMessages(chat.getMessages());
